@@ -11,3 +11,5 @@ public:
 	virtual unsigned int getSize() = 0;
 	virtual std::string getName() = 0;
 };
+
+enum returnvals {success, invalid_pixel, size_mismatch, no_append};
