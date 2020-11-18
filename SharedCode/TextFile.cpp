@@ -26,6 +26,10 @@ string TextFile::getName() {
 int TextFile::write(std::vector<char> vec) {
 	//TODO: make sure this works and errors caught
 	swap(vec, this->contents);
+	for (char c : this->contents) {
+		cout << c;
+	}
+	cout << endl;
 	cout << "vector swapped" << endl;
 	return 0;
 }
@@ -33,7 +37,9 @@ int TextFile::write(std::vector<char> vec) {
 int TextFile::append(std::vector<char> vec) {
 	for (char c : vec) {
 		this->contents.push_back(c);
+		cout << c;
 	}
+	cout << endl;
 	return 0;
 }
 

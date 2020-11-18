@@ -7,4 +7,19 @@
 
 4. We added print statements and called on each function to ensure that the functionr and the output was correct
 
-5. 
+5.
+Main:
+	af->getName();
+	af->write({ 'w', 'r', 'i', 't', 'e' });
+	af->append({ 'n', 'e', 'w' });
+	af->read();
+	af->getSize();
+
+Output:
+textFile constructor
+FileName: str
+write
+vector swapped
+new
+writenew
+size: 8

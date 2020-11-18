@@ -13,7 +13,12 @@ int main(int argc, char* argv[])
 	AbstractFile* af = new TextFile("str"); //dynamically allocate and passed back as parameters
 
 	//TODO: call all the functions as tests
-	
+	af->getName();
+	af->write({ 'w', 'r', 'i', 't', 'e' });
+	af->append({ 'n', 'e', 'w' });
+	af->read();
+	af->getSize();
+
 	return 0;
 }
 
