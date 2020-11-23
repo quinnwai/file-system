@@ -20,7 +20,7 @@ string ImageFile::getName() {
 	return name;
 }
 
-int ImageFile::write(vector<char> info) {
+int ImageFile::write(vector<char> info) { // ERROR HERE
 	swap(info, this->contents);
 	for (char c : this->contents) {
 		if (c != 'X') {
@@ -46,7 +46,7 @@ int ImageFile::append(vector<char> info) {
 	return no_append;
 }
 
-void ImageFile::read() {
+void ImageFile::read() { // ERROR HERE
 	for (int y = ((int)image_size)-48; y > 0; --y) {
 		for (int x = 0; y < ((int)image_size)-48; ++x) {
 			cout << this->contents[(y-1) * ((int)(image_size)-48) + x];
