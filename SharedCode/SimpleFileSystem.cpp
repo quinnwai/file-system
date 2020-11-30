@@ -38,8 +38,8 @@ int SimpleFileSystem::deleteFile(string name) { // ERROR HERE
 	auto wantedFile = files.find(name);
 	if (wantedFile == files.end()) return 6; // enum
 	if (open_files.find(wantedFile->second) != open_files.end()) return 7; // enum
+	delete files.at(name);
 	files.erase(name);
-	delete wantedFile->second;
 	return success;
 
 }

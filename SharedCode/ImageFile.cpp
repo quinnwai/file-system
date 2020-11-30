@@ -11,8 +11,8 @@ ImageFile::ImageFile(string title) {
 }
 
 unsigned int ImageFile::getSize() {
-	cout << image_size << endl;
-	return image_size;
+	cout << image_size-48 << endl;
+	return this->contents.size() - 1;
 }
 
 string ImageFile::getName() {
@@ -22,12 +22,8 @@ string ImageFile::getName() {
 
 int ImageFile::write(vector<char> info) { // ERROR HERE
 	swap(info, this->contents);
-	for (char c : this->contents) {
-		if (c != 'X') {
-			cout << "error: invalid pixel" << endl;
-			return invalid_pixel;
-		}
-		else if (c != ' ') {
+	for (int i = 0; i < this->contents.size() - 1; ++i) {
+		if (this->contents[i] != 'X' && this->contents[i] != ' ') {
 			cout << "error: invalid pixel" << endl;
 			return invalid_pixel;
 		}
@@ -48,11 +44,11 @@ int ImageFile::append(vector<char> info) {
 
 void ImageFile::read() { // ERROR HERE
 	for (int y = ((int)image_size)-48; y > 0; --y) {
-		for (int x = 0; y < ((int)image_size)-48; ++x) {
-			cout << this->contents[(y-1) * ((int)(image_size)-48) + x];
+		for (int x = 0; x < ((int)image_size)-48; ++x) {
+			cout << this->contents[(y-1) * (image_size-48) + x];
 		}
 		cout << endl;
 	}
-	cout << "file read, GREAT SUCCESS" << endl;
+	//cout << "file read, GREAT SUCCESS" << endl;
 }
 

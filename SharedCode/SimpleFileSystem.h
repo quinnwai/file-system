@@ -13,5 +13,4 @@ public:
 	virtual int deleteFile(std::string name) override;
 	virtual AbstractFile* openFile(std::string name) override;
 	virtual int closeFile(AbstractFile* file) override;
-
 };
