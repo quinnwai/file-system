@@ -3,6 +3,8 @@
 #include<string>
 // declare AbstractFile here. As all methods are virtual and will not be defined, no .cpp file is necessary
 
+enum returns { success, invalid_pixel, size_mismatch, no_append, no_file_exists, already_open, already_exists, invalid_file, unopened_file };
+
 class AbstractFile {
 public:
 	virtual ~AbstractFile() = default;
@@ -13,4 +15,4 @@ public:
 	virtual std::string getName() = 0;
 };
 
-enum returnvals {success, invalid_pixel, size_mismatch, no_append};
+

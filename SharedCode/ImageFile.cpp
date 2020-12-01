@@ -12,7 +12,10 @@ ImageFile::ImageFile(string title) {
 
 unsigned int ImageFile::getSize() {
 	cout << image_size-48 << endl;
-	return this->contents.size() - 1;
+	if (image_size < 48) {
+		return 0;
+	}
+	return (image_size-48)*(image_size - 48);
 }
 
 string ImageFile::getName() {
@@ -30,6 +33,7 @@ int ImageFile::write(vector<char> info) { // ERROR HERE
 	}
 	image_size = this->contents[this->contents.size() - 1]; 
 	if ((this->contents).size() != (((int)(image_size)-48) * ((int)(image_size)-48)) + 1) {
+		image_size = '0'; 
 		cout << "error: size mismatch" << endl;
 		return size_mismatch;
 	}
