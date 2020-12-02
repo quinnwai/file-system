@@ -7,11 +7,12 @@
 class TextFile : public AbstractFile {
 public:
 	TextFile(std::string str);
-	virtual void read() override;
+	virtual std::vector<char> read() override;
 	virtual int write(std::vector<char> vec) override;
 	virtual int append(std::vector<char> vec) override;
 	virtual unsigned int getSize() override;
 	virtual std::string getName() override;
+	virtual void accept(AbstractFileVisitor* afv) override;
 	//FWL:	not sure if these destructors (also one in ImageFile) needed b/c member vars are from std library but should be fine as is
 	~TextFile() = default; //TODO: ask if these needed
 private:

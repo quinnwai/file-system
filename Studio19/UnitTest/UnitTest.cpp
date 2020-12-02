@@ -408,118 +408,118 @@ namespace UnitTest
 		}
 	};
 
-	TEST_CLASS(basicDisplayVisitor) {
-	public:
-		TEST_METHOD(visitTextFile) { // tests output of basic display visitor for a text file, expects the contents of the file
-			std::string fileName = "FileName.txt";
-			TextFile t(fileName);
-			std::vector<char> v = { 'h', 'i' };
-			int resWrite = t.write(v);
-			// REDIRECT STD STREAM
-			streambuf* backup;
-			backup = cout.rdbuf();
-			stringstream ss;
-			cout.rdbuf(ss.rdbuf());
-			AbstractFileVisitor* bdv = new BasicDisplayVisitor;
-			t.accept(bdv);
-			string wordShouldBe = "hi";
-			string word;
-			ss >> word;
-			// ASSIGN COUT BACK TO STDOUT
-			cout.rdbuf(backup);
-			Assert::AreEqual(wordShouldBe, word);
-			Assert::AreEqual(0, resWrite);
-		}
-		TEST_METHOD(visitImageFile) { // tests the output the basic display visitor for an image file, expects 5 Xs
-			std::string fileName = "FileName.img";
-			ImageFile t(fileName);
-			std::vector<char> v = { 'X', ' ', 'X', ' ', 'X', ' ', 'X',' ', 'X', '3' };
-			Assert::AreEqual(0, t.write(v));
-			// REDIRECT STD STREAM
-			streambuf* backup;
-			backup = cout.rdbuf();
-			stringstream ss;
-			cout.rdbuf(ss.rdbuf());
-			AbstractFileVisitor* bdv = new BasicDisplayVisitor;
-			t.accept(bdv);
-			string outputShouldBe = "X";
-			string word;
-			int count = 0;
-			while (ss >> word) { // no skip ws -- wont skip white space! would have to extract one character at a time
-				Assert::AreEqual(outputShouldBe, word);
-				++count;
-			}
-			// ASSIGN COUT BACK TO STDOUT
-			cout.rdbuf(backup);
-			Assert::AreEqual(5, count);
-		}
-	};
+	//TEST_CLASS(basicDisplayVisitor) {
+	//public:
+	//	TEST_METHOD(visitTextFile) { // tests output of basic display visitor for a text file, expects the contents of the file
+	//		std::string fileName = "FileName.txt";
+	//		TextFile t(fileName);
+	//		std::vector<char> v = { 'h', 'i' };
+	//		int resWrite = t.write(v);
+	//		// REDIRECT STD STREAM
+	//		streambuf* backup;
+	//		backup = cout.rdbuf();
+	//		stringstream ss;
+	//		cout.rdbuf(ss.rdbuf());
+	//		AbstractFileVisitor* bdv = new BasicDisplayVisitor;
+	//		t.accept(bdv);
+	//		string wordShouldBe = "hi";
+	//		string word;
+	//		ss >> word;
+	//		// ASSIGN COUT BACK TO STDOUT
+	//		cout.rdbuf(backup);
+	//		Assert::AreEqual(wordShouldBe, word);
+	//		Assert::AreEqual(0, resWrite);
+	//	}
+	//	TEST_METHOD(visitImageFile) { // tests the output the basic display visitor for an image file, expects 5 Xs
+	//		std::string fileName = "FileName.img";
+	//		ImageFile t(fileName);
+	//		std::vector<char> v = { 'X', ' ', 'X', ' ', 'X', ' ', 'X',' ', 'X', '3' };
+	//		Assert::AreEqual(0, t.write(v));
+	//		// REDIRECT STD STREAM
+	//		streambuf* backup;
+	//		backup = cout.rdbuf();
+	//		stringstream ss;
+	//		cout.rdbuf(ss.rdbuf());
+	//		AbstractFileVisitor* bdv = new BasicDisplayVisitor;
+	//		t.accept(bdv);
+	//		string outputShouldBe = "X";
+	//		string word;
+	//		int count = 0;
+	//		while (ss >> word) { // no skip ws -- wont skip white space! would have to extract one character at a time
+	//			Assert::AreEqual(outputShouldBe, word);
+	//			++count;
+	//		}
+	//		// ASSIGN COUT BACK TO STDOUT
+	//		cout.rdbuf(backup);
+	//		Assert::AreEqual(5, count);
+	//	}
+	//};
 
-	TEST_CLASS(metadataDisplayVisitor) {
-	public:
-		TEST_METHOD(visitTextFile) { // tests the output of the metadata display visitor for a text file, expects the filename, type and size to be included in the print statement
-			std::string fileName = "FileName.txt";
-			TextFile t(fileName);
-			std::vector<char> v = { 'h', 'i' };
-			Assert::AreEqual(0, t.write(v));
-			// REDIRECT STD STREAM
-			streambuf* backup;
-			backup = cout.rdbuf();
-			stringstream ss;
-			cout.rdbuf(ss.rdbuf());
-			AbstractFileVisitor* bdv = new MetadataDisplayVisitor;
-			t.accept(bdv);
-			string word;
-			std::vector<string> printedWords;
-			while (ss >> word) {
-				printedWords.push_back(word);
-			}
-			std::vector<string>::iterator it1;
-			std::vector<string>::iterator it2;
-			std::vector<string>::iterator it3;
-			it1 = std::find(printedWords.begin(), printedWords.end(), fileName);
-			bool notEqual1 = it1 == printedWords.end();
-			Assert::IsFalse(notEqual1);
-			it2 = std::find(printedWords.begin(), printedWords.end(), to_string(t.getSize()));
-			bool notEqual2 = it2 == printedWords.end();
-			Assert::IsFalse(notEqual2);
-			it3 = std::find(printedWords.begin(), printedWords.end(), "text");
-			bool notEqual3 = it3 == printedWords.end();
-			Assert::IsFalse(notEqual3);
-			// ASSIGN COUT BACK TO STDOUT
-			cout.rdbuf(backup);
-		}
-		TEST_METHOD(visitImageFile) { // tests the output of the metadata display visitor for an image file, expects the filename, type and size to be included in the output
-			std::string fileName = "FileName.img";
-			ImageFile t(fileName);
-			std::vector<char> v = { 'X', ' ', 'X', ' ', 'X', ' ', 'X',' ', 'X', '3' };
-			Assert::AreEqual(0, t.write(v));
-			// REDIRECT STD STREAM
-			streambuf* backup;
-			backup = cout.rdbuf();
-			stringstream ss;
-			cout.rdbuf(ss.rdbuf());
-			AbstractFileVisitor* bdv = new MetadataDisplayVisitor;
-			t.accept(bdv);
-			string word;
-			std::vector<string> printedWords;
-			while (ss >> word) {
-				printedWords.push_back(word);
-			}
-			std::vector<string>::iterator it1;
-			std::vector<string>::iterator it2;
-			std::vector<string>::iterator it3;
-			it1 = std::find(printedWords.begin(), printedWords.end(), fileName);
-			bool notEqual1 = it1 == printedWords.end();
-			Assert::IsFalse(notEqual1);
-			it2 = std::find(printedWords.begin(), printedWords.end(), to_string(t.getSize()));
-			bool notEqual2 = it2 == printedWords.end();
-			Assert::IsFalse(notEqual2);
-			it3 = std::find(printedWords.begin(), printedWords.end(), "image");
-			bool notEqual3 = it3 == printedWords.end();
-			Assert::IsFalse(notEqual3);
-			// ASSIGN COUT BACK TO STDOUT
-			cout.rdbuf(backup);
-		}
-	};
+	//TEST_CLASS(metadataDisplayVisitor) {
+	//public:
+	//	TEST_METHOD(visitTextFile) { // tests the output of the metadata display visitor for a text file, expects the filename, type and size to be included in the print statement
+	//		std::string fileName = "FileName.txt";
+	//		TextFile t(fileName);
+	//		std::vector<char> v = { 'h', 'i' };
+	//		Assert::AreEqual(0, t.write(v));
+	//		// REDIRECT STD STREAM
+	//		streambuf* backup;
+	//		backup = cout.rdbuf();
+	//		stringstream ss;
+	//		cout.rdbuf(ss.rdbuf());
+	//		AbstractFileVisitor* bdv = new MetadataDisplayVisitor;
+	//		t.accept(bdv);
+	//		string word;
+	//		std::vector<string> printedWords;
+	//		while (ss >> word) {
+	//			printedWords.push_back(word);
+	//		}
+	//		std::vector<string>::iterator it1;
+	//		std::vector<string>::iterator it2;
+	//		std::vector<string>::iterator it3;
+	//		it1 = std::find(printedWords.begin(), printedWords.end(), fileName);
+	//		bool notEqual1 = it1 == printedWords.end();
+	//		Assert::IsFalse(notEqual1);
+	//		it2 = std::find(printedWords.begin(), printedWords.end(), to_string(t.getSize()));
+	//		bool notEqual2 = it2 == printedWords.end();
+	//		Assert::IsFalse(notEqual2);
+	//		it3 = std::find(printedWords.begin(), printedWords.end(), "text");
+	//		bool notEqual3 = it3 == printedWords.end();
+	//		Assert::IsFalse(notEqual3);
+	//		// ASSIGN COUT BACK TO STDOUT
+	//		cout.rdbuf(backup);
+	//	}
+	//	TEST_METHOD(visitImageFile) { // tests the output of the metadata display visitor for an image file, expects the filename, type and size to be included in the output
+	//		std::string fileName = "FileName.img";
+	//		ImageFile t(fileName);
+	//		std::vector<char> v = { 'X', ' ', 'X', ' ', 'X', ' ', 'X',' ', 'X', '3' };
+	//		Assert::AreEqual(0, t.write(v));
+	//		// REDIRECT STD STREAM
+	//		streambuf* backup;
+	//		backup = cout.rdbuf();
+	//		stringstream ss;
+	//		cout.rdbuf(ss.rdbuf());
+	//		AbstractFileVisitor* bdv = new MetadataDisplayVisitor;
+	//		t.accept(bdv);
+	//		string word;
+	//		std::vector<string> printedWords;
+	//		while (ss >> word) {
+	//			printedWords.push_back(word);
+	//		}
+	//		std::vector<string>::iterator it1;
+	//		std::vector<string>::iterator it2;
+	//		std::vector<string>::iterator it3;
+	//		it1 = std::find(printedWords.begin(), printedWords.end(), fileName);
+	//		bool notEqual1 = it1 == printedWords.end();
+	//		Assert::IsFalse(notEqual1);
+	//		it2 = std::find(printedWords.begin(), printedWords.end(), to_string(t.getSize()));
+	//		bool notEqual2 = it2 == printedWords.end();
+	//		Assert::IsFalse(notEqual2);
+	//		it3 = std::find(printedWords.begin(), printedWords.end(), "image");
+	//		bool notEqual3 = it3 == printedWords.end();
+	//		Assert::IsFalse(notEqual3);
+	//		// ASSIGN COUT BACK TO STDOUT
+	//		cout.rdbuf(backup);
+	//	}
+	//};
 }

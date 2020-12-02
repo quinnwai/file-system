@@ -2,6 +2,7 @@
 #include "TextFile.h"
 #include<string>
 #include<iostream>
+#include <vector>
 
 using namespace std;
 //  Define the TextFile class here
@@ -24,8 +25,9 @@ string TextFile::getName() {
 }
 
 int TextFile::write(std::vector<char> vec) {
-	//TODO: make sure this works and errors caught
 	swap(vec, this->contents);
+
+	//test methods
 	for (char c : this->contents) {
 		cout << c;
 	}
@@ -43,10 +45,11 @@ int TextFile::append(std::vector<char> vec) {
 	return 0;
 }
 
-void TextFile::read() {
-	for (char c : this->contents) {
-		cout << c;
-	}
-	cout << endl;
+vector<char> TextFile::read() {
+	cout << "ur so smart" << endl;
+	return contents;
 }
 
+void TextFile::accept(AbstractFileVisitor* afv) {
+	afv->visit_textFile(this);
+}

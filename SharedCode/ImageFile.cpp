@@ -3,6 +3,7 @@
 #include "ImageFile.h"
 #include "AbstractFile.h"
 #include <iostream>
+#include <vector>
 using namespace std;
 
 ImageFile::ImageFile(string title) {
@@ -15,7 +16,7 @@ unsigned int ImageFile::getSize() {
 	if (image_size < 48) {
 		return 0;
 	}
-	return (image_size-48)*(image_size - 48);
+	return (image_size-48)*(image_size - 48); //TODO: make sure this is correct
 }
 
 string ImageFile::getName() {
@@ -46,13 +47,10 @@ int ImageFile::append(vector<char> info) {
 	return no_append;
 }
 
-void ImageFile::read() { // ERROR HERE
-	for (int y = ((int)image_size)-48; y > 0; --y) {
-		for (int x = 0; x < ((int)image_size)-48; ++x) {
-			cout << this->contents[(y-1) * (image_size-48) + x];
-		}
-		cout << endl;
-	}
-	//cout << "file read, GREAT SUCCESS" << endl;
+vector<char> ImageFile::read() { 
+	return contents;
 }
 
+void ImageFile::accept(AbstractFileVisitor* afv) {
+	afv->visit_imageFile(this);
+}
