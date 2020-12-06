@@ -51,5 +51,6 @@ vector<char> TextFile::read() {
 }
 
 void TextFile::accept(AbstractFileVisitor* afv) {
+	//TODO: why is it undefined type (how to access member vars w/out circular inclusions)
 	afv->visit_textFile(this);
 }

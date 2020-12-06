@@ -1,9 +1,10 @@
 // definition of ImageFile class here
 #pragma once
 #include "ImageFile.h"
-#include "AbstractFile.h"
 #include <iostream>
 #include <vector>
+
+
 using namespace std;
 
 ImageFile::ImageFile(string title) {
@@ -52,5 +53,6 @@ vector<char> ImageFile::read() {
 }
 
 void ImageFile::accept(AbstractFileVisitor* afv) {
+	//TODO: why is it undefined type (how to access member vars w/out circular inclusions)
 	afv->visit_imageFile(this);
 }

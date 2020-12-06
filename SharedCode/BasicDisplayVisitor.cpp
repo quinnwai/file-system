@@ -6,12 +6,12 @@
 using namespace std;
 
 void BasicDisplayVisitor::visit_textFile(TextFile* t) {
-	//TODO: make sure variables accessible
+	//TODO: make sure variables accessible w/out circular inclusion (friendship?)
 	
-	/*for (char c : t->contents) {
+	for (char c : t->contents) {
 		cout << c;
 	}
-	cout << endl;*/
+	cout << endl;
 }
 
 void BasicDisplayVisitor::visit_imageFile(ImageFile* i) {

@@ -18,6 +18,7 @@ public:
 	virtual int append(std::vector<char> info) override;
 	virtual std::vector<char> read() override;
 	virtual void accept(AbstractFileVisitor*) override;
+	friend void visit_imageFile(ImageFile* i);
 	//FWL:	not sure if these destructors (also one in TextFile) needed b/c member vars are from std library but should be fine as is
 	~ImageFile() = default; //TODO: ask if these needed
 };

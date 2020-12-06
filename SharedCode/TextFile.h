@@ -13,6 +13,7 @@ public:
 	virtual unsigned int getSize() override;
 	virtual std::string getName() override;
 	virtual void accept(AbstractFileVisitor* afv) override;
+	friend void visit_textFile(TextFile* t);
 	//FWL:	not sure if these destructors (also one in ImageFile) needed b/c member vars are from std library but should be fine as is
 	~TextFile() = default; //TODO: ask if these needed
 private:

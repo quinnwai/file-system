@@ -2,17 +2,8 @@
 // declaration of the file visitor interface here
 #include <vector>
 #include <string>
-
-class TextFile {
-private:
-	std::vector<char> contents;
-	std::string fileName;
-};
-class ImageFile {
-	std::string name;
-	std::vector<char> contents;
-	char image_size;
-};
+#include "TextFile.h"
+#include "ImageFile.h"
 
 class AbstractFileVisitor {
 public:

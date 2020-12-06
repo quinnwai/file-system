@@ -39,4 +39,15 @@ vector swapped
 3. First, a call is made to accept on the file we want to visit to determine the file type. Then, accepts calls the appropriate visitor
    method declared within the AbstractFileVisitor, which will run the appropriate code on the specific file type. 
 
-4. 
+4. Delegation enables an object to pass on a certain functional to a separate visitor which can then act on the object for it.
+   This is useful when objects have the same method with different implementation. In our case this is how printing an image vs a
+   text file requires different functionality and hence a different implementation. By having these functions within the visitor
+   object, the file implementations are not cluttered up!
+
+5. 
+
+Final TODO:
+ - access private member variables for afv (in file cpps)
+ - access private member variables for files
+ - test all methods
+ - another concrete visitor class to display name, size, type
