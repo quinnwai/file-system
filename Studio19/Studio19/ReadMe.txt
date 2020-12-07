@@ -46,6 +46,25 @@ vector swapped
 
 5. 
 
+6. Testing:
+...BasicDisplayVisitor...
+Within main, declared and defined a visitor, text file, and image file to have relevant contents. Checked to see if contents were 
+printed when calling accept on the separate text and image file
+
+...Associated Code...
+	//set up
+	AbstractFileVisitor* afv = new BasicDisplayVisitor;
+	ImageFile iFile = ImageFile("iFile.img");
+	iFile.write({ 'X', ' ', 'X', ' ', 'X', ' ', 'X', ' ', 'X', '3' });
+	TextFile tFile = TextFile("tFile.txt");
+	tFile.write({ 'h', 'e', 'l', 'l', 'o', ' ', 'f', 'r', 'i', 'e', 'n', 'd' });
+
+	//accept to print out file contents
+	iFile.accept(afv);
+	tFile.accept(afv);
+
+...MetadataDisplayVisitor...
+
 Final TODO:
  - access private member variables for afv (in file cpps)
  - access private member variables for files

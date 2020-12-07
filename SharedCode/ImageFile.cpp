@@ -1,19 +1,20 @@
 // definition of ImageFile class here
 #pragma once
 #include "ImageFile.h"
+#include "AbstractFileVisitor.h"
 #include <iostream>
 #include <vector>
-
 
 using namespace std;
 
 ImageFile::ImageFile(string title) {
+	cout << "image constructor" << endl;
 	image_size = 0;
 	name = title;
 }
 
 unsigned int ImageFile::getSize() {
-	cout << image_size-48 << endl;
+	//cout << image_size-48 << endl;
 	if (image_size < 48) {
 		return 0;
 	}
@@ -21,7 +22,7 @@ unsigned int ImageFile::getSize() {
 }
 
 string ImageFile::getName() {
-	cout << name << endl;
+	//cout << name << endl;
 	return name;
 }
 
@@ -39,7 +40,7 @@ int ImageFile::write(vector<char> info) { // ERROR HERE
 		cout << "error: size mismatch" << endl;
 		return size_mismatch;
 	}
-	cout << image_size << endl;
+	//cout << "successful image write" << endl;
 	return success;
 }
 
@@ -49,10 +50,11 @@ int ImageFile::append(vector<char> info) {
 }
 
 vector<char> ImageFile::read() { 
+	//cout << "image read" << endl;
 	return contents;
 }
 
 void ImageFile::accept(AbstractFileVisitor* afv) {
-	//TODO: why is it undefined type (how to access member vars w/out circular inclusions)
 	afv->visit_imageFile(this);
+	//afv->printImageMetadata(this);
 }

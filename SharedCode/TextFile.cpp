@@ -1,5 +1,6 @@
 #pragma once
 #include "TextFile.h"
+#include "AbstractFileVisitor.h"
 #include<string>
 #include<iostream>
 #include <vector>
@@ -46,11 +47,11 @@ int TextFile::append(std::vector<char> vec) {
 }
 
 vector<char> TextFile::read() {
-	cout << "ur so smart" << endl;
+	cout << "contents read" << endl;
 	return contents;
 }
 
 void TextFile::accept(AbstractFileVisitor* afv) {
-	//TODO: why is it undefined type (how to access member vars w/out circular inclusions)
 	afv->visit_textFile(this);
+	//afv->printTextMetadata(this);
 }

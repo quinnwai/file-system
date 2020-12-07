@@ -2,25 +2,30 @@
 #pragma once
 #include "BasicDisplayVisitor.h"
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
 void BasicDisplayVisitor::visit_textFile(TextFile* t) {
-	//TODO: make sure variables accessible w/out circular inclusion (friendship?)
-	
-	for (char c : t->contents) {
-		cout << c;
+	vector<char> vec = t->read();
+
+	//iterate through characters and print out in order
+	for (int i = 0; i < vec.size(); ++i) {
+		cout << vec[i];
 	}
 	cout << endl;
 }
 
 void BasicDisplayVisitor::visit_imageFile(ImageFile* i) {
-	//TODO: make sure variables accessible
+	//store relevant variables for future use
+	vector<char> vec = i->read();
+	int width = sqrt(i->getSize());
 
-	/*for (int y = (i->getSize()) - 48; y > 0; --y) {
-		for (int x = 0; x < ((int)image_size) - 48; ++x) {
-			cout << this->contents[(y - 1) * (image_size - 48) + x];
+	//iterate through from top to bottom to print image file 
+	for (int y = width; y > 0; --y) {
+		for (int x = 0; x < width; ++x) {
+			cout << vec[(y - 1) * width + x];
 		}
 		cout << endl;
-	}*/
+	}
 }
