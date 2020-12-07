@@ -27,15 +27,22 @@ string ImageFile::getName() {
 }
 
 int ImageFile::write(vector<char> info) { // ERROR HERE
-	swap(info, this->contents);
-	for (int i = 0; i < this->contents.size() - 1; ++i) {
+	image_size = info[info.size() - 1];
+
+	//swap(info, this->contents);
+
+	contents[info.size()-1];
+	for (int i = 0; i < info.size() - 1; ++i) {
+		contents.push_back(info[i]);
+	}
+
+	for (int i = 0; i < this->contents.size(); ++i) {
 		if (this->contents[i] != 'X' && this->contents[i] != ' ') {
 			cout << "error: invalid pixel" << endl;
 			return invalid_pixel;
 		}
 	}
-	image_size = this->contents[this->contents.size() - 1]; 
-	if ((this->contents).size() != (((int)(image_size)-48) * ((int)(image_size)-48)) + 1) {
+	if ((this->contents).size() != (((int)(image_size)-48) * ((int)(image_size)-48))) {
 		image_size = '0'; 
 		cout << "error: size mismatch" << endl;
 		return size_mismatch;
