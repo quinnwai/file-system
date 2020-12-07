@@ -16,15 +16,16 @@ using namespace std;
 int main(int argc, char* argv[])
 {
 	//set up
-	//AbstractFileVisitor* afv = new MetadataDisplayVisitor;
-	//ImageFile iFile = ImageFile("iFile.img");
-	//iFile.write({ 'X', ' ', 'X', ' ', 'X', ' ', 'X', ' ', 'X', '3' });
-	//TextFile tFile = TextFile("tFile.txt");
-	//tFile.write({ 'h', 'e', 'l', 'l', 'o', ' ', 'f', 'r', 'i', 'e', 'n', 'd' });
+	AbstractFileVisitor* afv = new MetadataDisplayVisitor;
+	AbstractFileVisitor* bdv = new BasicDisplayVisitor;
+	ImageFile iFile = ImageFile("iFile.img");
+	iFile.write({ 'X', ' ', 'X', ' ', 'X', ' ', 'X', ' ', 'X', '3' });
+	TextFile tFile = TextFile("tFile.txt");
+	tFile.write({ 'h', 'e', 'l', 'l', 'o', ' ', 'f', 'r', 'i', 'e', 'n', 'd' });
 
-	////accept to print out file contents
-	//iFile.accept(afv);
-	//tFile.accept(afv);
+	//accept to print out file contents
+	iFile.accept(afv);
+	tFile.accept(afv);
 
 	return success;
 }

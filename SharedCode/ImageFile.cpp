@@ -8,17 +8,17 @@
 using namespace std;
 
 ImageFile::ImageFile(string title) {
-	cout << "image constructor" << endl;
+//	cout << "image constructor" << endl;
 	image_size = 0;
 	name = title;
 }
 
 unsigned int ImageFile::getSize() {
 	//cout << image_size-48 << endl;
-	if (image_size < 48) {
+	if (image_size <= 0) {
 		return 0;
 	}
-	return (image_size-48)*(image_size - 48); //TODO: make sure this is correct
+	return contents.size(); //TODO: make sure this is correct
 }
 
 string ImageFile::getName() {
@@ -27,16 +27,23 @@ string ImageFile::getName() {
 }
 
 int ImageFile::write(vector<char> info) { // ERROR HERE
-	swap(info, this->contents);
-	for (int i = 0; i < this->contents.size() - 1; ++i) {
+	//image_size = info.pop_back();
+	//swap(info, this->contents);
+
+	image_size = (int)(info[info.size() - 1]) - 48;
+
+	for (int i = 0; i < info.size() - 1; ++i) {
+		contents.push_back(info[i]);
+	}
+
+	for (int i = 0; i < this->contents.size(); ++i) {
 		if (this->contents[i] != 'X' && this->contents[i] != ' ') {
 			cout << "error: invalid pixel" << endl;
 			return invalid_pixel;
 		}
 	}
-	image_size = this->contents[this->contents.size() - 1]; 
-	if ((this->contents).size() != (((int)(image_size)-48) * ((int)(image_size)-48)) + 1) {
-		image_size = '0'; 
+	if (this->contents.size() != (image_size*image_size)) {
+		image_size = 0; 
 		cout << "error: size mismatch" << endl;
 		return size_mismatch;
 	}
@@ -45,12 +52,13 @@ int ImageFile::write(vector<char> info) { // ERROR HERE
 }
 
 int ImageFile::append(vector<char> info) {
-	cout << "no append" << endl;
+//	cout << "no append" << endl;
 	return no_append;
 }
 
 vector<char> ImageFile::read() { 
 	//cout << "image read" << endl;
+
 	return contents;
 }
 

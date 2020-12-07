@@ -5,14 +5,14 @@
 
 using namespace std;
 
-//void MetadataDisplayVisitor::printTextMetadata(TextFile* t) {
-//	cout << t->getName() << endl;
-//	cout << t->getSize() << endl;
-//	cout << "text" << endl;
-//}
-//
-//void MetadataDisplayVisitor::printImageMetadata(ImageFile* i) {
-//	cout << i->getName() << endl;
-//	cout << i->getSize() << endl;
-//	cout << "image" << endl;
-//}
+void MetadataDisplayVisitor::visit_textFile(TextFile* t) {
+	cout << t->getName() << endl;
+	cout << t->getSize() << endl;
+	cout << "text" << endl;
+}
+
+void MetadataDisplayVisitor::visit_imageFile(ImageFile* i) {
+	cout << i->getName() << endl;
+	cout << i->getSize() << endl;
+	cout << "image" << endl;
+}

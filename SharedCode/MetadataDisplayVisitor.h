@@ -4,6 +4,6 @@
 
 class MetadataDisplayVisitor : public AbstractFileVisitor {
 public:
-	/*virtual void printTextMetadata(TextFile* t) override;
-	virtual void printImageMetadata(ImageFile* i) override;*/
+	virtual void visit_textFile(TextFile* t) override;
+	virtual void visit_imageFile(ImageFile* i) override;
 };
