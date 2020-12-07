@@ -64,5 +64,4 @@ vector<char> ImageFile::read() {
 
 void ImageFile::accept(AbstractFileVisitor* afv) {
 	afv->visit_imageFile(this);
-	//afv->printImageMetadata(this);
 }

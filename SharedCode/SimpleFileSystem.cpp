@@ -10,16 +10,16 @@
 #include "ImageFile.h"
 using namespace std;
 
-SimpleFileSystem::SimpleFileSystem(AbstractFileFactory* f) : factory(f) {
-	
-}
+//SimpleFileSystem::SimpleFileSystem(AbstractFileFactory* f) : factory(f) {
+//	
+//}
 
 
-SimpleFileSystem::~SimpleFileSystem() { //FWL: deletes all objects we created (so factory, but also abstractFile since inside map/set)
-	delete factory;
-	//TODO:	do sets and maps need to be destructed? I don't think so...
-	//FWL:	https://isocpp.org/wiki/faq/dtors I found this which was helpful
-}
+//SimpleFileSystem::~SimpleFileSystem() { //FWL: deletes all objects we created (so factory, but also abstractFile since inside map/set)
+//	delete factory;
+//	//TODO:	do sets and maps need to be destructed? I don't think so...
+//	//FWL:	https://isocpp.org/wiki/faq/dtors I found this which was helpful
+//}
 
 int SimpleFileSystem::addFile(string name, AbstractFile* file) {
 	if (files.find(name) != files.end()) return already_exists; 
