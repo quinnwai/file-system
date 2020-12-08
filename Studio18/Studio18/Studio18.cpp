@@ -11,12 +11,15 @@ using namespace std;
 int main()
 {
 	AbstractFileFactory* a = new SimpleFileFactory();
-	AbstractFileSystem* b = new SimpleFileSystem(a);
+	AbstractFileSystem* b = new SimpleFileSystem();
+
 	string uno = "uno.txt";
 	string dos = "dos.img";
 	string tres = "empty";
+	
 	AbstractFile* tresdoc;
 	AbstractFile* dospic = a->createFile(dos);
+	
 	cout << b->addFile(uno, a->createFile(uno)) << endl;
 	cout << b->addFile(dos, dospic) << endl;
 	cout << b->addFile(dos, dospic) << endl;

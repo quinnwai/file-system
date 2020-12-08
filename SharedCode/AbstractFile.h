@@ -10,16 +10,14 @@ enum returns { success, invalid_pixel, size_mismatch, no_append, no_file_exists,
 class AbstractFileVisitor;
 
 class AbstractFile {
-	//private:
-	//	BasicDisplayVisitor* bdv;
 public:
-	virtual ~AbstractFile() = default;
 	virtual std::vector<char> read() = 0;
 	virtual int write(std::vector<char> vec) = 0;
 	virtual int append(std::vector<char> vec) = 0;
 	virtual unsigned int getSize() = 0;
 	virtual std::string getName() = 0;
 	virtual void accept(AbstractFileVisitor*) = 0;
+	virtual ~AbstractFile() = default; //virtual ensures dynamic binding (to ImageFile or TextFile); client should go to right file typ
 	//friend AbstractFileVisitor;
 };
 

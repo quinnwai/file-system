@@ -53,5 +53,4 @@ vector<char> TextFile::read() {
 
 void TextFile::accept(AbstractFileVisitor* afv) {
 	afv->visit_textFile(this);
-	//afv->printTextMetadata(this);
 }

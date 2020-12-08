@@ -20,5 +20,4 @@ public:
 	friend class AbstractFileVisitor; //TODO: ???
 	virtual void accept(AbstractFileVisitor*) override;
 	//FWL:	not sure if these destructors (also one in TextFile) needed b/c member vars are from std library but should be fine as is
-	~ImageFile() = default; //TODO: ask if these needed
 };
