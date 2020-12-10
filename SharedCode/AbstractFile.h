@@ -5,7 +5,7 @@
 //#include "BasicDisplayVisitor.h"
 // declare AbstractFile here. As all methods are virtual and will not be defined, no .cpp file is necessary
 
-enum returns { success, invalid_pixel, size_mismatch, no_append, no_file_exists, already_open, already_exists, invalid_file, unopened_file, incorrect_password };
+enum returns { success, invalid_pixel, size_mismatch, no_append, no_file_exists, already_open, already_exists, invalid_file, unopened_file, incorrect_password, pair_already_exists, quit_program, pair_does_not_exist, cannot_add_file, cannot_create_file};
 
 class AbstractFileVisitor;
 

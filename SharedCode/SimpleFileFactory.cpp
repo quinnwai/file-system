@@ -10,6 +10,9 @@ using namespace std;
 
 AbstractFile* SimpleFileFactory::createFile(string name) {
 	string ftype = "";
+	if (name.length() <= 3) {
+		return nullptr;
+	}
 	ftype = ftype + name[name.length() - 3] + name[name.length() - 2] + name[name.length() - 1];
 	if (ftype == "txt") {
 		AbstractFile* words = new TextFile(name);
