@@ -20,7 +20,7 @@ int CommandPrompt::addCommand(string s, AbstractCommand* ac) {
 	if (a.second) {
 		return success;
 	}
-	return pair_already_exists;
+	return command_already_exists;
 }
 
 int CommandPrompt::run() {
@@ -66,10 +66,6 @@ int CommandPrompt::run() {
 			else {
 				//create string to hold the rest of the words
 
-				/*string restOfWords = "";
-				iss.str(restOfWords);
-				cout << "restOfWords: " << restOfWords << endl;*/
-
 				string temp;
 				string restOfWords = "";
 
@@ -89,7 +85,7 @@ int CommandPrompt::run() {
 				}
 				else {
 					cout << "Command does not exist" << endl;
-					return pair_does_not_exist;
+					return no_command_exists;
 				}
 			}
 		}
@@ -104,7 +100,7 @@ int CommandPrompt::run() {
 			}
 			else {
 				cout << "Command does not exist" << endl;
-				return pair_does_not_exist;
+				return no_command_exists;
 			}
 		}
 

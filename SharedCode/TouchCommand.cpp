@@ -1,3 +1,9 @@
+/*CatCommand.cpp
+Author: Quinn Wai Wong, Will LeVan
+Email: qwong@wustl.edu, levanw@wustl.edu
+Purpose: Concrete class implementation of a command that enables a user to add files to the system.
+*/
+
 #pragma once
 #include "TouchCommand.h"
 #include <string>
@@ -14,7 +20,7 @@ int TouchCommand::execute(string str) {
 		if (addResult != success) {
 			delete af;
 			cout << "could not add file" << endl;
-			return cannot_add_file;
+			return addResult;
 		}
 		return success;
 	}

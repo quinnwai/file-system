@@ -10,28 +10,17 @@
 #include "ImageFile.h"
 using namespace std;
 
-//SimpleFileSystem::SimpleFileSystem(AbstractFileFactory* f) : factory(f) {
-//	
-//}
-
-
-//SimpleFileSystem::~SimpleFileSystem() { //FWL: deletes all objects we created (so factory, but also abstractFile since inside map/set)
-//	delete factory;
-//	//TODO:	do sets and maps need to be destructed? I don't think so...
-//	//FWL:	https://isocpp.org/wiki/faq/dtors I found this which was helpful
-//}
-
 int SimpleFileSystem::addFile(string name, AbstractFile* file) {
-	if (files.find(name) != files.end()) return already_exists; 
+	if (files.find(name) != files.end()) return file_already_exists; 
 	else if (file == nullptr) return invalid_file; 
 	files.insert({ name, file });
 	return success;
 }
 
-int SimpleFileSystem::deleteFile(string name) { // ERROR HERE
+int SimpleFileSystem::deleteFile(string name) { 
 	auto wantedFile = files.find(name);
 	if (wantedFile == files.end()) return no_file_exists; 
-	if (open_files.find(wantedFile->second) != open_files.end()) return already_open; 
+	if (open_files.find(wantedFile->second) != open_files.end()) return file_already_open; 
 	delete files.at(name);
 	files.erase(name);
 	return success;
