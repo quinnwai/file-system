@@ -29,5 +29,5 @@ int TouchCommand::execute(string str) {
 }
 
 void TouchCommand::displayInfo() {
-	cout << "touch creates a file, touch can be invoked with the command : touch < filename>" << endl;
+	cout << "touch creates a file, touch can be invoked with the command : touch <filename>" << endl;
 }

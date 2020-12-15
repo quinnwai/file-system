@@ -29,9 +29,9 @@ int SimpleFileSystem::deleteFile(string name) {
 
 AbstractFile* SimpleFileSystem::openFile(string name) {
 	auto wantedFile = files.find(name);
-	if (wantedFile == files.end()) return nullptr; // enum error - file doesn't exist
+	if (wantedFile == files.end()) return nullptr; //file does not exist
 	AbstractFile* thefile = wantedFile->second;
-	if (open_files.find(thefile) != open_files.end()) return nullptr; // enum - file already open
+	if (open_files.find(thefile) != open_files.end()) return nullptr; //file already open
 	open_files.insert(thefile);
 	return thefile;
  }

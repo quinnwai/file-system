@@ -5,9 +5,7 @@
 
 using namespace std;
 
-PasswordProxy::PasswordProxy(AbstractFile* af, string s) : protectedFile(af), password(s) {
-
-}
+PasswordProxy::PasswordProxy(AbstractFile* af, string s) : protectedFile(af), password(s) {}
 
 PasswordProxy::~PasswordProxy() {
 	delete protectedFile;
@@ -24,6 +22,7 @@ bool PasswordProxy::passwordPromptHelper(std::string s) {
 	return s == password;
 }
 
+//TODO: some sort of test issue w/ assert error
 vector<char> PasswordProxy::read() {
 	if (passwordPromptHelper(passwordPrompt())) {
 		//cout << "success" << endl;

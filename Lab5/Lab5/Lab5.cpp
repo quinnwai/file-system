@@ -26,8 +26,13 @@ int main(int argc, char* argv[])
 	daPrompt->addCommand("touch", daTouch);
 
 	//add cat as new command prompt
-	AbstractCommand* daCat = new CatCommand(daSystem, daFactory, daDisplayVisitor);
+	AbstractCommand* daCat = new CatCommand(daSystem);
 	daPrompt->addCommand("cat", daCat);
+
+	//cat prep: put files with contents in there
+	AbstractFile* t1 = new TextFile("text.txt");
+	t1->write({ 'h', 'e', 'l', 'l', 'o', '\n', 'm', 'e' });
+	daSystem->addFile(t1->getName(), t1);
 
 	//TODO: add more commands here for testing as they are implemented so they can be used by the user
 

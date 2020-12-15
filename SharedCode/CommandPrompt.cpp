@@ -109,7 +109,7 @@ int CommandPrompt::run() {
 
 void CommandPrompt::listCommands() {
 	for (auto it = map.begin(); it != map.end(); ++it) {
-		cout << it->first;
+		cout << it->first << ' ';
 	}
 	cout << endl;
 }

@@ -13,10 +13,8 @@ Purpose: Concrete class declaration inheriting from AbstractCommand. Enables a u
 class CatCommand : public AbstractCommand {
 private:
 	AbstractFileSystem* afs;
-	AbstractFileFactory* aff;
-	AbstractFileVisitor* afv;
 public:
-	CatCommand(AbstractFileSystem*, AbstractFileFactory*, AbstractFileVisitor*);
+	CatCommand(AbstractFileSystem*);
 	virtual int execute(std::string str) override;
 	virtual void displayInfo() override;
 };

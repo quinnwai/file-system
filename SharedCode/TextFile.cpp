@@ -38,6 +38,7 @@ int TextFile::write(std::vector<char> vec) {
 }
 
 int TextFile::append(std::vector<char> vec) {
+	//cout << "appending vector..." << endl;
 	for (char c : vec) {
 		this->contents.push_back(c);
 		//cout << c;
