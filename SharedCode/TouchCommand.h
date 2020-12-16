@@ -1,4 +1,4 @@
-/*Touchommand.h
+/*TouchCommand.h
 Author: Quinn Wai Wong, Will LeVan
 Email: qwong@wustl.edu, levanw@wustl.edu
 Purpose: Concrete class declaration inheriting from AbstractCommand. Enables a user to add files to the system.

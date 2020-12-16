@@ -21,7 +21,7 @@ void BasicDisplayVisitor::visit_imageFile(ImageFile* i) {
 	vector<char> vec = i->read();
 	int width = sqrt(i->getSize());
 
-	//iterate through from top to bottom to print image file 
+	//iterate through from top to bottom to print image file
 	for (int y = width; y > 0; --y) {
 		for (int x = 0; x < width; ++x) {
 			cout << vec[(y - 1) * width + x];

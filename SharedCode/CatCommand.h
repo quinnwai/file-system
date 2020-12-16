@@ -7,8 +7,6 @@ Purpose: Concrete class declaration inheriting from AbstractCommand. Enables a u
 #pragma once
 #include "AbstractCommand.h"
 #include "AbstractFileSystem.h"
-#include "AbstractFileFactory.h"
-#include "AbstractFileVisitor.h"
 
 class CatCommand : public AbstractCommand {
 private:

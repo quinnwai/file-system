@@ -18,7 +18,7 @@ AbstractFile* SimpleFileFactory::createFile(string name) {
 		AbstractFile* words = new TextFile(name);
 		return words;
 	}
-	if (ftype == "img") {
+	else if (ftype == "img") {
 		AbstractFile* pics = new ImageFile(name);
 		return pics;
 	}

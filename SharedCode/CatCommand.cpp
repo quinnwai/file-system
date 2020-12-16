@@ -17,7 +17,7 @@ CatCommand::CatCommand(AbstractFileSystem* afs_) : afs(afs_) {}
 
 int CatCommand::execute(string str) {
 	//NOTE: remember, str contains all parameters separated by space
-	//extract from ss to see if first word is can be opened
+	//extract from ss to see if first word can be opened
 	istringstream iss(str);
 	string firstWord;
 	iss >> firstWord;
