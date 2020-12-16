@@ -169,6 +169,7 @@
     <ClInclude Include="..\..\SharedCode\CommandPrompt.h" />
     <ClInclude Include="..\..\SharedCode\CopyCommand.h" />
     <ClInclude Include="..\..\SharedCode\DisplayCommand.h" />
+    <ClInclude Include="..\..\SharedCode\Enums.h" />
     <ClInclude Include="..\..\SharedCode\ImageFile.h" />
     <ClInclude Include="..\..\SharedCode\LSCommand.h" />
     <ClInclude Include="..\..\SharedCode\MacroCommand.h" />
@@ -180,6 +181,7 @@
     <ClInclude Include="..\..\SharedCode\SimpleFileSystem.h" />
     <ClInclude Include="..\..\SharedCode\TextFile.h" />
     <ClInclude Include="..\..\SharedCode\TouchCommand.h" />
+    <ClInclude Include="Enums.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

@@ -77,6 +77,7 @@ int CatCommand::execute(string str) {
 }
 
 void CatCommand::displayInfo(){
-	cout << "cat adds information onto the file line by line, cat can be invoked with the command : cat <filename> [-a]"
-		<< ", use -a to append to the existing information in the file or leave out -a to overwrite all previous contents" << endl;
+	cout << "cat adds information onto the file line by line" << endl;
+	cout << "cat can be invoked with the command : cat <filename> [-a]" << endl;
+	cout << "Use -a to append to the existing information in the file or leave out -a to overwrite all previous contents" << endl;
 }

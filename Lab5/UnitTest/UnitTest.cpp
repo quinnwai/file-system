@@ -2060,136 +2060,136 @@ namespace UnitTest
 	//	}
 	//};
 
-	//TEST_CLASS(DSCommand) {
-	//	TEST_METHOD(displaytext) {
-	//		AbstractFileSystem* sfs = new SimpleFileSystem();
-	//		AbstractFileFactory* sff = new SimpleFileFactory();
-	//		string filename1 = "file.txt";
-	//		Assert::AreEqual(0, sfs->addFile(filename1, sff->createFile(filename1)));
-	//		AbstractFile* f = sfs->openFile(filename1);
-	//		vector<char> v = { 'h', 'i','\n','h','e','l','l','o' };
-	//		f->write(v);
-	//		sfs->closeFile(f);
-	//		// REDIRECT COUT STREAM
-	//		streambuf* backup_out;
-	//		backup_out = cout.rdbuf();
-	//		stringstream ss_out;
-	//		cout.rdbuf(ss_out.rdbuf());
-	//		// execute ds
-	//		AbstractCommand* ds = new DisplayCommand(sfs);
-	//		Assert::AreEqual(0, ds->execute(filename1));
-	//		ss_out >> noskipws;
-	//		char c;
-	//		for (size_t i = 0; i < v.size(); ++i) {
-	//			ss_out >> c;
-	//			Assert::AreEqual(v[i], c);
-	//		}
-	//		// ensure the file was closed
-	//		f = sfs->openFile(filename1);
-	//		bool isNull = f == nullptr;
-	//		Assert::IsFalse(isNull);
-	//	}
-	//	TEST_METHOD(displaytextunformatted) {
-	//		AbstractFileSystem* sfs = new SimpleFileSystem();
-	//		AbstractFileFactory* sff = new SimpleFileFactory();
-	//		string filename1 = "file.txt";
-	//		Assert::AreEqual(0, sfs->addFile(filename1, sff->createFile(filename1)));
-	//		AbstractFile* f = sfs->openFile(filename1);
-	//		vector<char> v = { 'h', 'i','\n','h','e','l','l','o' };
-	//		f->write(v);
-	//		sfs->closeFile(f);
-	//		// REDIRECT COUT STREAM
-	//		streambuf* backup_out;
-	//		backup_out = cout.rdbuf();
-	//		stringstream ss_out;
-	//		cout.rdbuf(ss_out.rdbuf());
-	//		// execute ds
-	//		AbstractCommand* ds = new DisplayCommand(sfs);
-	//		Assert::AreEqual(0, ds->execute(filename1 + " -d"));
-	//		ss_out >> noskipws;
-	//		char c;
-	//		for (size_t i = 0; i < v.size(); ++i) {
-	//			ss_out >> c;
-	//			Assert::AreEqual(v[i], c);
-	//		}
-	//		// ensure the file was closed
-	//		f = sfs->openFile(filename1);
-	//		bool isNull = f == nullptr;
-	//		Assert::IsFalse(isNull);
-	//	}
-	//	TEST_METHOD(displayimageformatted) {
-	//		AbstractFileSystem* sfs = new SimpleFileSystem();
-	//		AbstractFileFactory* sff = new SimpleFileFactory();
-	//		string filename1 = "file.img";
-	//		Assert::AreEqual(0, sfs->addFile(filename1, sff->createFile(filename1)));
-	//		AbstractFile* f = sfs->openFile(filename1);
-	//		vector<char> v = { 'X',' ',' ','X',' ',' ','X', ' ',' ','3' };
-	//		vector<char> expectedOutput = { 'X',' ',' ','\n','X',' ',' ','\n','X',' ',' ','\n' };
-	//		f->write(v);
-	//		sfs->closeFile(f);
-	//		// REDIRECT COUT STREAM
-	//		streambuf* backup_out;
-	//		backup_out = cout.rdbuf();
-	//		stringstream ss_out;
-	//		cout.rdbuf(ss_out.rdbuf());
-	//		// execute ds
-	//		AbstractCommand* ds = new DisplayCommand(sfs);
-	//		Assert::AreEqual(0, ds->execute(filename1));
-	//		ss_out >> noskipws;
-	//		char c;
-	//		for (size_t i = 0; i < expectedOutput.size(); ++i) {
-	//			ss_out >> c;
-	//			Assert::AreEqual(expectedOutput[i], c);
-	//		}
-	//		// ensure the file was closed
-	//		f = sfs->openFile(filename1);
-	//		bool isNull = f == nullptr;
-	//		Assert::IsFalse(isNull);
-	//	}
+	TEST_CLASS(DSCommand) {
+		TEST_METHOD(displaytext) {
+			AbstractFileSystem* sfs = new SimpleFileSystem();
+			AbstractFileFactory* sff = new SimpleFileFactory();
+			string filename1 = "file.txt";
+			Assert::AreEqual(0, sfs->addFile(filename1, sff->createFile(filename1)));
+			AbstractFile* f = sfs->openFile(filename1);
+			vector<char> v = { 'h', 'i','\n','h','e','l','l','o' };
+			f->write(v);
+			sfs->closeFile(f);
+			// REDIRECT COUT STREAM
+			streambuf* backup_out;
+			backup_out = cout.rdbuf();
+			stringstream ss_out;
+			cout.rdbuf(ss_out.rdbuf());
+			// execute ds
+			AbstractCommand* ds = new DisplayCommand(sfs);
+			Assert::AreEqual(0, ds->execute(filename1));
+			ss_out >> noskipws;
+			char c;
+			for (size_t i = 0; i < v.size(); ++i) {
+				ss_out >> c;
+				Assert::AreEqual(v[i], c);
+			}
+			// ensure the file was closed
+			f = sfs->openFile(filename1);
+			bool isNull = f == nullptr;
+			Assert::IsFalse(isNull);
+		}
+		TEST_METHOD(displaytextunformatted) {
+			AbstractFileSystem* sfs = new SimpleFileSystem();
+			AbstractFileFactory* sff = new SimpleFileFactory();
+			string filename1 = "file.txt";
+			Assert::AreEqual(0, sfs->addFile(filename1, sff->createFile(filename1)));
+			AbstractFile* f = sfs->openFile(filename1);
+			vector<char> v = { 'h', 'i','\n','h','e','l','l','o' };
+			f->write(v);
+			sfs->closeFile(f);
+			// REDIRECT COUT STREAM
+			streambuf* backup_out;
+			backup_out = cout.rdbuf();
+			stringstream ss_out;
+			cout.rdbuf(ss_out.rdbuf());
+			// execute ds
+			AbstractCommand* ds = new DisplayCommand(sfs);
+			Assert::AreEqual(0, ds->execute(filename1 + " -d"));
+			ss_out >> noskipws;
+			char c;
+			for (size_t i = 0; i < v.size(); ++i) {
+				ss_out >> c;
+				Assert::AreEqual(v[i], c);
+			}
+			// ensure the file was closed
+			f = sfs->openFile(filename1);
+			bool isNull = f == nullptr;
+			Assert::IsFalse(isNull);
+		}
+		TEST_METHOD(displayimageformatted) {
+			AbstractFileSystem* sfs = new SimpleFileSystem();
+			AbstractFileFactory* sff = new SimpleFileFactory();
+			string filename1 = "file.img";
+			Assert::AreEqual(0, sfs->addFile(filename1, sff->createFile(filename1)));
+			AbstractFile* f = sfs->openFile(filename1);
+			vector<char> v = { 'X',' ',' ','X',' ',' ','X', ' ',' ','3' };
+			vector<char> expectedOutput = { 'X',' ',' ','\n','X',' ',' ','\n','X',' ',' ','\n' };
+			f->write(v);
+			sfs->closeFile(f);
+			// REDIRECT COUT STREAM
+			streambuf* backup_out;
+			backup_out = cout.rdbuf();
+			stringstream ss_out;
+			cout.rdbuf(ss_out.rdbuf());
+			// execute ds
+			AbstractCommand* ds = new DisplayCommand(sfs);
+			Assert::AreEqual(0, ds->execute(filename1));
+			ss_out >> noskipws;
+			char c;
+			for (size_t i = 0; i < expectedOutput.size(); ++i) {
+				ss_out >> c;
+				Assert::AreEqual(expectedOutput[i], c);
+			}
+			// ensure the file was closed
+			f = sfs->openFile(filename1);
+			bool isNull = f == nullptr;
+			Assert::IsFalse(isNull);
+		}
 
-	//	TEST_METHOD(displayimageunformatted) {
-	//		AbstractFileSystem* sfs = new SimpleFileSystem();
-	//		AbstractFileFactory* sff = new SimpleFileFactory();
-	//		string filename1 = "file.img";
-	//		Assert::AreEqual(0, sfs->addFile(filename1, sff->createFile(filename1)));
-	//		AbstractFile* f = sfs->openFile(filename1);
-	//		vector<char> v = { 'X',' ',' ','X',' ',' ','X', ' ',' ','3' };
-	//		vector<char> expectedOutput = { 'X',' ',' ','X',' ',' ','X',' ',' ','\n' };
-	//		f->write(v);
-	//		sfs->closeFile(f);
-	//		// REDIRECT COUT STREAM
-	//		streambuf* backup_out;
-	//		backup_out = cout.rdbuf();
-	//		stringstream ss_out;
-	//		cout.rdbuf(ss_out.rdbuf());
-	//		// execute ds
-	//		AbstractCommand* ds = new DisplayCommand(sfs);
-	//		Assert::AreEqual(0, ds->execute(filename1 + " -d"));
-	//		ss_out >> noskipws;
-	//		char c;
-	//		for (size_t i = 0; i < expectedOutput.size(); ++i) {
-	//			ss_out >> c;
-	//			Assert::AreEqual(expectedOutput[i], c);
-	//		}
-	//		// ensure the file was closed
-	//		f = sfs->openFile(filename1);
-	//		bool isNull = f == nullptr;
-	//		Assert::IsFalse(isNull);
-	//	}
-	//	TEST_METHOD(displayinvalid) {
-	//		AbstractFileSystem* sfs = new SimpleFileSystem();
-	//		AbstractFileFactory* sff = new SimpleFileFactory();
-	//		// REDIRECT COUT STREAM
-	//		streambuf* backup_out;
-	//		backup_out = cout.rdbuf();
-	//		stringstream ss_out;
-	//		cout.rdbuf(ss_out.rdbuf());
-	//		string filename1 = "file.img";
-	//		Assert::AreEqual(0, sfs->addFile(filename1, sff->createFile(filename1)));
-	//		AbstractCommand* ds = new DisplayCommand(sfs);
-	//		Assert::AreNotEqual(0, ds->execute("file.txt"));
-	//	}
-	//};
+		TEST_METHOD(displayimageunformatted) {
+			AbstractFileSystem* sfs = new SimpleFileSystem();
+			AbstractFileFactory* sff = new SimpleFileFactory();
+			string filename1 = "file.img";
+			Assert::AreEqual(0, sfs->addFile(filename1, sff->createFile(filename1)));
+			AbstractFile* f = sfs->openFile(filename1);
+			vector<char> v = { 'X',' ',' ','X',' ',' ','X', ' ',' ','3' };
+			vector<char> expectedOutput = { 'X',' ',' ','X',' ',' ','X',' ',' ','\n' };
+			f->write(v);
+			sfs->closeFile(f);
+			// REDIRECT COUT STREAM
+			streambuf* backup_out;
+			backup_out = cout.rdbuf();
+			stringstream ss_out;
+			cout.rdbuf(ss_out.rdbuf());
+			// execute ds
+			AbstractCommand* ds = new DisplayCommand(sfs);
+			Assert::AreEqual(0, ds->execute(filename1 + " -d"));
+			ss_out >> noskipws;
+			char c;
+			for (size_t i = 0; i < expectedOutput.size(); ++i) {
+				ss_out >> c;
+				Assert::AreEqual(expectedOutput[i], c);
+			}
+			// ensure the file was closed
+			f = sfs->openFile(filename1);
+			bool isNull = f == nullptr;
+			Assert::IsFalse(isNull);
+		}
+		TEST_METHOD(displayinvalid) {
+			AbstractFileSystem* sfs = new SimpleFileSystem();
+			AbstractFileFactory* sff = new SimpleFileFactory();
+			// REDIRECT COUT STREAM
+			streambuf* backup_out;
+			backup_out = cout.rdbuf();
+			stringstream ss_out;
+			cout.rdbuf(ss_out.rdbuf());
+			string filename1 = "file.img";
+			Assert::AreEqual(0, sfs->addFile(filename1, sff->createFile(filename1)));
+			AbstractCommand* ds = new DisplayCommand(sfs);
+			Assert::AreNotEqual(0, ds->execute("file.txt"));
+		}
+	};
 
 	//TEST_CLASS(Copy) {
 	//	TEST_METHOD(validcopy) {

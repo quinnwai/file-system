@@ -28,10 +28,14 @@ int DisplayCommand::execute(string str) {
 	string format;
 	iss >> format;
 
-	if (format == "-d") { //unformatted
-		/*for () {
+	
 
-		}*/
+	if (format == "-d") { //unformatted
+		vector<char> vec = af->read();
+		for (char c : vec) {
+			cout << c;
+		}
+		cout << endl;
 		afs->closeFile(af);
 		return success;
 	}
@@ -40,11 +44,14 @@ int DisplayCommand::execute(string str) {
 	AbstractFileVisitor* afv = new BasicDisplayVisitor();
 	af->accept(afv);
 
-	//TODO: why do we have to do this?
+	//TODO: why do we have to do this specifically? Is it always for new? (as opposed to main... or is main wrong)
 	delete afv;
 
+	afs->closeFile(af);
 	return success;
 }
 void DisplayCommand::displayInfo() {
-
+	cout << "ds displays a file's contents" << endl;
+	cout << "ds can be invoked with the command : ds <filename> [-d]" << endl;;
+	cout << "Use -d to show a unformatted version or leave out -d to show a formatted version" << endl;
 }
