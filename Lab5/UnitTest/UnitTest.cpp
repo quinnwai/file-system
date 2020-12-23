@@ -1260,6 +1260,7 @@ namespace UnitTest
 	//FWL: commented out all command-related tests until in use
 
 	TEST_CLASS(removeCommand) {
+		/**
 		TEST_METHOD(execute) { // confirms that execute, when passed a valid filename, will remove the given file from the filesystem -- removing the file again should fail, adding the file again should pass
 			// REDIRECT COUT STREAM -- TO PROTECT AGAINST ERRORS
 			streambuf* backup_out;
@@ -1312,6 +1313,7 @@ namespace UnitTest
 			bool isNull3 = file3 == nullptr;
 			Assert::IsFalse(isNull3);
 		}
+		**/
 		TEST_METHOD(executeFileOpen) { // confirms that execute, when passed a valid filename for a file that is open, execute will return an error and filesystem is untouched, so we expect to be able to close it
 			// REDIRECT COUT STREAM
 			streambuf* backup_out;
@@ -1338,8 +1340,9 @@ namespace UnitTest
 			Assert::AreEqual(0, sfs->closeFile(file1));
 		}
 	};
-
+	
 	TEST_CLASS(lSCommand) {
+		/**
 		TEST_METHOD(getAllFiles) { // condirms set returned by getFileNames() matches the file system
 			// REDIRECT COUT STREAM -- TO PROTECT AGAINST ERRORS
 			streambuf* backup_out;
@@ -1366,6 +1369,7 @@ namespace UnitTest
 			bool found2 = it2 == files.end();
 			Assert::IsFalse(found2);
 		}
+		**/
 		TEST_METHOD(nooption) {
 			AbstractFileSystem* sfs = new SimpleFileSystem();
 			AbstractFileFactory* sff = new SimpleFileFactory();
@@ -1873,6 +1877,7 @@ namespace UnitTest
 			Assert::AreEqual(expectedCopyInstructions, parsed[0]);
 			Assert::AreEqual(expectedRemoveInstructions, parsed[1]);
 		}
+		/**
 		TEST_METHOD(renameValid) {
 			// REDIRECT COUT STREAM -- PROTECT AGAINST ERRORS
 			streambuf* backup_out;
@@ -1921,6 +1926,8 @@ namespace UnitTest
 			bool isNotTextFile = textCheck == nullptr;
 			Assert::IsFalse(isNotTextFile);
 		}
+		**/
+		/**
 		TEST_METHOD(renameInvalidFilename) {
 			// REDIRECT COUT STREAM -- PROTECT AGAINST ERRORS
 			streambuf* backup_out;
@@ -1959,6 +1966,8 @@ namespace UnitTest
 			bool isNull2 = newFile == nullptr;
 			Assert::IsTrue(isNull2);;
 		}
+		**/
+		/**
 		TEST_METHOD(renameInvalidNewFilename) {
 			// REDIRECT COUT STREAM -- PROTECT AGAINST ERRORS
 			streambuf* backup_out;
@@ -1998,6 +2007,8 @@ namespace UnitTest
 			bool isNull2 = newFile == nullptr;
 			Assert::IsFalse(isNull2);;
 		}
+		**/
+		/**
 		TEST_METHOD(renameValidPasswordProtected) {
 			// REDIRECT COUT STREAM -- PROTECT AGAINST ERRORS
 			streambuf* backup_out;
@@ -2058,6 +2069,7 @@ namespace UnitTest
 			bool isNotPasswordProxy = proxyCheck == nullptr;
 			Assert::IsFalse(isNotPasswordProxy);
 		}
+		**/
 	};
 
 	TEST_CLASS(DSCommand) {
