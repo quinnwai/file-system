@@ -15,6 +15,7 @@ public:
 	virtual int append(std::vector<char> info) override;
 	virtual std::vector<char> read() override;
 	virtual void accept(AbstractFileVisitor*) override;
+	virtual AbstractFile* clone(std::string) override;
 
 protected:
 	std::string passwordPrompt();

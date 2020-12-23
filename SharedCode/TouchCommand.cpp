@@ -24,17 +24,17 @@ int TouchCommand::execute(string str) {
 		cout << "enter a password" << endl;
 		string password;
 		cin >> password;
-		AbstractFile* protected_file = new PasswordProxy(af, password);
-		if (!protected_file) {
+		AbstractFile* pfile = new PasswordProxy(af, password); // huh? this is the big issue
+		if (!pfile) {
 			cout << "cannot create file" << endl;
 			return cannot_create_file;
 		}
-		int add_result = afs->addFile(str2, protected_file);
+		int add_result = afs->addFile(str2, pfile);
 		if (add_result == 0) {
 			return success;
 		}
 		else {
-			delete protected_file;
+			delete pfile;
 			cout << "unable to add file" << endl;
 			return add_result;
 		}

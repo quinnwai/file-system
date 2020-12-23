@@ -59,3 +59,10 @@ void PasswordProxy::accept(AbstractFileVisitor* afv) {
 		protectedFile->accept(afv);
 	}
 }
+
+AbstractFile* PasswordProxy::clone(std::string str) { // not sure if this is correct
+	std::string copy_password = this->password;
+	AbstractFile* copy = this->clone(this->getName());
+	PasswordProxy* pfile = new PasswordProxy(copy, copy_password);
+	return pfile;
+}

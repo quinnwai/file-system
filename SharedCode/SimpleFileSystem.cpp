@@ -42,7 +42,7 @@ int SimpleFileSystem::closeFile(AbstractFile* file) {
 	return success;
 }
 
-set<string> SimpleFileSystem::getFileNames() {
-
-}
+//set<string> SimpleFileSystem::getFileNames() { // finish this method
+//
+//}
 

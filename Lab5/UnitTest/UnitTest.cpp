@@ -1259,232 +1259,232 @@ namespace UnitTest
 	
 	//FWL: commented out all command-related tests until in use
 
-	//TEST_CLASS(removeCommand) {
-	//	TEST_METHOD(execute) { // confirms that execute, when passed a valid filename, will remove the given file from the filesystem -- removing the file again should fail, adding the file again should pass
-	//		// REDIRECT COUT STREAM -- TO PROTECT AGAINST ERRORS
-	//		streambuf* backup_out;
-	//		backup_out = cout.rdbuf();
-	//		stringstream ss_out;
-	//		cout.rdbuf(ss_out.rdbuf());
-	//		// SET UP FILE SYSTEM
-	//		AbstractFileSystem* sfs = new SimpleFileSystem();
-	//		AbstractFileFactory* sff = new SimpleFileFactory();
-	//		// ADD FILES
-	//		string filename1 = "file.txt";
-	//		string filename2 = "file.img";
-	//		Assert::AreEqual(0, sfs->addFile(filename1, sff->createFile(filename1)));
-	//		Assert::AreEqual(0, sfs->addFile(filename2, sff->createFile(filename2)));
-	//		// CREATE COMMAND
-	//		RemoveCommand* rc = new RemoveCommand(sfs);
-	//		// CALL EXECUTE ON REMOVE COMMAND
-	//		Assert::AreEqual(0, rc->execute(filename2));
-	//		// EXPECTATION -- TEXT FILE EXISTS IN THE FILE SYSTEM
-	//		AbstractFile* file1 = sfs->openFile(filename1);
-	//		bool isNull1 = file1 == nullptr;
-	//		Assert::IsFalse(isNull1);
-	//		Assert::AreEqual(file1->getName(), filename1);
-	//		// EXPECTATION -- IMAGE FILE REMOVED IN THE FILE SYSTEM
-	//		AbstractFile* file2 = sfs->openFile(filename2);
-	//		bool isNull2 = file2 == nullptr;
-	//		Assert::IsTrue(isNull2);
-	//		// CLOSE TEXT FILE
-	//		Assert::AreEqual(0, sfs->closeFile(file1));
-	//		// CHECK FILES IN SYSTEM USING GETFILENAMES() FUCNTION
-	//		set<string> files = sfs->getFileNames();
-	//		Assert::AreEqual(static_cast<size_t>(1), files.size());
-	//		// EXPECTATION -- TEXT FILE EXISTS IN THE FILE SYSTEM
-	//		std::set<std::string>::iterator it1 = files.find(filename1);
-	//		bool found1 = it1 == files.end();
-	//		Assert::IsFalse(found1);
-	//		// EXPECTATION -- IMAGE FILE REMOVED IN THE FILE SYSTEM
-	//		std::set<std::string>::iterator it2 = files.find(filename2);
-	//		bool found2 = it2 == files.end();
-	//		Assert::IsTrue(found2);
-	//		// RE-ADD FILE
-	//		Assert::AreEqual(0, sfs->addFile(filename2, sff->createFile(filename2)));
-	//		set<string> files2 = sfs->getFileNames();
-	//		Assert::AreEqual(static_cast<size_t>(2), files2.size());
-	//		// EXPECTATION -- IMAGE FILE EXISTS IN THE FILE SYSTEM - OPEN FILE CHEC AND GETFILENAMES CHECK
-	//		std::set<std::string>::iterator it3 = files2.find(filename2);
-	//		bool found3 = it3 == files2.end();
-	//		Assert::IsFalse(found3);
-	//		AbstractFile* file3 = sfs->openFile(filename2);
-	//		bool isNull3 = file3 == nullptr;
-	//		Assert::IsFalse(isNull3);
-	//	}
-	//	TEST_METHOD(executeFileOpen) { // confirms that execute, when passed a valid filename for a file that is open, execute will return an error and filesystem is untouched, so we expect to be able to close it
-	//		// REDIRECT COUT STREAM
-	//		streambuf* backup_out;
-	//		backup_out = cout.rdbuf();
-	//		stringstream ss_out;
-	//		cout.rdbuf(ss_out.rdbuf());
-	//		// SET UP FILE SYSTEM
-	//		AbstractFileSystem* sfs = new SimpleFileSystem();
-	//		AbstractFileFactory* sff = new SimpleFileFactory();
-	//		// ADD FILE
-	//		string filename1 = "file.txt";
-	//		Assert::AreEqual(0, sfs->addFile(filename1, sff->createFile(filename1)));
-	//		// OPEN FILE
-	//		AbstractFile* file1 = sfs->openFile(filename1);
-	//		bool isNull = file1 == nullptr;
-	//		Assert::IsFalse(isNull);
-	//		Assert::AreEqual(file1->getName(), filename1);
-	//		// CREATE COMMAND
-	//		RemoveCommand* rc = new RemoveCommand(sfs);
-	//		// CALL EXECUTE ON REMOVE COMMAND
-	//		Assert::AreNotEqual(0, rc->execute(filename1));
-	//		// EXPECTATION -- TEXT FILE EXISTS IN THE FILE SYSTEM -- SO WE CAN CLOSE IT
-	//		// CLOSE FILE
-	//		Assert::AreEqual(0, sfs->closeFile(file1));
-	//	}
-	//};
+	TEST_CLASS(removeCommand) {
+		TEST_METHOD(execute) { // confirms that execute, when passed a valid filename, will remove the given file from the filesystem -- removing the file again should fail, adding the file again should pass
+			// REDIRECT COUT STREAM -- TO PROTECT AGAINST ERRORS
+			streambuf* backup_out;
+			backup_out = cout.rdbuf();
+			stringstream ss_out;
+			cout.rdbuf(ss_out.rdbuf());
+			// SET UP FILE SYSTEM
+			AbstractFileSystem* sfs = new SimpleFileSystem();
+			AbstractFileFactory* sff = new SimpleFileFactory();
+			// ADD FILES
+			string filename1 = "file.txt";
+			string filename2 = "file.img";
+			Assert::AreEqual(0, sfs->addFile(filename1, sff->createFile(filename1)));
+			Assert::AreEqual(0, sfs->addFile(filename2, sff->createFile(filename2)));
+			// CREATE COMMAND
+			RemoveCommand* rc = new RemoveCommand(sfs);
+			// CALL EXECUTE ON REMOVE COMMAND
+			Assert::AreEqual(0, rc->execute(filename2));
+			// EXPECTATION -- TEXT FILE EXISTS IN THE FILE SYSTEM
+			AbstractFile* file1 = sfs->openFile(filename1);
+			bool isNull1 = file1 == nullptr;
+			Assert::IsFalse(isNull1);
+			Assert::AreEqual(file1->getName(), filename1);
+			// EXPECTATION -- IMAGE FILE REMOVED IN THE FILE SYSTEM
+			AbstractFile* file2 = sfs->openFile(filename2);
+			bool isNull2 = file2 == nullptr;
+			Assert::IsTrue(isNull2);
+			// CLOSE TEXT FILE
+			Assert::AreEqual(0, sfs->closeFile(file1));
+			// CHECK FILES IN SYSTEM USING GETFILENAMES() FUCNTION
+			set<string> files = sfs->getFileNames();
+			Assert::AreEqual(static_cast<size_t>(1), files.size());
+			// EXPECTATION -- TEXT FILE EXISTS IN THE FILE SYSTEM
+			std::set<std::string>::iterator it1 = files.find(filename1);
+			bool found1 = it1 == files.end();
+			Assert::IsFalse(found1);
+			// EXPECTATION -- IMAGE FILE REMOVED IN THE FILE SYSTEM
+			std::set<std::string>::iterator it2 = files.find(filename2);
+			bool found2 = it2 == files.end();
+			Assert::IsTrue(found2);
+			// RE-ADD FILE
+			Assert::AreEqual(0, sfs->addFile(filename2, sff->createFile(filename2)));
+			set<string> files2 = sfs->getFileNames();
+			Assert::AreEqual(static_cast<size_t>(2), files2.size());
+			// EXPECTATION -- IMAGE FILE EXISTS IN THE FILE SYSTEM - OPEN FILE CHEC AND GETFILENAMES CHECK
+			std::set<std::string>::iterator it3 = files2.find(filename2);
+			bool found3 = it3 == files2.end();
+			Assert::IsFalse(found3);
+			AbstractFile* file3 = sfs->openFile(filename2);
+			bool isNull3 = file3 == nullptr;
+			Assert::IsFalse(isNull3);
+		}
+		TEST_METHOD(executeFileOpen) { // confirms that execute, when passed a valid filename for a file that is open, execute will return an error and filesystem is untouched, so we expect to be able to close it
+			// REDIRECT COUT STREAM
+			streambuf* backup_out;
+			backup_out = cout.rdbuf();
+			stringstream ss_out;
+			cout.rdbuf(ss_out.rdbuf());
+			// SET UP FILE SYSTEM
+			AbstractFileSystem* sfs = new SimpleFileSystem();
+			AbstractFileFactory* sff = new SimpleFileFactory();
+			// ADD FILE
+			string filename1 = "file.txt";
+			Assert::AreEqual(0, sfs->addFile(filename1, sff->createFile(filename1)));
+			// OPEN FILE
+			AbstractFile* file1 = sfs->openFile(filename1);
+			bool isNull = file1 == nullptr;
+			Assert::IsFalse(isNull);
+			Assert::AreEqual(file1->getName(), filename1);
+			// CREATE COMMAND
+			RemoveCommand* rc = new RemoveCommand(sfs);
+			// CALL EXECUTE ON REMOVE COMMAND
+			Assert::AreNotEqual(0, rc->execute(filename1));
+			// EXPECTATION -- TEXT FILE EXISTS IN THE FILE SYSTEM -- SO WE CAN CLOSE IT
+			// CLOSE FILE
+			Assert::AreEqual(0, sfs->closeFile(file1));
+		}
+	};
 
-	//TEST_CLASS(lSCommand) {
-	//	TEST_METHOD(getAllFiles) { // condirms set returned by getFileNames() matches the file system
-	//		// REDIRECT COUT STREAM -- TO PROTECT AGAINST ERRORS
-	//		streambuf* backup_out;
-	//		backup_out = cout.rdbuf();
-	//		stringstream ss_out;
-	//		cout.rdbuf(ss_out.rdbuf());
-	//		// SET UP FILE SYSTEM
-	//		AbstractFileSystem* sfs = new SimpleFileSystem();
-	//		AbstractFileFactory* sff = new SimpleFileFactory();
-	//		// ADD FILES
-	//		string filename1 = "file.txt";
-	//		string filename2 = "file.img";
-	//		Assert::AreEqual(0, sfs->addFile(filename1, sff->createFile(filename1)));
-	//		Assert::AreEqual(0, sfs->addFile(filename2, sff->createFile(filename2)));
-	//		// CHECK FILES IN SYSTEM USING GETFILENAMES() FUCNTION
-	//		set<string> files = sfs->getFileNames();
-	//		Assert::AreEqual(static_cast<size_t>(2), files.size());
-	//		// EXPECTATION -- TEXT FILE EXISTS IN THE FILE SYSTEM
-	//		std::set<std::string>::iterator it1 = files.find(filename1);
-	//		bool found1 = it1 == files.end();
-	//		Assert::IsFalse(found1);
-	//		// EXPECTATION -- IMAGE FILE EXISTS IN THE FILE SYSTEM
-	//		std::set<std::string>::iterator it2 = files.find(filename2);
-	//		bool found2 = it2 == files.end();
-	//		Assert::IsFalse(found2);
-	//	}
-	//	TEST_METHOD(nooption) {
-	//		AbstractFileSystem* sfs = new SimpleFileSystem();
-	//		AbstractFileFactory* sff = new SimpleFileFactory();
-	//		// ADD FILES
-	//		string filename1 = "file.txt";
-	//		string filename2 = "file.img";
-	//		string filename3 = "adifferentfile.txt";
-	//		Assert::AreEqual(0, sfs->addFile(filename1, sff->createFile(filename1)));
-	//		Assert::AreEqual(0, sfs->addFile(filename2, sff->createFile(filename2)));
-	//		Assert::AreEqual(0, sfs->addFile(filename3, sff->createFile(filename3)));
-	//		// REDIRECT COUT STREAM
-	//		streambuf* backup_out;
-	//		backup_out = cout.rdbuf();
-	//		stringstream ss_out;
-	//		cout.rdbuf(ss_out.rdbuf());
-	//		// execute ls
-	//		AbstractCommand* ls = new LSCommand(sfs);
-	//		Assert::AreEqual(0, ls->execute(""));
-	//		// check output
-	//		string firstLine;
-	//		string secondLine;
-	//		// ensure 2 lines of output
-	//		bool extractSuccessful = false;
-	//		if (getline(ss_out, firstLine)) {
-	//			extractSuccessful = true;
-	//		}
-	//		Assert::IsTrue(extractSuccessful);
-	//		extractSuccessful = false;
-	//		if (getline(ss_out, secondLine)) {
-	//			extractSuccessful = true;
-	//		}
-	//		Assert::IsTrue(extractSuccessful);
-	//		string firstFile;
-	//		string secondFile;
-	//		istringstream iss(firstLine);
-	//		iss >> firstFile;
-	//		iss >> secondFile;
-	//		string thirdFile;
-	//		istringstream iss2(secondLine);
-	//		iss2 >> thirdFile;
-	//		string expectedFirst = "adifferentfile.txt";
-	//		string expectedSecond = "file.img";
-	//		string expectedThird = "file.txt";
-	//		Assert::AreEqual(expectedFirst, firstFile);
-	//		Assert::AreEqual(expectedSecond, secondFile);
-	//		Assert::AreEqual(expectedThird, thirdFile);
-	//	}
-	//	TEST_METHOD(metadata) {
-	//		AbstractFileSystem* sfs = new SimpleFileSystem();
-	//		AbstractFileFactory* sff = new SimpleFileFactory();
-	//		// ADD FILES
-	//		string filename1 = "file.txt";
-	//		string filename2 = "file.img";
-	//		string filename3 = "adifferentfile.txt";
-	//		Assert::AreEqual(0, sfs->addFile(filename1, sff->createFile(filename1)));
-	//		Assert::AreEqual(0, sfs->addFile(filename2, sff->createFile(filename2)));
-	//		Assert::AreEqual(0, sfs->addFile(filename3, sff->createFile(filename3)));
-	//		AbstractFile* f1 = sfs->openFile(filename1);
-	//		AbstractFile* f2 = sfs->openFile(filename2);
-	//		f1->write({ 'h','i' });
-	//		int f1Size = f1->getSize();
-	//		Assert::AreEqual(2, f1Size);
-	//		f2->write({ 'X',' ', ' ', 'X', '2' });
-	//		int f2Size = f2->getSize();
-	//		Assert::AreEqual(4, f2Size);
-	//		int f3Size = 0;
-	//		sfs->closeFile(f1);
-	//		sfs->closeFile(f2);
-	//		// REDIRECT COUT STREAM
-	//		streambuf* backup_out;
-	//		backup_out = cout.rdbuf();
-	//		stringstream ss_out;
-	//		cout.rdbuf(ss_out.rdbuf());
-	//		// execute ls
-	//		AbstractCommand* ls = new LSCommand(sfs);
-	//		Assert::AreEqual(0, ls->execute("-m"));
-	//		string line1;
-	//		string line2;
-	//		string line3;
-	//		getline(ss_out, line1);
-	//		getline(ss_out, line2);
-	//		getline(ss_out, line3);
-	//		istringstream iss(line1);
-	//		istringstream iss2(line2);
-	//		istringstream iss3(line3);
-	//		string f1Name;
-	//		string f2Name;
-	//		string f3Name;
-	//		string f1Type;
-	//		string f2Type;
-	//		string f3Type;
-	//		int sizeF1;
-	//		int sizeF2;
-	//		int sizeF3;
-	//		iss >> f1Name >> f1Type >> sizeF1;
-	//		iss2 >> f2Name >> f2Type >> sizeF2;
-	//		iss3 >> f3Name >> f3Type >> sizeF3;
-	//		Assert::AreEqual(filename3, f1Name);
-	//		Assert::AreEqual(filename2, f2Name);
-	//		Assert::AreEqual(filename1, f3Name);
-	//		string txtType = "text";
-	//		string imgType = "image";
-	//		Assert::AreEqual(txtType, f1Type);
-	//		Assert::AreEqual(imgType, f2Type);
-	//		Assert::AreEqual(txtType, f3Type);
-	//		Assert::AreEqual(f3Size, sizeF1);
-	//		Assert::AreEqual(f2Size, sizeF2);
-	//		Assert::AreEqual(f1Size, sizeF3);
-	//		// did the files get closed?
-	//		f1 = sfs->openFile(filename1);
-	//		f2 = sfs->openFile(filename2);
-	//		AbstractFile* f3 = sfs->openFile(filename3);
-	//		bool allOpen = false;
-	//		if (f1 != nullptr && f2 != nullptr && f3 != nullptr) {
-	//			allOpen = true;
-	//		}
-	//		Assert::IsTrue(allOpen);
-	//	}
-	//};
+	TEST_CLASS(lSCommand) {
+		TEST_METHOD(getAllFiles) { // condirms set returned by getFileNames() matches the file system
+			// REDIRECT COUT STREAM -- TO PROTECT AGAINST ERRORS
+			streambuf* backup_out;
+			backup_out = cout.rdbuf();
+			stringstream ss_out;
+			cout.rdbuf(ss_out.rdbuf());
+			// SET UP FILE SYSTEM
+			AbstractFileSystem* sfs = new SimpleFileSystem();
+			AbstractFileFactory* sff = new SimpleFileFactory();
+			// ADD FILES
+			string filename1 = "file.txt";
+			string filename2 = "file.img";
+			Assert::AreEqual(0, sfs->addFile(filename1, sff->createFile(filename1)));
+			Assert::AreEqual(0, sfs->addFile(filename2, sff->createFile(filename2)));
+			// CHECK FILES IN SYSTEM USING GETFILENAMES() FUCNTION
+			set<string> files = sfs->getFileNames();
+			Assert::AreEqual(static_cast<size_t>(2), files.size());
+			// EXPECTATION -- TEXT FILE EXISTS IN THE FILE SYSTEM
+			std::set<std::string>::iterator it1 = files.find(filename1);
+			bool found1 = it1 == files.end();
+			Assert::IsFalse(found1);
+			// EXPECTATION -- IMAGE FILE EXISTS IN THE FILE SYSTEM
+			std::set<std::string>::iterator it2 = files.find(filename2);
+			bool found2 = it2 == files.end();
+			Assert::IsFalse(found2);
+		}
+		TEST_METHOD(nooption) {
+			AbstractFileSystem* sfs = new SimpleFileSystem();
+			AbstractFileFactory* sff = new SimpleFileFactory();
+			// ADD FILES
+			string filename1 = "file.txt";
+			string filename2 = "file.img";
+			string filename3 = "adifferentfile.txt";
+			Assert::AreEqual(0, sfs->addFile(filename1, sff->createFile(filename1)));
+			Assert::AreEqual(0, sfs->addFile(filename2, sff->createFile(filename2)));
+			Assert::AreEqual(0, sfs->addFile(filename3, sff->createFile(filename3)));
+			// REDIRECT COUT STREAM
+			streambuf* backup_out;
+			backup_out = cout.rdbuf();
+			stringstream ss_out;
+			cout.rdbuf(ss_out.rdbuf());
+			// execute ls
+			AbstractCommand* ls = new LSCommand(sfs);
+			Assert::AreEqual(0, ls->execute(""));
+			// check output
+			string firstLine;
+			string secondLine;
+			// ensure 2 lines of output
+			bool extractSuccessful = false;
+			if (getline(ss_out, firstLine)) {
+				extractSuccessful = true;
+			}
+			Assert::IsTrue(extractSuccessful);
+			extractSuccessful = false;
+			if (getline(ss_out, secondLine)) {
+				extractSuccessful = true;
+			}
+			Assert::IsTrue(extractSuccessful);
+			string firstFile;
+			string secondFile;
+			istringstream iss(firstLine);
+			iss >> firstFile;
+			iss >> secondFile;
+			string thirdFile;
+			istringstream iss2(secondLine);
+			iss2 >> thirdFile;
+			string expectedFirst = "adifferentfile.txt";
+			string expectedSecond = "file.img";
+			string expectedThird = "file.txt";
+			Assert::AreEqual(expectedFirst, firstFile);
+			Assert::AreEqual(expectedSecond, secondFile);
+			Assert::AreEqual(expectedThird, thirdFile);
+		}
+		TEST_METHOD(metadata) {
+			AbstractFileSystem* sfs = new SimpleFileSystem();
+			AbstractFileFactory* sff = new SimpleFileFactory();
+			// ADD FILES
+			string filename1 = "file.txt";
+			string filename2 = "file.img";
+			string filename3 = "adifferentfile.txt";
+			Assert::AreEqual(0, sfs->addFile(filename1, sff->createFile(filename1)));
+			Assert::AreEqual(0, sfs->addFile(filename2, sff->createFile(filename2)));
+			Assert::AreEqual(0, sfs->addFile(filename3, sff->createFile(filename3)));
+			AbstractFile* f1 = sfs->openFile(filename1);
+			AbstractFile* f2 = sfs->openFile(filename2);
+			f1->write({ 'h','i' });
+			int f1Size = f1->getSize();
+			Assert::AreEqual(2, f1Size);
+			f2->write({ 'X',' ', ' ', 'X', '2' });
+			int f2Size = f2->getSize();
+			Assert::AreEqual(4, f2Size);
+			int f3Size = 0;
+			sfs->closeFile(f1);
+			sfs->closeFile(f2);
+			// REDIRECT COUT STREAM
+			streambuf* backup_out;
+			backup_out = cout.rdbuf();
+			stringstream ss_out;
+			cout.rdbuf(ss_out.rdbuf());
+			// execute ls
+			AbstractCommand* ls = new LSCommand(sfs);
+			Assert::AreEqual(0, ls->execute("-m"));
+			string line1;
+			string line2;
+			string line3;
+			getline(ss_out, line1);
+			getline(ss_out, line2);
+			getline(ss_out, line3);
+			istringstream iss(line1);
+			istringstream iss2(line2);
+			istringstream iss3(line3);
+			string f1Name;
+			string f2Name;
+			string f3Name;
+			string f1Type;
+			string f2Type;
+			string f3Type;
+			int sizeF1;
+			int sizeF2;
+			int sizeF3;
+			iss >> f1Name >> f1Type >> sizeF1;
+			iss2 >> f2Name >> f2Type >> sizeF2;
+			iss3 >> f3Name >> f3Type >> sizeF3;
+			Assert::AreEqual(filename3, f1Name);
+			Assert::AreEqual(filename2, f2Name);
+			Assert::AreEqual(filename1, f3Name);
+			string txtType = "text";
+			string imgType = "image";
+			Assert::AreEqual(txtType, f1Type);
+			Assert::AreEqual(imgType, f2Type);
+			Assert::AreEqual(txtType, f3Type);
+			Assert::AreEqual(f3Size, sizeF1);
+			Assert::AreEqual(f2Size, sizeF2);
+			Assert::AreEqual(f1Size, sizeF3);
+			// did the files get closed?
+			f1 = sfs->openFile(filename1);
+			f2 = sfs->openFile(filename2);
+			AbstractFile* f3 = sfs->openFile(filename3);
+			bool allOpen = false;
+			if (f1 != nullptr && f2 != nullptr && f3 != nullptr) {
+				allOpen = true;
+			}
+			Assert::IsTrue(allOpen);
+		}
+	};
 
 	TEST_CLASS(catCommand) {
 		TEST_METHOD(executeTextFileNoAppendSaving) { // test executing cat with no append option and saving input to a text file
@@ -1857,208 +1857,208 @@ namespace UnitTest
 		}
 	};
 
-	//TEST_CLASS(renameCommand) {
-	//	TEST_METHOD(renameParsingStrategy) { // checks parse function of RenameParsingStrategy correctly converts input string into a vector of strings representing instructions for copy and remove commands
-	//		// REDIRECT COUT STREAM -- PROTECT AGAINST ERRORS
-	//		streambuf* backup_out;
-	//		backup_out = cout.rdbuf();
-	//		stringstream ss_out;
-	//		cout.rdbuf(ss_out.rdbuf());
-	//		// SETUP INPUT AND TEST OUTPUT
-	//		RenameParsingStrategy* rps = new RenameParsingStrategy();
-	//		vector<string> parsed = rps->parse("file.txt renamedFile");
-	//		Assert::AreEqual(static_cast<size_t>(2), parsed.size());
-	//		string expectedCopyInstructions = "file.txt renamedFile";
-	//		string expectedRemoveInstructions = "file.txt";
-	//		Assert::AreEqual(expectedCopyInstructions, parsed[0]);
-	//		Assert::AreEqual(expectedRemoveInstructions, parsed[1]);
-	//	}
-	//	TEST_METHOD(renameValid) {
-	//		// REDIRECT COUT STREAM -- PROTECT AGAINST ERRORS
-	//		streambuf* backup_out;
-	//		backup_out = cout.rdbuf();
-	//		stringstream ss_out;
-	//		cout.rdbuf(ss_out.rdbuf());
-	//		// SET UP FILE SYSTEM
-	//		AbstractFileSystem* sfs = new SimpleFileSystem();
-	//		AbstractFileFactory* sff = new SimpleFileFactory();
-	//		// ADD FILES
-	//		string filename = "file.txt";
-	//		AbstractFile* file = new TextFile(filename);
-	//		Assert::AreEqual(0, sfs->addFile(filename, file));
-	//		// INITIALIZE FILE CONTENTS
-	//		vector<char> v = { 'h','i' };
-	//		Assert::AreEqual(0, file->write(v));
-	//		// CREATE MACRO COMMAND USING RENAME PARSING STRATEGY AND COPY/REMOVE COMMANDS
-	//		MacroCommand* mc = new MacroCommand(sfs);
-	//		RenameParsingStrategy* rps = new RenameParsingStrategy;
-	//		AbstractCommand* cpc = new CopyCommand(sfs);
-	//		AbstractCommand* rmc = new RemoveCommand(sfs);
-	//		mc->setParseStrategy(rps);
-	//		mc->addCommand(cpc);
-	//		mc->addCommand(rmc);
-	//		// EXECUTE RENAME COMMAND
-	//		string newfilename = "newfilename";
-	//		string userInput = filename + " " + newfilename;
-	//		Assert::AreEqual(0, mc->execute(userInput));
-	//		// EXPECTATION -- ORIGINAL FILE IS REMOVED
-	//		AbstractFile* originalFile = sfs->openFile(filename);
-	//		bool isNull = originalFile == nullptr;
-	//		Assert::IsTrue(isNull);
-	//		// EXPECTATION -- FILE EXISTS UNDER NEW NAME AND CONTENTS ARE THE SAME
-	//		AbstractFile* newFile = sfs->openFile(newfilename + ".txt");
-	//		bool isNull2 = newFile == nullptr;
-	//		Assert::IsFalse(isNull2);
-	//		vector<char> contents = newFile->read();
-	//		Assert::AreEqual(contents.size(), v.size());
-	//		Assert::AreEqual(contents[0], v[0]);
-	//		Assert::AreEqual(contents[1], v[1]);
-	//		// EXPECTATION -- ADDRESSES ARE DIFFERENT
-	//		bool areEqual = &file == &newFile;
-	//		Assert::IsFalse(areEqual);
-	//		// EXPECTATION -- FILE TYPE MATCHES
-	//		TextFile* textCheck = dynamic_cast<TextFile*>(newFile);
-	//		bool isNotTextFile = textCheck == nullptr;
-	//		Assert::IsFalse(isNotTextFile);
-	//	}
-	//	TEST_METHOD(renameInvalidFilename) {
-	//		// REDIRECT COUT STREAM -- PROTECT AGAINST ERRORS
-	//		streambuf* backup_out;
-	//		backup_out = cout.rdbuf();
-	//		stringstream ss_out;
-	//		cout.rdbuf(ss_out.rdbuf());
-	//		// SET UP FILE SYSTEM
-	//		AbstractFileSystem* sfs = new SimpleFileSystem();
-	//		AbstractFileFactory* sff = new SimpleFileFactory();
-	//		// ADD FILES
-	//		string filename = "file.txt";
-	//		AbstractFile* file = new TextFile(filename);
-	//		Assert::AreEqual(0, sfs->addFile(filename, file));
-	//		// INITIALIZE FILE CONTENTS
-	//		vector<char> v = { 'h','i' };
-	//		Assert::AreEqual(0, file->write(v));
-	//		// CREATE MACRO COMMAND USING RENAME PARSING STRATEGY AND COPY/REMOVE COMMANDS
-	//		MacroCommand* mc = new MacroCommand(sfs);
-	//		RenameParsingStrategy* rps = new RenameParsingStrategy;
-	//		AbstractCommand* cpc = new CopyCommand(sfs);
-	//		AbstractCommand* rmc = new RemoveCommand(sfs);
-	//		mc->setParseStrategy(rps);
-	//		mc->addCommand(cpc);
-	//		mc->addCommand(rmc);
-	//		// EXECUTE RENAME COMMAND
-	//		string invalidfilename = "wrongfilename.txt";
-	//		string newfilename = "newfilename";
-	//		string userInput = invalidfilename + " " + newfilename;
-	//		Assert::AreNotEqual(0, mc->execute(userInput));
-	//		// EXPECTATION -- ORIGINAL FILE IS NOT REMOVED
-	//		AbstractFile* originalFile = sfs->openFile(filename);
-	//		bool isNull = originalFile == nullptr;
-	//		Assert::IsFalse(isNull);
-	//		// EXPECTATION -- FILE DOES NOT EXIST UNDER NEW NAME 
-	//		AbstractFile* newFile = sfs->openFile(newfilename + ".txt");
-	//		bool isNull2 = newFile == nullptr;
-	//		Assert::IsTrue(isNull2);;
-	//	}
-	//	TEST_METHOD(renameInvalidNewFilename) {
-	//		// REDIRECT COUT STREAM -- PROTECT AGAINST ERRORS
-	//		streambuf* backup_out;
-	//		backup_out = cout.rdbuf();
-	//		stringstream ss_out;
-	//		cout.rdbuf(ss_out.rdbuf());
-	//		// SET UP FILE SYSTEM
-	//		AbstractFileSystem* sfs = new SimpleFileSystem();
-	//		AbstractFileFactory* sff = new SimpleFileFactory();
-	//		// ADD FILES
-	//		string filename = "file.txt";
-	//		string otherfilename = "otherfile";
-	//		AbstractFile* file = new TextFile(filename);
-	//		Assert::AreEqual(0, sfs->addFile(filename, file));
-	//		AbstractFile* otherfile = new TextFile(otherfilename + ".txt");
-	//		Assert::AreEqual(0, sfs->addFile(otherfilename + ".txt", otherfile));
-	//		// INITIALIZE FILE CONTENTS
-	//		vector<char> v = { 'h','i' };
-	//		Assert::AreEqual(0, file->write(v));
-	//		// CREATE MACRO COMMAND USING RENAME PARSING STRATEGY AND COPY/REMOVE COMMANDS
-	//		MacroCommand* mc = new MacroCommand(sfs);
-	//		RenameParsingStrategy* rps = new RenameParsingStrategy;
-	//		AbstractCommand* cpc = new CopyCommand(sfs);
-	//		AbstractCommand* rmc = new RemoveCommand(sfs);
-	//		mc->setParseStrategy(rps);
-	//		mc->addCommand(cpc);
-	//		mc->addCommand(rmc);
-	//		// EXECUTE RENAME COMMAND
-	//		string userInput = filename + " " + otherfilename;
-	//		Assert::AreNotEqual(0, mc->execute(userInput));
-	//		// EXPECTATION -- ORIGINAL FILE IS NOT REMOVED
-	//		AbstractFile* originalFile = sfs->openFile(filename);
-	//		bool isNull = originalFile == nullptr;
-	//		Assert::IsFalse(isNull);
-	//		// EXPECTATION -- OTHER FILE STILL EXISTS
-	//		AbstractFile* newFile = sfs->openFile(otherfilename + ".txt");
-	//		bool isNull2 = newFile == nullptr;
-	//		Assert::IsFalse(isNull2);;
-	//	}
-	//	TEST_METHOD(renameValidPasswordProtected) {
-	//		// REDIRECT COUT STREAM -- PROTECT AGAINST ERRORS
-	//		streambuf* backup_out;
-	//		backup_out = cout.rdbuf();
-	//		stringstream ss_out;
-	//		cout.rdbuf(ss_out.rdbuf());
-	//		// SET UP FILE SYSTEM
-	//		AbstractFileSystem* sfs = new SimpleFileSystem();
-	//		AbstractFileFactory* sff = new SimpleFileFactory();
-	//		// ADD FILES
-	//		string filename = "file.txt";
-	//		AbstractFile* file = new TextFile(filename);
-	//		string password = "Adi23ifK";
-	//		AbstractFile* proxy = new PasswordProxy(file, password);
-	//		Assert::AreEqual(0, sfs->addFile(filename, proxy));
-	//		// INITIALIZE FILE CONTENTS -- WE WRITE DIRECTLY TO FILE IN THIS CASE (FUNCTIONALITY IS TEST OTHER PLACES)
-	//		vector<char> v = { 'h','i' };
-	//		Assert::AreEqual(0, file->write(v));
-	//		// CREATE MACRO COMMAND USING RENAME PARSING STRATEGY AND COPY/REMOVE COMMANDS
-	//		MacroCommand* mc = new MacroCommand(sfs);
-	//		RenameParsingStrategy* rps = new RenameParsingStrategy;
-	//		AbstractCommand* cpc = new CopyCommand(sfs);
-	//		AbstractCommand* rmc = new RemoveCommand(sfs);
-	//		mc->setParseStrategy(rps);
-	//		mc->addCommand(cpc);
-	//		mc->addCommand(rmc);
-	//		// REDIRECT CIN STREAM
-	//		streambuf* backup_in;
-	//		backup_in = cin.rdbuf();
-	//		stringstream ss_in;
-	//		cin.rdbuf(ss_in.rdbuf());
-	//		// EXECUTE RENAME COMMAND
-	//		string newfilename = "newfilename";
-	//		string userInput = filename + " " + newfilename;
-	//		Assert::AreEqual(0, mc->execute(userInput));
-	//		// EXPECTATION -- ORIGINAL FILE IS REMOVED
-	//		AbstractFile* originalFile = sfs->openFile(filename);
-	//		bool isNull = originalFile == nullptr;
-	//		Assert::IsTrue(isNull);
-	//		// EXPECTATION -- FILE EXISTS UNDER NEW NAME AND CONTENTS ARE THE SAME
-	//		AbstractFile* newFile = sfs->openFile(newfilename + ".txt");
-	//		bool isNull2 = newFile == nullptr;
-	//		Assert::IsFalse(isNull2);
-	//		// SET UP USER PASSWORD INPUT AND READ AGAIN TO GET TRUE CONTENTS 
-	//		ss_in << password + "\n";
-	//		vector<char> contentswithpassword = newFile->read();
-	//		Assert::AreEqual(contentswithpassword.size(), v.size());
-	//		Assert::AreEqual(contentswithpassword[0], v[0]);
-	//		Assert::AreEqual(contentswithpassword[1], v[1]);
-	//		// SECOND READ CALL NOT GIVEN A PASSWORD -- SHOULD FAIL AND GET AN EMPTY VECTOR
-	//		vector<char> contents = newFile->read();
-	//		Assert::AreEqual(static_cast<size_t>(0), contents.size());
-	//		// EXPECTATION -- ADDRESSES ARE DIFFERENT
-	//		bool areEqual = &file == &newFile;
-	//		Assert::IsFalse(areEqual);
-	//		// EXPECTATION -- FILE TYPE MATCHES
-	//		PasswordProxy* proxyCheck = dynamic_cast<PasswordProxy*>(newFile);
-	//		bool isNotPasswordProxy = proxyCheck == nullptr;
-	//		Assert::IsFalse(isNotPasswordProxy);
-	//	}
-	//};
+	TEST_CLASS(renameCommand) {
+		TEST_METHOD(renameParsingStrategy) { // checks parse function of RenameParsingStrategy correctly converts input string into a vector of strings representing instructions for copy and remove commands
+			// REDIRECT COUT STREAM -- PROTECT AGAINST ERRORS
+			streambuf* backup_out;
+			backup_out = cout.rdbuf();
+			stringstream ss_out;
+			cout.rdbuf(ss_out.rdbuf());
+			// SETUP INPUT AND TEST OUTPUT
+			RenameParsingStrategy* rps = new RenameParsingStrategy();
+			vector<string> parsed = rps->parse("file.txt renamedFile");
+			Assert::AreEqual(static_cast<size_t>(2), parsed.size());
+			string expectedCopyInstructions = "file.txt renamedFile";
+			string expectedRemoveInstructions = "file.txt";
+			Assert::AreEqual(expectedCopyInstructions, parsed[0]);
+			Assert::AreEqual(expectedRemoveInstructions, parsed[1]);
+		}
+		TEST_METHOD(renameValid) {
+			// REDIRECT COUT STREAM -- PROTECT AGAINST ERRORS
+			streambuf* backup_out;
+			backup_out = cout.rdbuf();
+			stringstream ss_out;
+			cout.rdbuf(ss_out.rdbuf());
+			// SET UP FILE SYSTEM
+			AbstractFileSystem* sfs = new SimpleFileSystem();
+			AbstractFileFactory* sff = new SimpleFileFactory();
+			// ADD FILES
+			string filename = "file.txt";
+			AbstractFile* file = new TextFile(filename);
+			Assert::AreEqual(0, sfs->addFile(filename, file));
+			// INITIALIZE FILE CONTENTS
+			vector<char> v = { 'h','i' };
+			Assert::AreEqual(0, file->write(v));
+			// CREATE MACRO COMMAND USING RENAME PARSING STRATEGY AND COPY/REMOVE COMMANDS
+			MacroCommand* mc = new MacroCommand(sfs);
+			RenameParsingStrategy* rps = new RenameParsingStrategy;
+			AbstractCommand* cpc = new CopyCommand(sfs);
+			AbstractCommand* rmc = new RemoveCommand(sfs);
+			mc->setParseStrategy(rps);
+			mc->addCommand(cpc);
+			mc->addCommand(rmc);
+			// EXECUTE RENAME COMMAND
+			string newfilename = "newfilename";
+			string userInput = filename + " " + newfilename;
+			Assert::AreEqual(0, mc->execute(userInput));
+			// EXPECTATION -- ORIGINAL FILE IS REMOVED
+			AbstractFile* originalFile = sfs->openFile(filename);
+			bool isNull = originalFile == nullptr;
+			Assert::IsTrue(isNull);
+			// EXPECTATION -- FILE EXISTS UNDER NEW NAME AND CONTENTS ARE THE SAME
+			AbstractFile* newFile = sfs->openFile(newfilename + ".txt");
+			bool isNull2 = newFile == nullptr;
+			Assert::IsFalse(isNull2);
+			vector<char> contents = newFile->read();
+			Assert::AreEqual(contents.size(), v.size());
+			Assert::AreEqual(contents[0], v[0]);
+			Assert::AreEqual(contents[1], v[1]);
+			// EXPECTATION -- ADDRESSES ARE DIFFERENT
+			bool areEqual = &file == &newFile;
+			Assert::IsFalse(areEqual);
+			// EXPECTATION -- FILE TYPE MATCHES
+			TextFile* textCheck = dynamic_cast<TextFile*>(newFile);
+			bool isNotTextFile = textCheck == nullptr;
+			Assert::IsFalse(isNotTextFile);
+		}
+		TEST_METHOD(renameInvalidFilename) {
+			// REDIRECT COUT STREAM -- PROTECT AGAINST ERRORS
+			streambuf* backup_out;
+			backup_out = cout.rdbuf();
+			stringstream ss_out;
+			cout.rdbuf(ss_out.rdbuf());
+			// SET UP FILE SYSTEM
+			AbstractFileSystem* sfs = new SimpleFileSystem();
+			AbstractFileFactory* sff = new SimpleFileFactory();
+			// ADD FILES
+			string filename = "file.txt";
+			AbstractFile* file = new TextFile(filename);
+			Assert::AreEqual(0, sfs->addFile(filename, file));
+			// INITIALIZE FILE CONTENTS
+			vector<char> v = { 'h','i' };
+			Assert::AreEqual(0, file->write(v));
+			// CREATE MACRO COMMAND USING RENAME PARSING STRATEGY AND COPY/REMOVE COMMANDS
+			MacroCommand* mc = new MacroCommand(sfs);
+			RenameParsingStrategy* rps = new RenameParsingStrategy;
+			AbstractCommand* cpc = new CopyCommand(sfs);
+			AbstractCommand* rmc = new RemoveCommand(sfs);
+			mc->setParseStrategy(rps);
+			mc->addCommand(cpc);
+			mc->addCommand(rmc);
+			// EXECUTE RENAME COMMAND
+			string invalidfilename = "wrongfilename.txt";
+			string newfilename = "newfilename";
+			string userInput = invalidfilename + " " + newfilename;
+			Assert::AreNotEqual(0, mc->execute(userInput));
+			// EXPECTATION -- ORIGINAL FILE IS NOT REMOVED
+			AbstractFile* originalFile = sfs->openFile(filename);
+			bool isNull = originalFile == nullptr;
+			Assert::IsFalse(isNull);
+			// EXPECTATION -- FILE DOES NOT EXIST UNDER NEW NAME 
+			AbstractFile* newFile = sfs->openFile(newfilename + ".txt");
+			bool isNull2 = newFile == nullptr;
+			Assert::IsTrue(isNull2);;
+		}
+		TEST_METHOD(renameInvalidNewFilename) {
+			// REDIRECT COUT STREAM -- PROTECT AGAINST ERRORS
+			streambuf* backup_out;
+			backup_out = cout.rdbuf();
+			stringstream ss_out;
+			cout.rdbuf(ss_out.rdbuf());
+			// SET UP FILE SYSTEM
+			AbstractFileSystem* sfs = new SimpleFileSystem();
+			AbstractFileFactory* sff = new SimpleFileFactory();
+			// ADD FILES
+			string filename = "file.txt";
+			string otherfilename = "otherfile";
+			AbstractFile* file = new TextFile(filename);
+			Assert::AreEqual(0, sfs->addFile(filename, file));
+			AbstractFile* otherfile = new TextFile(otherfilename + ".txt");
+			Assert::AreEqual(0, sfs->addFile(otherfilename + ".txt", otherfile));
+			// INITIALIZE FILE CONTENTS
+			vector<char> v = { 'h','i' };
+			Assert::AreEqual(0, file->write(v));
+			// CREATE MACRO COMMAND USING RENAME PARSING STRATEGY AND COPY/REMOVE COMMANDS
+			MacroCommand* mc = new MacroCommand(sfs);
+			RenameParsingStrategy* rps = new RenameParsingStrategy;
+			AbstractCommand* cpc = new CopyCommand(sfs);
+			AbstractCommand* rmc = new RemoveCommand(sfs);
+			mc->setParseStrategy(rps);
+			mc->addCommand(cpc);
+			mc->addCommand(rmc);
+			// EXECUTE RENAME COMMAND
+			string userInput = filename + " " + otherfilename;
+			Assert::AreNotEqual(0, mc->execute(userInput));
+			// EXPECTATION -- ORIGINAL FILE IS NOT REMOVED
+			AbstractFile* originalFile = sfs->openFile(filename);
+			bool isNull = originalFile == nullptr;
+			Assert::IsFalse(isNull);
+			// EXPECTATION -- OTHER FILE STILL EXISTS
+			AbstractFile* newFile = sfs->openFile(otherfilename + ".txt");
+			bool isNull2 = newFile == nullptr;
+			Assert::IsFalse(isNull2);;
+		}
+		TEST_METHOD(renameValidPasswordProtected) {
+			// REDIRECT COUT STREAM -- PROTECT AGAINST ERRORS
+			streambuf* backup_out;
+			backup_out = cout.rdbuf();
+			stringstream ss_out;
+			cout.rdbuf(ss_out.rdbuf());
+			// SET UP FILE SYSTEM
+			AbstractFileSystem* sfs = new SimpleFileSystem();
+			AbstractFileFactory* sff = new SimpleFileFactory();
+			// ADD FILES
+			string filename = "file.txt";
+			AbstractFile* file = new TextFile(filename);
+			string password = "Adi23ifK";
+			AbstractFile* proxy = new PasswordProxy(file, password);
+			Assert::AreEqual(0, sfs->addFile(filename, proxy));
+			// INITIALIZE FILE CONTENTS -- WE WRITE DIRECTLY TO FILE IN THIS CASE (FUNCTIONALITY IS TEST OTHER PLACES)
+			vector<char> v = { 'h','i' };
+			Assert::AreEqual(0, file->write(v));
+			// CREATE MACRO COMMAND USING RENAME PARSING STRATEGY AND COPY/REMOVE COMMANDS
+			MacroCommand* mc = new MacroCommand(sfs);
+			RenameParsingStrategy* rps = new RenameParsingStrategy;
+			AbstractCommand* cpc = new CopyCommand(sfs);
+			AbstractCommand* rmc = new RemoveCommand(sfs);
+			mc->setParseStrategy(rps);
+			mc->addCommand(cpc);
+			mc->addCommand(rmc);
+			// REDIRECT CIN STREAM
+			streambuf* backup_in;
+			backup_in = cin.rdbuf();
+			stringstream ss_in;
+			cin.rdbuf(ss_in.rdbuf());
+			// EXECUTE RENAME COMMAND
+			string newfilename = "newfilename";
+			string userInput = filename + " " + newfilename;
+			Assert::AreEqual(0, mc->execute(userInput));
+			// EXPECTATION -- ORIGINAL FILE IS REMOVED
+			AbstractFile* originalFile = sfs->openFile(filename);
+			bool isNull = originalFile == nullptr;
+			Assert::IsTrue(isNull);
+			// EXPECTATION -- FILE EXISTS UNDER NEW NAME AND CONTENTS ARE THE SAME
+			AbstractFile* newFile = sfs->openFile(newfilename + ".txt");
+			bool isNull2 = newFile == nullptr;
+			Assert::IsFalse(isNull2);
+			// SET UP USER PASSWORD INPUT AND READ AGAIN TO GET TRUE CONTENTS 
+			ss_in << password + "\n";
+			vector<char> contentswithpassword = newFile->read();
+			Assert::AreEqual(contentswithpassword.size(), v.size());
+			Assert::AreEqual(contentswithpassword[0], v[0]);
+			Assert::AreEqual(contentswithpassword[1], v[1]);
+			// SECOND READ CALL NOT GIVEN A PASSWORD -- SHOULD FAIL AND GET AN EMPTY VECTOR
+			vector<char> contents = newFile->read();
+			Assert::AreEqual(static_cast<size_t>(0), contents.size());
+			// EXPECTATION -- ADDRESSES ARE DIFFERENT
+			bool areEqual = &file == &newFile;
+			Assert::IsFalse(areEqual);
+			// EXPECTATION -- FILE TYPE MATCHES
+			PasswordProxy* proxyCheck = dynamic_cast<PasswordProxy*>(newFile);
+			bool isNotPasswordProxy = proxyCheck == nullptr;
+			Assert::IsFalse(isNotPasswordProxy);
+		}
+	};
 
 	TEST_CLASS(DSCommand) {
 		TEST_METHOD(displaytext) {
@@ -2191,113 +2191,113 @@ namespace UnitTest
 		}
 	};
 
-	//TEST_CLASS(Copy) {
-	//	TEST_METHOD(validcopy) {
-	//		AbstractFileSystem* sfs = new SimpleFileSystem();
-	//		AbstractFileFactory* sff = new SimpleFileFactory();
+	TEST_CLASS(Copy) {
+		TEST_METHOD(validcopy) {
+			AbstractFileSystem* sfs = new SimpleFileSystem();
+			AbstractFileFactory* sff = new SimpleFileFactory();
 
-	//		// REDIRECT COUT STREAM
-	//		streambuf* backup_out;
-	//		backup_out = cout.rdbuf();
-	//		stringstream ss_out;
-	//		cout.rdbuf(ss_out.rdbuf());
+			// REDIRECT COUT STREAM
+			streambuf* backup_out;
+			backup_out = cout.rdbuf();
+			stringstream ss_out;
+			cout.rdbuf(ss_out.rdbuf());
 
-	//		string filename = "file.txt";
-	//		Assert::AreEqual(0, sfs->addFile(filename, sff->createFile(filename)));
-	//		AbstractFile* f = sfs->openFile(filename);
-	//		vector<char> original = { 'h','i' };
-	//		f->write(original);
-	//		sfs->closeFile(f);
-	//		string copyname = "copy.txt";
-	//		AbstractCommand* cp = new CopyCommand(sfs);
-	//		Assert::AreEqual(0, cp->execute(filename + " copy"));
-	//		f = sfs->openFile(filename);
-	//		bool isNull = f == nullptr;
-	//		Assert::IsFalse(isNull);
-	//		AbstractFile* f_copy = sfs->openFile(copyname);
-	//		isNull = f_copy == nullptr;
-	//		Assert::IsFalse(isNull);
-	//		Assert::AreEqual(copyname, f_copy->getName());
-	//		bool sameFile = f_copy == f;
-	//		Assert::IsFalse(sameFile);
-	//		vector<char> copy_contents = f_copy->read();
-	//		Assert::AreEqual(original.size(), copy_contents.size());
-	//		Assert::AreEqual(original.size(), (size_t)f->getSize());
-	//		for (size_t i = 0; i < original.size(); ++i) {
-	//			Assert::AreEqual(original[i], copy_contents[i]);
-	//		}
-	//		TextFile* t_p = dynamic_cast<TextFile*>(f_copy);
-	//		isNull = t_p == nullptr;
-	//		Assert::IsFalse(isNull);
-	//	}
-	//	TEST_METHOD(invalidcopy) {
-	//		AbstractFileSystem* sfs = new SimpleFileSystem();
-	//		AbstractFileFactory* sff = new SimpleFileFactory();
+			string filename = "file.txt";
+			Assert::AreEqual(0, sfs->addFile(filename, sff->createFile(filename)));
+			AbstractFile* f = sfs->openFile(filename);
+			vector<char> original = { 'h','i' };
+			f->write(original);
+			sfs->closeFile(f);
+			string copyname = "copy.txt";
+			AbstractCommand* cp = new CopyCommand(sfs);
+			Assert::AreEqual(0, cp->execute(filename + " copy"));
+			f = sfs->openFile(filename);
+			bool isNull = f == nullptr;
+			Assert::IsFalse(isNull);
+			AbstractFile* f_copy = sfs->openFile(copyname);
+			isNull = f_copy == nullptr;
+			Assert::IsFalse(isNull);
+			Assert::AreEqual(copyname, f_copy->getName());
+			bool sameFile = f_copy == f;
+			Assert::IsFalse(sameFile);
+			vector<char> copy_contents = f_copy->read();
+			Assert::AreEqual(original.size(), copy_contents.size());
+			Assert::AreEqual(original.size(), (size_t)f->getSize());
+			for (size_t i = 0; i < original.size(); ++i) {
+				Assert::AreEqual(original[i], copy_contents[i]);
+			}
+			TextFile* t_p = dynamic_cast<TextFile*>(f_copy);
+			isNull = t_p == nullptr;
+			Assert::IsFalse(isNull);
+		}
+		TEST_METHOD(invalidcopy) {
+			AbstractFileSystem* sfs = new SimpleFileSystem();
+			AbstractFileFactory* sff = new SimpleFileFactory();
 
-	//		// REDIRECT COUT STREAM
-	//		streambuf* backup_out;
-	//		backup_out = cout.rdbuf();
-	//		stringstream ss_out;
-	//		cout.rdbuf(ss_out.rdbuf());
+			// REDIRECT COUT STREAM
+			streambuf* backup_out;
+			backup_out = cout.rdbuf();
+			stringstream ss_out;
+			cout.rdbuf(ss_out.rdbuf());
 
-	//		string filename = "file.txt";
-	//		Assert::AreEqual(0, sfs->addFile(filename, sff->createFile(filename)));
-	//		AbstractFile* f = sfs->openFile(filename);
-	//		vector<char> original = { 'h','i' };
-	//		f->write(original);
-	//		sfs->closeFile(f);
-	//		AbstractCommand* cp = new CopyCommand(sfs);
-	//		Assert::AreNotEqual(0, cp->execute(filename + " file"));
-	//		Assert::AreNotEqual(0, cp->execute("madeupname.txt othername"));
-	//		// ensure the original file wasn't changed and is closed
-	//		f = sfs->openFile(filename);
-	//		bool isNull = f == nullptr;
-	//		Assert::IsFalse(isNull);
-	//		vector<char> after_invalid = f->read();
-	//		Assert::AreEqual(original.size(), after_invalid.size());
-	//	}
-	//	TEST_METHOD(copypasswordprotected) {
-	//		AbstractFileSystem* sfs = new SimpleFileSystem();
-	//		AbstractFileFactory* sff = new SimpleFileFactory();
+			string filename = "file.txt";
+			Assert::AreEqual(0, sfs->addFile(filename, sff->createFile(filename)));
+			AbstractFile* f = sfs->openFile(filename);
+			vector<char> original = { 'h','i' };
+			f->write(original);
+			sfs->closeFile(f);
+			AbstractCommand* cp = new CopyCommand(sfs);
+			Assert::AreNotEqual(0, cp->execute(filename + " file"));
+			Assert::AreNotEqual(0, cp->execute("madeupname.txt othername"));
+			// ensure the original file wasn't changed and is closed
+			f = sfs->openFile(filename);
+			bool isNull = f == nullptr;
+			Assert::IsFalse(isNull);
+			vector<char> after_invalid = f->read();
+			Assert::AreEqual(original.size(), after_invalid.size());
+		}
+		TEST_METHOD(copypasswordprotected) {
+			AbstractFileSystem* sfs = new SimpleFileSystem();
+			AbstractFileFactory* sff = new SimpleFileFactory();
 
-	//		// REDIRECT COUT STREAM
-	//		streambuf* backup_out;
-	//		backup_out = cout.rdbuf();
-	//		stringstream ss_out;
-	//		cout.rdbuf(ss_out.rdbuf());
+			// REDIRECT COUT STREAM
+			streambuf* backup_out;
+			backup_out = cout.rdbuf();
+			stringstream ss_out;
+			cout.rdbuf(ss_out.rdbuf());
 
-	//		string filename = "file.txt";
-	//		AbstractFile* realfile = sff->createFile(filename);
-	//		vector<char> original = { 'h','i' };
-	//		realfile->write(original);
-	//		string pw = "easypassword";
-	//		AbstractFile* proxy_toreal = new PasswordProxy(realfile, pw);
-	//		Assert::AreEqual(0, sfs->addFile(proxy_toreal->getName(), proxy_toreal));
-	//		AbstractCommand* cp = new CopyCommand(sfs);
-	//		string copyname = "copy.txt";
-	//		Assert::AreEqual(0, cp->execute(filename + " copy"));
-	//		AbstractFile* proxy_copy = sfs->openFile(copyname);
-	//		bool isNull = proxy_copy == nullptr;
-	//		Assert::IsFalse(isNull);
-	//		PasswordProxy* proxy_tocopy = dynamic_cast<PasswordProxy*>(proxy_copy);
-	//		isNull = proxy_tocopy == nullptr;
-	//		Assert::IsFalse(isNull);
-	//		bool sameProxy = proxy_tocopy == proxy_toreal;
-	//		Assert::IsFalse(sameProxy);
-	//		// REDIRECT CIN STREAM
-	//		streambuf* backup_in;
-	//		backup_in = cin.rdbuf();
-	//		stringstream ss_in;
-	//		cin.rdbuf(ss_in.rdbuf());
-	//		// MIMIC USER INPUT
-	//		ss_in << pw << '\n';
-	//		vector<char> newdata = { 'h','e','l','l','o' };
-	//		Assert::AreEqual(0, proxy_tocopy->write(newdata));
-	//		auto v = realfile->read();
-	//		Assert::AreEqual(original.size(), v.size());
-	//		for (size_t i = 0; i < v.size(); ++i) {
-	//			Assert::AreEqual(original[i], v[i]);
-	//		}
-	//	}
-	//};
+			string filename = "file.txt";
+			AbstractFile* realfile = sff->createFile(filename);
+			vector<char> original = { 'h','i' };
+			realfile->write(original);
+			string pw = "easypassword";
+			AbstractFile* proxy_toreal = new PasswordProxy(realfile, pw);
+			Assert::AreEqual(0, sfs->addFile(proxy_toreal->getName(), proxy_toreal));
+			AbstractCommand* cp = new CopyCommand(sfs);
+			string copyname = "copy.txt";
+			Assert::AreEqual(0, cp->execute(filename + " copy"));
+			AbstractFile* proxy_copy = sfs->openFile(copyname);
+			bool isNull = proxy_copy == nullptr;
+			Assert::IsFalse(isNull);
+			PasswordProxy* proxy_tocopy = dynamic_cast<PasswordProxy*>(proxy_copy);
+			isNull = proxy_tocopy == nullptr;
+			Assert::IsFalse(isNull);
+			bool sameProxy = proxy_tocopy == proxy_toreal;
+			Assert::IsFalse(sameProxy);
+			// REDIRECT CIN STREAM
+			streambuf* backup_in;
+			backup_in = cin.rdbuf();
+			stringstream ss_in;
+			cin.rdbuf(ss_in.rdbuf());
+			// MIMIC USER INPUT
+			ss_in << pw << '\n';
+			vector<char> newdata = { 'h','e','l','l','o' };
+			Assert::AreEqual(0, proxy_tocopy->write(newdata));
+			auto v = realfile->read();
+			Assert::AreEqual(original.size(), v.size());
+			for (size_t i = 0; i < v.size(); ++i) {
+				Assert::AreEqual(original[i], v[i]);
+			}
+		}
+	};
 }
