@@ -19,5 +19,6 @@ public:
 	virtual std::vector<char> read() override;
 	friend class AbstractFileVisitor; //TODO: ???
 	virtual void accept(AbstractFileVisitor*) override;
+	virtual AbstractFile* clone(std::string) override;
 	//FWL:	not sure if these destructors (also one in TextFile) needed b/c member vars are from std library but should be fine as is
 };

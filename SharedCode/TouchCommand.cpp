@@ -8,24 +8,55 @@ Purpose: Concrete class implementation of a command that enables a user to add f
 #include "TouchCommand.h"
 #include <string>
 #include <iostream>
+#include "PasswordProxy.h"
 
 using namespace std;
 
 TouchCommand::TouchCommand(AbstractFileSystem* afs1, AbstractFileFactory* aff1) : afs(afs1), aff(aff1) {}
 
 int TouchCommand::execute(string str) {
-	AbstractFile* af = aff->createFile(str);
-	if (af) {
-		int addResult = afs->addFile(str, af);
-		if (addResult != success) {
-			delete af;
-			cout << "could not add file" << endl;
-			return addResult;
+	if (str.substr(str.length() - 2) == "-p") {
+		string str2;
+		for (int i = 0; i < str.length() - 3; ++i) {
+			str2[i] = str[i];
 		}
-		return success;
+		AbstractFile* af = aff->createFile(str2);
+		cout << "enter a password" << endl;
+		string password;
+		cin >> password;
+		AbstractFile* protected_file = new PasswordProxy(af, password);
+		if (!protected_file) {
+			cout << "cannot create file" << endl;
+			return cannot_create_file;
+		}
+		int add_result = afs->addFile(str2, protected_file);
+		if (add_result == 0) {
+			return success;
+		}
+		else {
+			delete protected_file;
+			cout << "unable to add file" << endl;
+			return add_result;
+		}
 	}
-	cout << "could not create file" << endl;
-	return cannot_create_file;
+	else {
+		AbstractFile* af = aff->createFile(str);
+		if (af) {
+			int add_result = afs->addFile(str, af);
+			if (add_result == 0) {
+				return success;
+			}
+			else {
+				delete af;
+				cout << "unable to add file" << endl;
+				return add_result;
+			}
+		}
+		else {
+			cout << "cannot create file" << endl;
+			return cannot_create_file;
+		}
+	}
 }
 
 void TouchCommand::displayInfo() {

@@ -15,6 +15,7 @@ public:
 	virtual unsigned int getSize() = 0;
 	virtual std::string getName() = 0;
 	virtual void accept(AbstractFileVisitor*) = 0; //calls on correct visitor pattern method for concrete file type
+	virtual AbstractFile* clone(std::string) = 0;
 	virtual ~AbstractFile() = default; //virtual ensures dynamic binding (to ImageFile or TextFile); client should go to right file typ
 	//friend AbstractFileVisitor;
 };

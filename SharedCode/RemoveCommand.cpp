@@ -6,7 +6,7 @@ RemoveCommand::RemoveCommand(AbstractFileSystem* afs_) : afs(afs_) {}
 
 int RemoveCommand::execute(std::string str) {
 	//TODO: temporary for build of rename command
-	return this->afs->deleteFile(str);
+	return afs->deleteFile(str);
 }
 
 void RemoveCommand::displayInfo() {

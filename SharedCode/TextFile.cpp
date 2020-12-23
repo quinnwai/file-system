@@ -55,3 +55,9 @@ vector<char> TextFile::read() {
 void TextFile::accept(AbstractFileVisitor* afv) {
 	afv->visit_textFile(this);
 }
+
+AbstractFile* TextFile::clone(string str) {
+	TextFile* tfile = new TextFile(*this);
+	tfile->fileName = str + ".txt";
+	return tfile;
+}

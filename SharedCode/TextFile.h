@@ -14,6 +14,7 @@ public:
 	virtual std::string getName() override;
 	friend class AbstractFileVisitor;
 	virtual void accept(AbstractFileVisitor* afv) override;
+	virtual AbstractFile* clone(std::string) override;
 private:
 	std::vector<char> contents;
 	std::string fileName;

@@ -11,7 +11,7 @@ int CopyCommand::execute(std::string str) {
 	std::istringstream iss(str);
 	iss >> name;
 	iss >> copy_name;
-	AbstractFile* original = this->afs->openFile(name);
+	AbstractFile* original = afs->openFile(name);
 	if (original == nullptr) {
 		std::cout << "cannot open file" << std::endl;
 		return no_file_exists;
@@ -21,6 +21,9 @@ int CopyCommand::execute(std::string str) {
 		return cannot_create_file;
 	}
 	//TODO: clone function of prototype pattern
+	AbstractFile* copy = original->clone(copy_name);
+	afs->closeFile(original);
+	return afs->addFile(copy->getName(), copy);
 	return success;
 }
 

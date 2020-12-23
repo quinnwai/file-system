@@ -70,3 +70,10 @@ vector<char> ImageFile::read() {
 void ImageFile::accept(AbstractFileVisitor* afv) {
 	afv->visit_imageFile(this);
 }
+
+AbstractFile* ImageFile::clone(string str) {
+	ImageFile* ifile = new ImageFile(*this);
+	ifile->name = str + ".img";
+	return ifile;
+}
+
