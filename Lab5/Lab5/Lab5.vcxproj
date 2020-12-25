@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\SharedCode\BasicDisplayVisitor.cpp" />
     <ClCompile Include="..\..\SharedCode\CatCommand.cpp" />
+    <ClCompile Include="..\..\SharedCode\CatDisplayParsingStrategy.cpp" />
     <ClCompile Include="..\..\SharedCode\CommandPrompt.cpp" />
     <ClCompile Include="..\..\SharedCode\CopyCommand.cpp" />
     <ClCompile Include="..\..\SharedCode\DisplayCommand.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="..\..\SharedCode\AbstractParsingStrategy.h" />
     <ClInclude Include="..\..\SharedCode\BasicDisplayVisitor.h" />
     <ClInclude Include="..\..\SharedCode\CatCommand.h" />
+    <ClInclude Include="..\..\SharedCode\CatDisplayParsingStrategy.h" />
     <ClInclude Include="..\..\SharedCode\CommandPrompt.h" />
     <ClInclude Include="..\..\SharedCode\CopyCommand.h" />
     <ClInclude Include="..\..\SharedCode\DisplayCommand.h" />
@@ -181,7 +183,6 @@
     <ClInclude Include="..\..\SharedCode\SimpleFileSystem.h" />
     <ClInclude Include="..\..\SharedCode\TextFile.h" />
     <ClInclude Include="..\..\SharedCode\TouchCommand.h" />
-    <ClInclude Include="Enums.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

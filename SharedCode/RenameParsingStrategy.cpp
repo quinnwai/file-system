@@ -4,7 +4,7 @@
 
 std::vector<std::string> RenameParsingStrategy::parse(std::string str) {
 	//given an input string "<existing_file> <new_name>", the parse function will return a vector containing the strings
-	//"<existing_file> <new_name>" and "<existing_file>" for teh copy and remove command respectively
+	//"<existing_file> <new_name>" and "<existing_file>" for teh copy and remove commands respectively
 
 	//declare strings and relevant streams
 	std::string copyInput = "";
