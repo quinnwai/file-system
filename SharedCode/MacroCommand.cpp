@@ -2,6 +2,7 @@
 #include "MacroCommand.h"
 #include <sstream>
 #include <string>
+#include <iostream>
 #include "AbstractFile.h" //TODO: replace with enums when created
 
 using namespace std;
@@ -22,25 +23,12 @@ int MacroCommand::execute(string str)  {
 		}
 	}
 	return success;
-
-	//string input;
-	//string word;
-
-	////read in first word. If it is a command, continue running. If not, return no_command_found 
-	//istringstream iss(str);
-	//iss >> word;
-
-	//if()
-	//input +=
-
-	////while there are things to extract, if the word 
-	//while (iss >> word) { //TODO: might cause issues if one thing only
-	//	if
-	//}
-
 }
-void MacroCommand::displayInfo() {
 
+//TODO: make sure it works for all things
+void MacroCommand::displayInfo() {
+	cout << "macro commands combine multiple existing commands into one single command" << endl;
+	cout << "For most commands, put the relevant file name(s) first and then the relevant optional arguments" << endl;
 }
 
 void MacroCommand::addCommand(AbstractCommand* ac) {
