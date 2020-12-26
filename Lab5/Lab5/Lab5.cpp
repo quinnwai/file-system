@@ -12,6 +12,8 @@
 #include "../../SharedCode/RemoveCommand.h"
 #include "../../SharedCode/RenameParsingStrategy.h"
 #include "../../SharedCode/CatDisplayParsingStrategy.h"
+#include "../../SharedCode/LSCommand.h"
+
 
 
 
