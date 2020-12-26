@@ -11,6 +11,8 @@
 #include "../../SharedCode/CopyCommand.h"
 #include "../../SharedCode/RemoveCommand.h"
 #include "../../SharedCode/RenameParsingStrategy.h"
+#include "../../SharedCode/LSCommand.h"
+
 
 
 
@@ -52,6 +54,10 @@ int main(int argc, char* argv[])
 	MacroCommand* daRename = new MacroCommand;
 	daPrompt->addCommand("rn", daRename);
 
+	//add ls as a new command prompt
+	AbstractCommand* daLS = new LSCommand(daSystem);
+	daPrompt->addCommand("ls", daLS);
+
 	//add copy and remove objects within rn
 	daRename->setParseStrategy(rps);
 	daRename->addCommand(daCopy);
@@ -83,6 +89,7 @@ int main(int argc, char* argv[])
 	delete daCat;
 	delete daDisplay;
 	delete daRename;
+	delete daLS;
 
 	return runResult;
 }

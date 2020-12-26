@@ -1260,7 +1260,6 @@ namespace UnitTest
 	//FWL: commented out all command-related tests until in use
 
 	TEST_CLASS(removeCommand) {
-		/**
 		TEST_METHOD(execute) { // confirms that execute, when passed a valid filename, will remove the given file from the filesystem -- removing the file again should fail, adding the file again should pass
 			// REDIRECT COUT STREAM -- TO PROTECT AGAINST ERRORS
 			streambuf* backup_out;
@@ -1313,7 +1312,6 @@ namespace UnitTest
 			bool isNull3 = file3 == nullptr;
 			Assert::IsFalse(isNull3);
 		}
-		**/
 		TEST_METHOD(executeFileOpen) { // confirms that execute, when passed a valid filename for a file that is open, execute will return an error and filesystem is untouched, so we expect to be able to close it
 			// REDIRECT COUT STREAM
 			streambuf* backup_out;
@@ -1342,7 +1340,6 @@ namespace UnitTest
 	};
 	
 	TEST_CLASS(lSCommand) {
-		/**
 		TEST_METHOD(getAllFiles) { // condirms set returned by getFileNames() matches the file system
 			// REDIRECT COUT STREAM -- TO PROTECT AGAINST ERRORS
 			streambuf* backup_out;
@@ -1369,7 +1366,6 @@ namespace UnitTest
 			bool found2 = it2 == files.end();
 			Assert::IsFalse(found2);
 		}
-		**/
 		TEST_METHOD(nooption) {
 			AbstractFileSystem* sfs = new SimpleFileSystem();
 			AbstractFileFactory* sff = new SimpleFileFactory();

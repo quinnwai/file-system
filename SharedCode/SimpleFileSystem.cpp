@@ -42,7 +42,12 @@ int SimpleFileSystem::closeFile(AbstractFile* file) {
 	return success;
 }
 
-//set<string> SimpleFileSystem::getFileNames() { // finish this method
-//
-//}
+set<string> SimpleFileSystem::getFileNames() { // finish this method
+	set<string> file_names;
+	map<string, AbstractFile*>::iterator iter;
+	for (iter = files.begin(); iter != files.end(); ++iter) {
+		file_names.insert(iter->first);
+	}
+	return file_names;
+}
 

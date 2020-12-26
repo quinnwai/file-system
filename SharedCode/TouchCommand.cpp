@@ -16,20 +16,19 @@ TouchCommand::TouchCommand(AbstractFileSystem* afs1, AbstractFileFactory* aff1) 
 
 int TouchCommand::execute(string str) {
 	if (str.substr(str.length() - 2) == "-p") {
-		string str2;
-		for (int i = 0; i < str.length() - 3; ++i) {
-			str2[i] = str[i];
-		}
-		AbstractFile* af = aff->createFile(str2);
+		str.pop_back();
+		str.pop_back();
+		str.pop_back();
+		AbstractFile* af = aff->createFile(str);
 		cout << "enter a password" << endl;
 		string password;
 		cin >> password;
-		AbstractFile* pfile = new PasswordProxy(af, password); // huh? this is the big issue
+		AbstractFile* pfile = new PasswordProxy(af, password);
 		if (!pfile) {
 			cout << "cannot create file" << endl;
 			return cannot_create_file;
 		}
-		int add_result = afs->addFile(str2, pfile);
+		int add_result = afs->addFile(str, pfile);
 		if (add_result == 0) {
 			return success;
 		}
