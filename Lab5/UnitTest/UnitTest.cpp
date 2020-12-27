@@ -1873,7 +1873,7 @@ namespace UnitTest
 			Assert::AreEqual(expectedCopyInstructions, parsed[0]);
 			Assert::AreEqual(expectedRemoveInstructions, parsed[1]);
 		}
-		/**
+		
 		TEST_METHOD(renameValid) {
 			// REDIRECT COUT STREAM -- PROTECT AGAINST ERRORS
 			streambuf* backup_out;
@@ -1922,8 +1922,8 @@ namespace UnitTest
 			bool isNotTextFile = textCheck == nullptr;
 			Assert::IsFalse(isNotTextFile);
 		}
-		**/
-		/**
+		
+		
 		TEST_METHOD(renameInvalidFilename) {
 			// REDIRECT COUT STREAM -- PROTECT AGAINST ERRORS
 			streambuf* backup_out;
@@ -1962,8 +1962,8 @@ namespace UnitTest
 			bool isNull2 = newFile == nullptr;
 			Assert::IsTrue(isNull2);;
 		}
-		**/
-		/**
+		
+		
 		TEST_METHOD(renameInvalidNewFilename) {
 			// REDIRECT COUT STREAM -- PROTECT AGAINST ERRORS
 			streambuf* backup_out;
@@ -2003,8 +2003,8 @@ namespace UnitTest
 			bool isNull2 = newFile == nullptr;
 			Assert::IsFalse(isNull2);;
 		}
-		**/
-		/**
+		
+		
 		TEST_METHOD(renameValidPasswordProtected) {
 			// REDIRECT COUT STREAM -- PROTECT AGAINST ERRORS
 			streambuf* backup_out;
@@ -2065,7 +2065,7 @@ namespace UnitTest
 			bool isNotPasswordProxy = proxyCheck == nullptr;
 			Assert::IsFalse(isNotPasswordProxy);
 		}
-		**/
+		
 	};
 
 	TEST_CLASS(DSCommand) {

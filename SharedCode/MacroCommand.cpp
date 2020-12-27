@@ -10,6 +10,8 @@ using namespace std;
 //TODO: see if defined constructor is needed
 //MacroCommand::MacroCommand() : aps(nullptr) {}
 
+MacroCommand::MacroCommand(AbstractFileSystem* afs_) : afs(afs_) {}
+
 int MacroCommand::execute(string str)  {
 	//use AbstractParsingStrategy to parse and create vector
 	vector<string> vecInputs = aps->parse(str);

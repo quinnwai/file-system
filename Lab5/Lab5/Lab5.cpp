@@ -60,7 +60,7 @@ int main(int argc, char* argv[])
 	////RENAME////
 	//add rn as new command prompt (MacroCommand)
 	AbstractParsingStrategy* rps = new RenameParsingStrategy();
-	MacroCommand* daRename = new MacroCommand;
+	MacroCommand* daRename = new MacroCommand(daSystem);
 	daPrompt->addCommand("rn", daRename);
 
 	//add copy and remove objects within rn
@@ -71,7 +71,7 @@ int main(int argc, char* argv[])
 	////CAT DISPLAY////
 	//add cds as new command prompt (MacroCommand)
 	AbstractParsingStrategy* cdsStrat = new CatDisplayParsingStrategy();
-	MacroCommand* daCatDisplay = new MacroCommand;
+	MacroCommand* daCatDisplay = new MacroCommand(daSystem);
 	daPrompt->addCommand("cds", daCatDisplay);
 
 	//add cat and display objects within cds
@@ -105,6 +105,7 @@ int main(int argc, char* argv[])
 	delete daCat;
 	delete daDisplay;
 	delete daRename;
+	delete daCatDisplay;
 
 	return runResult;
 }
