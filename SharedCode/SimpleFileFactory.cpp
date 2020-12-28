@@ -6,10 +6,9 @@
 #include "TextFile.h"
 #include "ImageFile.h"
 #include <string>
-using namespace std;
 
-AbstractFile* SimpleFileFactory::createFile(string name) {
-	string ftype = "";
+AbstractFile* SimpleFileFactory::createFile(std::string name) {
+	std::string ftype = "";
 	if (name.length() <= 3) {
 		return nullptr;
 	}

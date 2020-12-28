@@ -11,57 +11,59 @@ Purpose: Concrete class implementation of a command that enables a user to appen
 #include <iostream>
 #include <vector>
 
-using namespace std;
-
 CatCommand::CatCommand(AbstractFileSystem* afs_) : afs(afs_) {}
 
-int CatCommand::execute(string str) {
+int CatCommand::execute(std::string str) {
 	//NOTE: remember, str contains all parameters separated by space
 	//extract from ss to see if first word can be opened
-	istringstream iss(str);
-	string firstWord;
+	std::istringstream iss(str);
+	std::string firstWord;
 	iss >> firstWord;
 	
 	AbstractFile* af = afs->openFile(firstWord); 
 
 	//if not nullptr, then file does not exist. Else, look for second word
 	if (!af) {
-		cout << "no such file exists" << endl;
+		std::cout << "no such file exists" << std::endl;
 		return no_file_exists;
 	}
 
 	//extract again to see if an "-a" was used. If so, print the current contents of the file (bytes only?)
-	string secondWord;
+	std::string secondWord;
 	iss >> secondWord;
 
-	//if suffixed, print out contents
+	//if suffixed, print out contents as bytes (ie unformatted)
 	bool isAppend = (secondWord == "-a");
 	if (isAppend) {
-		AbstractFileVisitor* afv = new BasicDisplayVisitor();
+		std::vector<char> vec = af->read();
+		for (char c : vec) {
+			std::cout << c;
+		}
+		std::cout << std::endl;
+
+		/*AbstractFileVisitor* afv = new BasicDisplayVisitor();
 		af->accept(afv);
-		delete afv;
+		delete afv;*/
 	}
 
 	//setup input into file and store all input in vector
-	vector <char> allInput;
-	string input;
-	cout << "Enter data you would like to write to the file. Enter :wq to save the file and exit. Enter :q to exit without saving" << endl;
-	getline(cin, input);
+	std::vector <char> allInput;
+	std::string input;
+	std::cout << "Enter data you would like to write to the file. Enter :wq to save the file and exit. Enter :q to exit without saving" << std::endl;
+	getline(std::cin, input);
 
 	//create loop w/ three options to write or quit out: valid_text, ":wq", ":q"
-	
 	while (input != ":wq" && input != ":q") {
 		for (char c : input) {
 			allInput.push_back(c);
 		}
 		allInput.push_back('\n');
 
-		cout << "Enter data you would like to write to the file. Enter :wq to save the file and exit. Enter :q to exit without saving" << endl;
-		getline(cin, input);
+		std::cout << "Enter data you would like to write to the file. Enter :wq to save the file and exit. Enter :q to exit without saving" << std::endl;
+		getline(std::cin, input);
 	}
 
 	//if -a and input is :wq, append vec to file. If no -a and input is :wq, overwrite file
-
 	int result = success;
 	if (isAppend && input == ":wq") {
 		allInput.erase(allInput.end()-1);
@@ -77,7 +79,7 @@ int CatCommand::execute(string str) {
 }
 
 void CatCommand::displayInfo(){
-	cout << "cat adds information onto the file line by line" << endl;
-	cout << "cat can be invoked with the command : cat <filename> [-a]" << endl;
-	cout << "Use -a to append to the existing information in the file or leave out -a to overwrite all previous contents" << endl;
+	std::cout << "cat adds information onto the file line by line" << std::endl;
+	std::cout << "cat can be invoked with the command : cat <filename> [-a]" << std::endl;
+	std::cout << "Use -a to append to the existing information in the file or leave out -a to overwrite all previous contents" << std::endl;
 }

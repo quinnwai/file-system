@@ -5,11 +5,8 @@
 #include<iostream>
 #include <vector>
 
-using namespace std;
-//  Define the TextFile class here
-
 //constructor using given string as file name
-TextFile::TextFile(string str) : fileName(str) {
+TextFile::TextFile(std::string str) : fileName(str) {
 //	cout << "textFile constructor" << endl;
 }
 
@@ -20,7 +17,7 @@ unsigned int TextFile::getSize() {
 }
 
 //get file name from private member variable 'fileName'
-string TextFile::getName() {
+std::string TextFile::getName() {
 //	cout << "FileName: " << fileName << endl;
 	return fileName;
 }
@@ -47,7 +44,7 @@ int TextFile::append(std::vector<char> vec) {
 	return success;
 }
 
-vector<char> TextFile::read() {
+std::vector<char> TextFile::read() {
 	//cout << "contents read" << endl;
 	return contents;
 }
@@ -56,7 +53,7 @@ void TextFile::accept(AbstractFileVisitor* afv) {
 	afv->visit_textFile(this);
 }
 
-AbstractFile* TextFile::clone(string str) {
+AbstractFile* TextFile::clone(std::string str) {
 	TextFile* tfile = new TextFile(*this);
 	tfile->fileName = str + ".txt";
 	return tfile;

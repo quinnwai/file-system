@@ -8,26 +8,24 @@
 #include "AbstractFile.h"
 #include "TextFile.h"
 #include "ImageFile.h"
-using namespace std;
 
-int SimpleFileSystem::addFile(string name, AbstractFile* file) {
+int SimpleFileSystem::addFile(std::string name, AbstractFile* file) {
 	if (files.find(name) != files.end()) return file_already_exists; 
 	else if (file == nullptr) return invalid_file; 
 	files.insert({ name, file });
 	return success;
 }
 
-int SimpleFileSystem::deleteFile(string name) { 
+int SimpleFileSystem::deleteFile(std::string name) {
 	auto wantedFile = files.find(name);
 	if (wantedFile == files.end()) return no_file_exists; 
 	if (open_files.find(wantedFile->second) != open_files.end()) return file_already_open; 
 	delete files.at(name);
 	files.erase(name);
 	return success;
-
 }
 
-AbstractFile* SimpleFileSystem::openFile(string name) {
+AbstractFile* SimpleFileSystem::openFile(std::string name) {
 	auto wantedFile = files.find(name);
 	if (wantedFile == files.end()) return nullptr; //file does not exist
 	AbstractFile* thefile = wantedFile->second;
@@ -42,9 +40,9 @@ int SimpleFileSystem::closeFile(AbstractFile* file) {
 	return success;
 }
 
-set<string> SimpleFileSystem::getFileNames() { // finish this method
-	set<string> file_names;
-	map<string, AbstractFile*>::iterator iter;
+std::set<std::string> SimpleFileSystem::getFileNames() { // finish this method
+	std::set<std::string> file_names;
+	std::map<std::string, AbstractFile*>::iterator iter;
 	for (iter = files.begin(); iter != files.end(); ++iter) {
 		file_names.insert(iter->first);
 	}

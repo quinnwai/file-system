@@ -5,9 +5,7 @@
 #include <iostream>
 #include <vector>
 
-using namespace std;
-
-ImageFile::ImageFile(string title) {
+ImageFile::ImageFile(std::string title) {
 //	cout << "image constructor" << endl;
 	image_size = 0;
 	name = title;
@@ -21,12 +19,12 @@ unsigned int ImageFile::getSize() {
 	return contents.size(); //TODO: make sure this is correct
 }
 
-string ImageFile::getName() {
+std::string ImageFile::getName() {
 	//cout << name << endl;
 	return name;
 }
 
-int ImageFile::write(vector<char> info) { // ERROR HERE
+int ImageFile::write(std::vector<char> info) { // ERROR HERE
 	//image_size = info.pop_back();
 	//swap(info, this->contents);
 
@@ -34,13 +32,13 @@ int ImageFile::write(vector<char> info) { // ERROR HERE
 
 	for (int i = 0; i < info.size()-1; ++i) {
 		if (info[i] != 'X' && info[i] != ' ') {
-			cout << "error: invalid pixel" << endl;
+			std::cout << "error: invalid pixel" << std::endl;
 			return invalid_pixel;
 		}
 	}
 	if (info.size()-1 != (temp_image_size * temp_image_size)) {
 		image_size = 0; 
-		cout << "error: size mismatch" << endl;
+		std::cout << "error: size mismatch" << std::endl;
 		return size_mismatch;
 	}
 	//cout << "successful image write" << endl;
@@ -49,6 +47,9 @@ int ImageFile::write(vector<char> info) { // ERROR HERE
 	//added to end to make sure the overwriting/changes to info member vector only happens for valid inputs
 	image_size = temp_image_size;
 
+	//clear contents before writing
+	contents.clear();
+
 	for (int i = 0; i < info.size() - 1; ++i) {
 		contents.push_back(info[i]);
 	}
@@ -56,12 +57,12 @@ int ImageFile::write(vector<char> info) { // ERROR HERE
 	return success;
 }
 
-int ImageFile::append(vector<char> info) {
-	cout << "no append allowed for image files" << endl;
+int ImageFile::append(std::vector<char> info) {
+	std::cout << "no append allowed for image files" << std::endl;
 	return no_append;
 }
 
-vector<char> ImageFile::read() { 
+std::vector<char> ImageFile::read() {
 	//cout << "image read" << endl;
 
 	return contents;
@@ -71,7 +72,7 @@ void ImageFile::accept(AbstractFileVisitor* afv) {
 	afv->visit_imageFile(this);
 }
 
-AbstractFile* ImageFile::clone(string str) {
+AbstractFile* ImageFile::clone(std::string str) {
 	ImageFile* ifile = new ImageFile(*this);
 	ifile->name = str + ".img";
 	return ifile;

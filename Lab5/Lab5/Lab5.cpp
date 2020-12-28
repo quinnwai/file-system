@@ -79,18 +79,18 @@ int main(int argc, char* argv[])
 	daCatDisplay->addCommand(daCat);
 	daCatDisplay->addCommand(daDisplay);
 	
+	//TODO: add more commands here for testing as they are implemented so they can be used by the user
+
 	////MANUAL TEST CASES////
 	//cat and ds test case: put text file with contents in there (check formatted)
 	AbstractFile* t1 = new TextFile("text.txt");
 	t1->write({ 'h', 'e', 'l', 'l', 'o', '\n', 'm', 'e' });
 	daSystem->addFile(t1->getName(), t1);
 
-	//ds test case: put image file with contents (check formatted)
+	//cat and ds test case: put image file with contents (check formatted)
 	AbstractFile* i1 = new ImageFile("image.img");
 	i1->write({ 'X', ' ',  'X', ' ',  'X', ' ',  'X', ' ',  'X', '3'});
 	daSystem->addFile(i1->getName(), i1);
-
-	//TODO: add more commands here for testing as they are implemented so they can be used by the user
 
 	int runResult = daPrompt->run();
 

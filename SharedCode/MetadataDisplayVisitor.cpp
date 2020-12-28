@@ -3,17 +3,15 @@
 #include <iostream>
 #include "MetadataDisplayVisitor.h"
 
-using namespace std;
-
 void MetadataDisplayVisitor::visit_textFile(TextFile* t) {
-	cout << t->getName() << ' ';
-	cout << "text" << ' ';
-	cout << t->getSize() << endl;
+	std::cout << t->getName() << ' ';
+	std::cout << "text" << ' ';
+	std::cout << t->getSize() << std::endl;
 
 }
 
 void MetadataDisplayVisitor::visit_imageFile(ImageFile* i) {
-	cout << i->getName() << ' ';
-	cout << "image" << ' ';
-	cout << i->getSize() << endl;
+	std::cout << i->getName() << ' ';
+	std::cout << "image" << ' ';
+	std::cout << i->getSize() << std::endl;
 }

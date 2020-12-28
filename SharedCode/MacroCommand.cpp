@@ -5,16 +5,14 @@
 #include <iostream>
 #include "AbstractFile.h" //TODO: replace with enums when created
 
-using namespace std;
-
 //TODO: see if defined constructor is needed
 //MacroCommand::MacroCommand() : aps(nullptr) {}
 
 MacroCommand::MacroCommand(AbstractFileSystem* afs_) : afs(afs_) {}
 
-int MacroCommand::execute(string str)  {
+int MacroCommand::execute(std::string str)  {
 	//use AbstractParsingStrategy to parse and create vector
-	vector<string> vecInputs = aps->parse(str);
+	std::vector<std::string> vecInputs = aps->parse(str);
 
 	//use first word of each input to create a command for it and store in vecCmds
 	for (int i = 0; i < vecInputs.size(); ++i) {
@@ -29,8 +27,8 @@ int MacroCommand::execute(string str)  {
 
 //TODO: make sure it works for all things
 void MacroCommand::displayInfo() {
-	cout << "macro commands combine multiple existing commands into one single command" << endl;
-	cout << "For most commands, put the relevant file name(s) first and then the relevant optional arguments" << endl;
+	std::cout << "macro commands combine multiple existing commands into one single command" << std::endl;
+	std::cout << "For most commands, put the relevant file name(s) first and then the relevant optional arguments" << std::endl;
 }
 
 void MacroCommand::addCommand(AbstractCommand* ac) {
