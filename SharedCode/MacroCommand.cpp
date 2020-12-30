@@ -3,10 +3,7 @@
 #include <sstream>
 #include <string>
 #include <iostream>
-#include "AbstractFile.h" //TODO: replace with enums when created
-
-//TODO: see if defined constructor is needed
-//MacroCommand::MacroCommand() : aps(nullptr) {}
+#include "Enums.h"
 
 MacroCommand::MacroCommand(AbstractFileSystem* afs_) : afs(afs_) {}
 
@@ -27,8 +24,10 @@ int MacroCommand::execute(std::string str)  {
 
 //TODO: make sure it works for all things
 void MacroCommand::displayInfo() {
-	std::cout << "macro commands combine multiple existing commands into one single command" << std::endl;
-	std::cout << "For most commands, put the relevant file name(s) first and then the relevant optional arguments" << std::endl;
+	aps->displayInfo();
+
+	/*std::cout << "macro commands combine multiple existing commands into one single command" << std::endl;
+	std::cout << "For most commands, put the relevant file name(s) first and then the relevant optional arguments" << std::endl;*/
 }
 
 void MacroCommand::addCommand(AbstractCommand* ac) {

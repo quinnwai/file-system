@@ -1,6 +1,7 @@
 #pragma once
 #include "CatDisplayParsingStrategy.h"
 #include <sstream>
+#include <iostream>
 
 std::vector<std::string> CatDisplayParsingStrategy::parse(std::string str) {
 	//TOOD: make sure this works
@@ -22,18 +23,16 @@ std::vector<std::string> CatDisplayParsingStrategy::parse(std::string str) {
 	if (iss >> word) {
 		//first word is for cat [-a], then check for next argument for display [-d]
 		if (word == "-a") {
-			catInput += word;
+			catInput += " " + word;
 			if (iss >> word && word == "-d") {
-				dsInput += " ";
-				dsInput += word;
+				dsInput += " " + word;
 			}
 		}
 		//first word is for display [-d], then check for next argument for cat [-a]
 		else {
-			dsInput += word;
+			dsInput += " " + word;
 			if (iss >> word && word == "-a") {
-				catInput += " ";
-				catInput += word;
+				catInput += " " + word;
 			}
 		}
 	}
@@ -43,4 +42,11 @@ std::vector<std::string> CatDisplayParsingStrategy::parse(std::string str) {
 	vec.push_back(catInput);
 	vec.push_back(dsInput);
 	return vec;
+}
+
+void CatDisplayParsingStrategy::displayInfo() {
+	std::cout << "cds combines cat and ds to change file contents and display those contents afterwards" << std::endl;
+	std::cout << "cds can be invoked with the command : cds <file_name> [-a] [-d]" << std::endl;
+	std::cout << "Use -a to append to the existing information in the file or leave out -a to overwrite all previous contents" << std::endl;
+	std::cout << "Use -d to show a unformatted version or leave out -d to show a formatted version" << std::endl;
 }

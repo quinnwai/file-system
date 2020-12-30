@@ -4,4 +4,5 @@
 class RenameParsingStrategy : public AbstractParsingStrategy {
 public:
 	virtual std::vector<std::string> parse(std::string) override;
+	virtual void displayInfo() override;
 };

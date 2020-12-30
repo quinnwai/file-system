@@ -49,10 +49,8 @@ COMMANDS
 
 ...RenameCommand...
  -Using the manually-inserted text and image files in client code
- -Valid inputs: rename image file as image file and text file as text file
- -Invalid inputs: Rename image file as text file and text file as image file
- -Note: MacroCommand was tested through RenameCommand tests
-
+ -Rename image file and rename text file
+ -Note: MacroCommand was tested through RenameCommand tests, as the former must work if the latter does
 
 
 Extra Credit: CatDisplayCommand (see SharedCode directory)
