@@ -1,5 +1,3 @@
-Lab 5 Readme
-
 Group Members:
  -Quinn Wai Wong
  -Will LeVan
