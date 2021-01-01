@@ -40,10 +40,10 @@ int SimpleFileSystem::closeFile(AbstractFile* file) {
 	return success;
 }
 
-std::set<std::string> SimpleFileSystem::getFileNames() { // finish this method
+std::set<std::string> SimpleFileSystem::getFileNames() { // returns a list of all the file names in the system
 	std::set<std::string> file_names;
 	std::map<std::string, AbstractFile*>::iterator iter;
-	for (iter = files.begin(); iter != files.end(); ++iter) {
+	for (iter = files.begin(); iter != files.end(); ++iter) { // inserts files in the system into a set
 		file_names.insert(iter->first);
 	}
 	return file_names;

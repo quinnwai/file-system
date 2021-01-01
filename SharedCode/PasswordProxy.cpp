@@ -3,18 +3,16 @@
 #include <iostream>
 #include <vector>
 
-using namespace std;
-
-PasswordProxy::PasswordProxy(AbstractFile* af, string s) : protectedFile(af), password(s) {}
+PasswordProxy::PasswordProxy(AbstractFile* af, std::string s) : protectedFile(af), password(s) {}
 
 PasswordProxy::~PasswordProxy() {
 	delete protectedFile;
 }
 
-string PasswordProxy::passwordPrompt() {
-	string p;
-	cout << "please input your password" << endl;
-	cin >> p;
+std::string PasswordProxy::passwordPrompt() {
+	std::string p;
+	std::cout << "please input your password" << std::endl;
+	std::cin >> p;
 	return p;
 }
 
@@ -23,16 +21,16 @@ bool PasswordProxy::passwordPromptHelper(std::string s) {
 }
 
 //TODO: some sort of test issue w/ assert error
-vector<char> PasswordProxy::read() {
+std::vector<char> PasswordProxy::read() {
 	if (passwordPromptHelper(passwordPrompt())) {
 		//cout << "success" << endl;
 		return protectedFile->read();
 	}
 	//cout << "failure" << endl;
-	return vector<char>();
+	return std:: vector<char>();
 }
 
-int PasswordProxy::write(vector<char> info) {
+int PasswordProxy::write(std::vector<char> info) {
 	if (passwordPromptHelper(passwordPrompt())) {
 		return protectedFile->write(info);
 	}
@@ -50,7 +48,7 @@ unsigned int PasswordProxy::getSize() {
 	return protectedFile->getSize();
 }
 
-string PasswordProxy::getName() {
+std::string PasswordProxy::getName() {
 	return protectedFile->getName();
 }
 
@@ -60,7 +58,7 @@ void PasswordProxy::accept(AbstractFileVisitor* afv) {
 	}
 }
 
-AbstractFile* PasswordProxy::clone(std::string str) { // not sure if this is correct
+AbstractFile* PasswordProxy::clone(std::string str) {
 	PasswordProxy* pfile = new PasswordProxy(*this);
 	AbstractFile* copy = pfile->protectedFile->clone(str);
 	pfile->protectedFile = copy;

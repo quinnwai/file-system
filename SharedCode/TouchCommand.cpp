@@ -1,4 +1,4 @@
-/*CatCommand.cpp
+/*TouchCommand.cpp
 Author: Quinn Wai Wong, Will LeVan
 Email: qwong@wustl.edu, levanw@wustl.edu
 Purpose: Concrete class implementation of a command that enables a user to add files to the system.
@@ -10,35 +10,35 @@ Purpose: Concrete class implementation of a command that enables a user to add f
 #include <iostream>
 #include "PasswordProxy.h"
 
-using namespace std;
-
 TouchCommand::TouchCommand(AbstractFileSystem* afs1, AbstractFileFactory* aff1) : afs(afs1), aff(aff1) {}
 
-int TouchCommand::execute(string str) {
-	if (str.substr(str.length() - 2) == "-p") {
+int TouchCommand::execute(std::string str) {
+	if (str.substr(str.length() - 2) == "-p") { // checks to see if password-protected file
 		str.pop_back();
 		str.pop_back();
-		str.pop_back();
-		AbstractFile* af = aff->createFile(str);
-		cout << "enter a password" << endl;
-		string password;
-		cin >> password;
-		AbstractFile* pfile = new PasswordProxy(af, password);
-		if (!pfile) {
-			cout << "cannot create file" << endl;
-			return cannot_create_file;
-		}
-		int add_result = afs->addFile(str, pfile);
-		if (add_result == 0) {
-			return success;
+		str.pop_back(); // deletes " -p"
+		AbstractFile* af = aff->createFile(str); // creates file with given name
+		std::cout << "enter a password" << std::endl;
+		std::string password;
+		std::cin >> password; // collects user-inputted password
+		AbstractFile* pfile = new PasswordProxy(af, password); // creates password-protected file with given file and password
+		if (pfile) {
+			int add_result = afs->addFile(str, pfile);
+			if (add_result == 0) {
+				return success;
+			}
+			else {
+				delete pfile;
+				std::cout << "unable to add file" << std::endl;
+				return add_result;
+			}
 		}
 		else {
-			delete pfile;
-			cout << "unable to add file" << endl;
-			return add_result;
+			std::cout << "cannot create file" << std::endl;
+			return cannot_create_file;
 		}
 	}
-	else {
+	else { // not a password-protected file
 		AbstractFile* af = aff->createFile(str);
 		if (af) {
 			int add_result = afs->addFile(str, af);
@@ -47,17 +47,17 @@ int TouchCommand::execute(string str) {
 			}
 			else {
 				delete af;
-				cout << "unable to add file" << endl;
+				std::cout << "unable to add file" << std::endl;
 				return add_result;
 			}
 		}
 		else {
-			cout << "cannot create file" << endl;
+			std::cout << "cannot create file" << std::endl;
 			return cannot_create_file;
 		}
 	}
 }
 
 void TouchCommand::displayInfo() {
-	cout << "touch creates a file, touch can be invoked with the command : touch <filename>" << endl;
+	std::cout << "touch creates a file, touch can be invoked with the command : touch <filename>" << std::endl;
 }

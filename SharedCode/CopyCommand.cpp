@@ -1,3 +1,9 @@
+/*CopyCommand.cpp
+Author: Quinn Wai Wong, Will LeVan
+Email: qwong@wustl.edu, levanw@wustl.edu
+Purpose: Concrete class definition inheriting from AbstractCommand. Enables a user to copy/duplicate files in the system with a new name.
+*/
+
 #pragma once
 #include "CopyCommand.h"
 #include <iostream>
@@ -10,8 +16,8 @@ int CopyCommand::execute(std::string str) {
 	std::string copy_name;
 	std::istringstream iss(str);
 	iss >> name;
-	iss >> copy_name;
-	AbstractFile* original = afs->openFile(name);
+	iss >> copy_name; // by now, file name and copy name will be properly assigned
+	AbstractFile* original = afs->openFile(name); // access file being copied, following ifs ensure copying can be properly completed
 	if (original == nullptr) {
 		std::cout << "cannot open file" << std::endl;
 		return no_file_exists;
@@ -20,11 +26,9 @@ int CopyCommand::execute(std::string str) {
 		std::cout << "invalid file name" << std::endl;
 		return cannot_create_file;
 	}
-	//TODO: clone function of prototype pattern
-	AbstractFile* copy = original->clone(copy_name);
+	AbstractFile* copy = original->clone(copy_name); // carry out prototype pattern (clone is defined by individual file types)
 	afs->closeFile(original);
 	return afs->addFile(copy->getName(), copy);
-	return success;
 }
 
 void CopyCommand::displayInfo() {

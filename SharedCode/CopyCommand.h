@@ -1,10 +1,15 @@
+/*CopyCommand.h
+Author: Quinn Wai Wong, Will LeVan
+Email: qwong@wustl.edu, levanw@wustl.edu
+Purpose: Concrete class declaration inheriting from AbstractCommand. Enables a user to copy/duplicate files in the system with a new name.
+*/
+
 #pragma once
 #include "AbstractCommand.h"
 #include "AbstractFileSystem.h"
 #include <string>
 
 class CopyCommand : public AbstractCommand {
-	//FWL: check this and make sure everything you need is in here for copy I just did bare bones
 private:
 	AbstractFileSystem* afs;
 public:

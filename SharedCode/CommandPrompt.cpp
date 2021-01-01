@@ -3,8 +3,6 @@
 #include <iostream>
 #include <sstream>
 
-using namespace std;
-
 CommandPrompt::CommandPrompt() : afs(nullptr), aff(nullptr) {}
 
 void CommandPrompt::setFileSystem(AbstractFileSystem* afs1) {
@@ -15,7 +13,7 @@ void CommandPrompt::setFileFactory(AbstractFileFactory* aff1) {
 	aff = aff1;
 }
 
-int CommandPrompt::addCommand(string s, AbstractCommand* ac) {
+int CommandPrompt::addCommand(std::string s, AbstractCommand* ac) {
 	auto a = map.insert({ s, ac });
 	if (a.second) {
 		return success;
@@ -25,7 +23,7 @@ int CommandPrompt::addCommand(string s, AbstractCommand* ac) {
 
 int CommandPrompt::run() {
 	while (1) { //infinite loop until break
-		string str = prompt();
+		std::string str = prompt();
 
 		//check if one word or two
 		bool hasSpace = false;
@@ -38,12 +36,12 @@ int CommandPrompt::run() {
 
 
 		//TODO: having issues with reading in rest of stuff
-		istringstream iss(str);
-		string firstWord;
+		std::istringstream iss(str);
+		std::string firstWord;
 		iss >> firstWord;
 
 		if (str == "q") { //quit
-			cout << "program quit" << endl;
+			std::cout << "program quit" << std::endl;
 			return quit_program;
 		}
 		else if (str == "help") { //list commands
@@ -52,7 +50,7 @@ int CommandPrompt::run() {
 		else if (hasSpace) {
 			//check if ask help on specific command
 			if (firstWord == "help") {
-				string secondWord;
+				std::string secondWord;
 				iss >> secondWord;
 				auto it = map.find(secondWord);
 
@@ -60,14 +58,14 @@ int CommandPrompt::run() {
 					it->second->displayInfo();
 				}
 				else {
-					cout << "the command does not exist" << endl;
+					std::cout << "the command does not exist" << std::endl;
 				}
 			}
 			else {
 				//create string to hold the rest of the words
 
-				string temp;
-				string restOfWords = "";
+				std::string temp;
+				std::string restOfWords = "";
 
 				while (iss >> temp) {
 					restOfWords += temp + " ";
@@ -84,7 +82,7 @@ int CommandPrompt::run() {
 					}
 				}
 				else {
-					cout << "Command does not exist" << endl;
+					std::cout << "Command does not exist" << std::endl;
 					return no_command_exists;
 				}
 			}
@@ -99,7 +97,7 @@ int CommandPrompt::run() {
 				}
 			}
 			else {
-				cout << "Command does not exist" << endl;
+				std::cout << "Command does not exist" << std::endl;
 				return no_command_exists;
 			}
 		}
@@ -109,16 +107,16 @@ int CommandPrompt::run() {
 
 void CommandPrompt::listCommands() {
 	for (auto it = map.begin(); it != map.end(); ++it) {
-		cout << it->first << ' ';
+		std::cout << it->first << ' ';
 	}
-	cout << endl;
+	std::cout << std::endl;
 }
 
-string CommandPrompt::prompt() {
-	cout << "Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command." << endl;
+std::string CommandPrompt::prompt() {
+	std::cout << "Enter a command, q to quit, help for a list of commands, or help followed by a command name for more information about that command." << std::endl;
 
-	string s;
-	getline(cin, s);
+	std::string s;
+	getline(std::cin, s);
 
 	return s;
 }

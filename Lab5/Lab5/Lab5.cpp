@@ -74,6 +74,11 @@ int main(int argc, char* argv[])
 	MacroCommand* daCatDisplay = new MacroCommand(daSystem);
 	daPrompt->addCommand("cds", daCatDisplay);
 
+	////LS DISPLAY////
+	//add ls as a new command prompt
+	AbstractCommand* daLS = new LSCommand(daSystem);
+	daPrompt->addCommand("ls", daLS);
+
 	//add cat and display objects within cds
 	daCatDisplay->setParseStrategy(cdsStrat);
 	daCatDisplay->addCommand(daCat);
@@ -92,6 +97,15 @@ int main(int argc, char* argv[])
 	i1->write({ 'X', ' ',  'X', ' ',  'X', ' ',  'X', ' ',  'X', '3'});
 	daSystem->addFile(i1->getName(), i1);
 
+	//further testing to evaluate ls, rm, cp, and touch (-p)
+	AbstractFile* t2 = new TextFile("text2.txt");
+	t2->write({ 'g', 'o', 'o', 'd', '\n', 'b', 'y', 'e', '!' });
+	daSystem->addFile(t2->getName(), t2);
+
+	AbstractFile* i2 = new ImageFile("image2.img");
+	i2->write({ 'X', ' ',  'X', ' ', '2' });
+	daSystem->addFile(i2->getName(), i2);
+
 	int runResult = daPrompt->run();
 
 	//list all deletes before returning
@@ -106,6 +120,7 @@ int main(int argc, char* argv[])
 	delete daDisplay;
 	delete daRename;
 	delete daCatDisplay;
+	delete daLS;
 
 	return runResult;
 }
