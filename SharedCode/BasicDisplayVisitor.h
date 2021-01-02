@@ -1,3 +1,9 @@
+/*BasicDisplayVisitor.h
+Author: Quinn Wai Wong, Will LeVan
+Email: qwong@wustl.edu, levanw@wustl.edu
+Purpose: Concrete class declaration of basic file display, inherits from AbstractFileVisitor
+*/
+
 #pragma once
 // declaration of BasicDisplayVisitor here
 

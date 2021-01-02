@@ -1,3 +1,9 @@
+/*RenameParsingStrategy.cpp
+Author: Quinn Wai Wong, Will LeVan
+Email: qwong@wustl.edu, levanw@wustl.edu
+Purpose: Implementation of a macrocommand that enables a user to rename a file by creating a copy of a file and then by deleting the original file
+*/
+
 #pragma once
 #include "RenameParsingStrategy.h"
 #include <sstream>

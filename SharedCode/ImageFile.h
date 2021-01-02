@@ -1,3 +1,9 @@
+/*ImageFile.h
+Author: Quinn Wai Wong, Will LeVan
+Email: qwong@wustl.edu, levanw@wustl.edu
+Purpose: Concrete class declaration of the image file type, inherits from AbstractFile
+*/
+
 #pragma once
 
 #include "AbstractFile.h"

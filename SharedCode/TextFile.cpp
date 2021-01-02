@@ -1,3 +1,9 @@
+/*TextFile.cpp
+Author: Quinn Wai Wong, Will LeVan
+Email: qwong@wustl.edu, levanw@wustl.edu
+Purpose: Concrete class implementation of a the TextFile type
+*/
+
 #pragma once
 #include "TextFile.h"
 #include "AbstractFileVisitor.h"

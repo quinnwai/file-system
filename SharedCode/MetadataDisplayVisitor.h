@@ -1,3 +1,9 @@
+/*MetadataDisplayVisitor.h
+Author: Quinn Wai Wong, Will LeVan
+Email: qwong@wustl.edu, levanw@wustl.edu
+Purpose: Concrete class declaration of the MetadataDisplayVisitor class, inherits from AbstractFileVisitor
+*/
+
 #pragma once
 // declaration of MetadataDisplayVisitor here
 #include "AbstractFileVisitor.h"

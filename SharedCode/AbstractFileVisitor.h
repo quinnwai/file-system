@@ -1,3 +1,9 @@
+/*AbstractFileVisitor.h
+Author: Quinn Wai Wong, Will LeVan
+Email: qwong@wustl.edu, levanw@wustl.edu
+Purpose: Concrete class implementation of a command that enables a user to add files to the system.
+*/
+
 #pragma once
 // declaration of the file visitor interface here
 #include <vector>

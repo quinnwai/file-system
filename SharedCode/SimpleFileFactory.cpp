@@ -1,5 +1,8 @@
-// studio 18 - simple file factory definitions
-#pragma once
+/*SimpleFileFactory.cpp
+Author: Quinn Wai Wong, Will LeVan
+Email: qwong@wustl.edu, levanw@wustl.edu
+Purpose: Concrete class implementation of a simple file factory which is used to create files
+*/#pragma once
 
 #include "AbstractFile.h"
 #include "SimpleFileFactory.h"

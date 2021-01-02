@@ -1,4 +1,8 @@
-
+/*DisplayCommand.cpp
+Author: Quinn Wai Wong, Will LeVan
+Email: qwong@wustl.edu, levanw@wustl.edu
+Purpose: Concrete class implementation of a command that enables a user to display the contents of a file
+*/
 
 #pragma once
 #include "DisplayCommand.h"

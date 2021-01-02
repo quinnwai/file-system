@@ -1,5 +1,8 @@
-// definition of ImageFile class here
-#pragma once
+/*ImageFile.cpp
+Author: Quinn Wai Wong, Will LeVan
+Email: qwong@wustl.edu, levanw@wustl.edu
+Purpose: Concrete class implementation of the functionality of the ImageFile type
+*/#pragma once
 #include "ImageFile.h"
 #include "AbstractFileVisitor.h"
 #include <iostream>

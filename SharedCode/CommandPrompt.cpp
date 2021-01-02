@@ -1,3 +1,9 @@
+/*CommandPrompt.cpp
+Author: Quinn Wai Wong, Will LeVan
+Email: qwong@wustl.edu, levanw@wustl.edu
+Purpose: Implementation of a command prompt that is the basis for the running of the program
+*/
+
 #pragma once
 #include "CommandPrompt.h"
 #include <iostream>

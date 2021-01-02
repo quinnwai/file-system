@@ -1,3 +1,9 @@
+/*PasswordProxy.h
+Author: Quinn Wai Wong, Will LeVan
+Email: qwong@wustl.edu, levanw@wustl.edu
+Purpose: Concrete class declaration of PasswordProxy class which defines password-protected file, inherits from AbstractFile
+*/
+
 #pragma once
 #include "AbstractFile.h"
 #include <string>

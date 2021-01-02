@@ -1,3 +1,9 @@
+/*CatDisplayParsingStrategy.h
+Author: Quinn Wai Wong, Will LeVan
+Email: qwong@wustl.edu, levanw@wustl.edu
+Purpose: Concrete class declaration of the CatDisplayParsingStrategy, inherits from AbstractParsingStrategy
+*/
+
 #pragma once
 #include "AbstractParsingStrategy.h"
 

@@ -1,3 +1,9 @@
+/*CatDisplayPatrsingStrategy.cpp
+Author: Quinn Wai Wong, Will LeVan
+Email: qwong@wustl.edu, levanw@wustl.edu
+Purpose: Concrete class implementation of a command that enables a user to edit a file and then display it
+*/
+
 #pragma once
 #include "CatDisplayParsingStrategy.h"
 #include <sstream>

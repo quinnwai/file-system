@@ -1,4 +1,9 @@
-// definitions of basic display visitor here
+/*BasicDisplayVisitor.cpp
+Author: Quinn Wai Wong, Will LeVan
+Email: qwong@wustl.edu, levanw@wustl.edu
+Purpose: Concrete class implementation of visitor that displays the contents of a file type
+*/
+
 #pragma once
 #include "BasicDisplayVisitor.h"
 #include <iostream>

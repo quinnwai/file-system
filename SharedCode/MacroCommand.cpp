@@ -1,3 +1,9 @@
+/*MacroCommand.cpp
+Author: Quinn Wai Wong, Will LeVan
+Email: qwong@wustl.edu, levanw@wustl.edu
+Purpose: Implementation of a "macrocommand" which will allow the creation of commands out of other commands
+*/
+
 #pragma once
 #include "MacroCommand.h"
 #include <sstream>

@@ -1,3 +1,9 @@
+/*SimpleFileSystem.h
+Author: Quinn Wai Wong, Will LeVan
+Email: qwong@wustl.edu, levanw@wustl.edu
+Purpose: Concrete class declaration of the SimpleFileSystem class, inherits from AbstractFileSystem
+*/
+
 #pragma once
 #include "AbstractFileSystem.h"
 #include "AbstractFileFactory.h"

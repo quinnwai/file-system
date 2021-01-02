@@ -1,3 +1,9 @@
+/*PasswordProxy.cpp
+Author: Quinn Wai Wong, Will LeVan
+Email: qwong@wustl.edu, levanw@wustl.edu
+Purpose: Concrete class implementation of a password-protected file
+*/
+
 #pragma once
 #include "PasswordProxy.h"
 #include <iostream>

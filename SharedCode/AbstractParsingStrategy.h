@@ -1,3 +1,9 @@
+/*AbstractParsingStrategy.h
+Author: Quinn Wai Wong, Will LeVan
+Email: qwong@wustl.edu, levanw@wustl.edu
+Purpose: Declaration of the interface for parsing strategies
+*/
+
 #pragma once
 #include <vector>
 #include <string>

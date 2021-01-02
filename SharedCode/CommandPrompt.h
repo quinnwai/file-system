@@ -1,3 +1,9 @@
+/*CommandPrompt.h
+Author: Quinn Wai Wong, Will LeVan
+Email: qwong@wustl.edu, levanw@wustl.edu
+Purpose: Declaration of the CommandPrompt class
+*/
+
 #pragma once
 #include <string>
 #include <map>

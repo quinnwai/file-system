@@ -1,4 +1,9 @@
-// define methods of SimpleFileSystem class here
+/*SimpleFileSystem.cpp
+Author: Quinn Wai Wong, Will LeVan
+Email: qwong@wustl.edu, levanw@wustl.edu
+Purpose: Concrete class implementation of a simple file system which is used to store files
+*/
+
 #pragma once
 
 #include "SimpleFileSystem.h"
