@@ -51,7 +51,7 @@ int CatCommand::execute(std::string str) {
 	std::string input;
 	std::cout << "Enter data you would like to write to the file. Enter :wq to save the file and exit. Enter :q to exit without saving" << std::endl;
 	getline(std::cin, input);
-
+	
 	//create loop w/ three options to write or quit out: valid_text, ":wq", ":q"
 	while (input != ":wq" && input != ":q") {
 		for (char c : input) {

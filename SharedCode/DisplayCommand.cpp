@@ -28,8 +28,6 @@ int DisplayCommand::execute(string str) {
 	string format;
 	iss >> format;
 
-	
-
 	if (format == "-d") { //unformatted
 		vector<char> vec = af->read();
 		for (char c : vec) {

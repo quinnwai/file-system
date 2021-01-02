@@ -24,7 +24,7 @@ int TouchCommand::execute(std::string str) {
 		AbstractFile* pfile = new PasswordProxy(af, password); // creates password-protected file with given file and password
 		if (pfile) {
 			int add_result = afs->addFile(str, pfile);
-			if (add_result == 0) {
+			if (add_result == success) {
 				return success;
 			}
 			else {

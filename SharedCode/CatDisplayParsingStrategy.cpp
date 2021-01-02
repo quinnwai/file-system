@@ -4,7 +4,6 @@
 #include <iostream>
 
 std::vector<std::string> CatDisplayParsingStrategy::parse(std::string str) {
-	//TOOD: make sure this works
 	//given an input string "<file_name> [-a] [-d]", the parse function will return a vector containing the strings
 	//"<file_name> [-a]" and "<file_name> [-d]" for the cat and display commands respectively
 

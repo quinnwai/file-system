@@ -3,8 +3,7 @@ Group Members:
  -Will LeVan
 
 Work Split:
-
- -Quinn Wai: CatCommand, DisplayCommand, MacroCommand, RenameCommand, CatDisplayCommand (extra credit)
+ -Quinn Wai Wong: CatCommand, DisplayCommand, MacroCommand, RenameCommand, CatDisplayCommand (extra credit)
  -Will LeVan: LSCommand, RemoveCommand, TouchCommand, CopyCommand
 
 Errors/Bugs:
