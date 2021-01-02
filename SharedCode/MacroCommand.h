@@ -4,7 +4,7 @@
 #include "AbstractFileSystem.h"
 #include <vector>
 
-class MacroCommand : public AbstractCommand { //TODO: make sure that this is right...
+class MacroCommand : public AbstractCommand { 
 private:
 	AbstractFileSystem* afs;
 	std::vector<AbstractCommand*> vecCmds;
@@ -13,6 +13,6 @@ public:
 	MacroCommand(AbstractFileSystem*);
 	virtual int execute(std::string str) override;
 	virtual void displayInfo() override;
-	void addCommand(AbstractCommand*); //TODO: make sure void works for both of these
+	void addCommand(AbstractCommand*);
 	void setParseStrategy(AbstractParsingStrategy*);
 };

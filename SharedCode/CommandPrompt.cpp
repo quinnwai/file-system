@@ -34,8 +34,6 @@ int CommandPrompt::run() {
 			}
 		}
 
-
-		//TODO: having issues with reading in rest of stuff
 		std::istringstream iss(str);
 		std::string firstWord;
 		iss >> firstWord;

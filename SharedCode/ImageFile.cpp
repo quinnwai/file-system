@@ -16,7 +16,7 @@ unsigned int ImageFile::getSize() {
 	if (image_size <= 0) {
 		return 0;
 	}
-	return contents.size(); //TODO: make sure this is correct
+	return contents.size();
 }
 
 std::string ImageFile::getName() {
@@ -43,7 +43,6 @@ int ImageFile::write(std::vector<char> info) { // ERROR HERE
 	}
 	//cout << "successful image write" << endl;
 
-	//FWL: swapped around push_back for write so that it only overwrites file if it's a valid input
 	//added to end to make sure the overwriting/changes to info member vector only happens for valid inputs
 	image_size = temp_image_size;
 

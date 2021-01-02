@@ -42,7 +42,6 @@ int DisplayCommand::execute(string str) {
 	AbstractFileVisitor* afv = new BasicDisplayVisitor();
 	af->accept(afv);
 
-	//TODO: why do we have to do this specifically? Is it always for new? (as opposed to main... or is main wrong)
 	delete afv;
 
 	afs->closeFile(af);

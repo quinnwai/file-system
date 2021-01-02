@@ -20,7 +20,6 @@
 int main(int argc, char* argv[])
 {
 	////GENERAL SET UP////
-	//TODO: make sure all news cleaned up (files cleaned by file system... see chain of destruction)
 	//initialize relevant objects for running command prompt
 	AbstractFileSystem* daSystem = new SimpleFileSystem;
 	AbstractFileFactory* daFactory = new SimpleFileFactory;
@@ -32,12 +31,10 @@ int main(int argc, char* argv[])
 	daPrompt->setFileFactory(daFactory);
 
 	////REMOVE////
-	//FWL: add remove as new command prompt
 	AbstractCommand* daRemove = new RemoveCommand(daSystem);
 	daPrompt->addCommand("rm", daRemove);
 
 	////COPY////
-	//FWL: add copy as new command prompt
 	AbstractCommand* daCopy = new CopyCommand(daSystem);
 	daPrompt->addCommand("cp", daCopy);
 
@@ -56,7 +53,6 @@ int main(int argc, char* argv[])
 	AbstractCommand* daDisplay = new DisplayCommand(daSystem);
 	daPrompt->addCommand("ds", daDisplay);
 
-	//TODO: test macros
 	////RENAME////
 	//add rn as new command prompt (MacroCommand)
 	AbstractParsingStrategy* rps = new RenameParsingStrategy();
@@ -83,8 +79,6 @@ int main(int argc, char* argv[])
 	daCatDisplay->setParseStrategy(cdsStrat);
 	daCatDisplay->addCommand(daCat);
 	daCatDisplay->addCommand(daDisplay);
-	
-	//TODO: add more commands here for testing as they are implemented so they can be used by the user
 
 	////MANUAL TEST CASES////
 	//cat and ds test case: put text file with contents in there (check formatted)
