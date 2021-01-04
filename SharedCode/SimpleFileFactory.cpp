@@ -2,8 +2,9 @@
 Author: Quinn Wai Wong, Will LeVan
 Email: qwong@wustl.edu, levanw@wustl.edu
 Purpose: Concrete class implementation of a simple file factory which is used to create files
-*/#pragma once
+*/
 
+#pragma once
 #include "AbstractFile.h"
 #include "SimpleFileFactory.h"
 #include "TextFile.h"

@@ -40,10 +40,6 @@ int CatCommand::execute(std::string str) {
 			std::cout << c;
 		}
 		std::cout << std::endl;
-
-		/*AbstractFileVisitor* afv = new BasicDisplayVisitor();
-		af->accept(afv);
-		delete afv;*/
 	}
 
 	//setup input into file and store all input in vector

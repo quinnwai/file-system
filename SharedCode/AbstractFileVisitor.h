@@ -5,7 +5,6 @@ Purpose: Concrete class implementation of a command that enables a user to add f
 */
 
 #pragma once
-// declaration of the file visitor interface here
 #include <vector>
 #include <string>
 #include "TextFile.h"

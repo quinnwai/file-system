@@ -5,7 +5,6 @@ Purpose: Concrete class declaration of the SimpleFileFactory class, inherits fro
 */
 
 #pragma once
-// Studio 18 - simplefilefactory class declaration goes here
 #include "AbstractFile.h"
 #include <string>
 #include "AbstractFileFactory.h"

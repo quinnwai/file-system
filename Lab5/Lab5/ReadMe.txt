@@ -10,8 +10,9 @@ Errors/Bugs:
  -Constructor changes to match signature for tests for rename and other commands
  -Inserting spaces for MacroCommands
  -Implementing clone functions for different types of files
- -Ensuring correct spacing on LS display
- -Spacing/ordering on metadata display
+ -Ensuring correct spacing on ls 
+ -Spacing/ordering on ls only metadata
+ -Other bugs will be listed below in testing
 
 Testing:
 GENERAL
@@ -44,6 +45,19 @@ COMMANDS
  -All commands also tested had their help function tested
  -Below are the specific tests done for each command
 
+...LSCommand...
+ -Displaying manually-inserted file names with command call ls (expected result/display)
+ -Displaying metadata of manually-inserted files with call ls -m (expected result/display)
+ -After successfully removing or copying a file, checking outputs with command calls ls and ls -m (expected result/display)
+
+...RemoveCommand...
+ -Command calling rm <valid-file-name> which successfully removed the file
+ -Command calling rm <nonexisting-file-name> which failed as expected with the proper return value (no-file-exists)
+
+...TouchCommand...
+ -Calling touch banana.txt successfully creates a new file called banana.txt as checked by calling ls after
+ -Calling touch apple.img -p prompts the user to input a password for the file
+
 ...CatCommand...
  -Using the manually-inserted text and image files in client code
  -Run tests using combinations of "-a" vs "", ":wq" vs ":q"
@@ -53,40 +67,26 @@ COMMANDS
    Ex: given image file below, "X X X X X" was appended instead of overwritten
 	
 ...DisplayCommand...
- -Using the same manually inserted text and image files as CatCommand (see above)
+ -Using the same manually inserted text and image files as above
  -Ensure that printed output is unformatted with -d and unformatted without
- -Check non-existing file
+ -Check non-existing file to return non-zero enum
 
-...RenameCommand...
- -Using the manually-inserted text and image files in client code
- -Rename image file and rename text file
- -Note: MacroCommand was tested through RenameCommand tests, as the former must work if the latter does
-
- ...LSCommand...
- -Displaying manually-inserted file names with command call ls (expected result/display)
- -Displaying metadata of manually-inserted files with call ls -m (expected result/display)
- -After successfully removing or copying a file, checking outputs with command calls ls and ls -m (expected result/display)
-
- ...RemoveCommand...
- -Command calling rm <valid-file-name> which successfully removed the file
- -Command calling rm <nonexisting-file-name> which failed as expected with the proper return value (no-file-exists)
-
- ...TouchCommand...
- -Calling touch banana.txt successfully creates a new file called banana.txt as checked by calling ls after
- -Calling touch apple.img -p prompts the user to input a password for the file
-
- ...CopyCommand...
+...CopyCommand...
  -Calling cp <valid-file-name> <new-name> which successfully creates a copied file with new name, as checked by calling ls
  -Calling cp <valid-file-name> "" which returns a failure value because of the invalid file name "", returned cannot-create-file
  -Calling cp <nonexisting-file-name> <new-name> which returns a failure value because of the nonexistent file, returned no-file-exists
 
+ ...RenameCommand...
+ -Using the manually-inserted text and image files in client code
+ -Rename image file and rename text file and ds afterwards to ensure name change
+ -Note: MacroCommand was tested through RenameCommand tests, as the former must work if the latter does
 
 
 Extra Credit: CatDisplayCommand (see SharedCode directory)
 
 Use:
  -cds is the associated term
- -cat display allows you to changea file w/ or w/out appending [-a] and w/ or w/out displaying the data formatted [-d]
+ -cat display allows you to change a file w/ or w/out appending [-a] and w/ or w/out displaying the data formatted [-d]
  -any order of suffix is fine
 
 Errors/Bugs:

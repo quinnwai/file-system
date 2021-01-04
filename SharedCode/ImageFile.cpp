@@ -2,20 +2,20 @@
 Author: Quinn Wai Wong, Will LeVan
 Email: qwong@wustl.edu, levanw@wustl.edu
 Purpose: Concrete class implementation of the functionality of the ImageFile type
-*/#pragma once
+*/
+
+#pragma once
 #include "ImageFile.h"
 #include "AbstractFileVisitor.h"
 #include <iostream>
 #include <vector>
 
 ImageFile::ImageFile(std::string title) {
-//	cout << "image constructor" << endl;
 	image_size = 0;
 	name = title;
 }
 
 unsigned int ImageFile::getSize() {
-	//cout << image_size-48 << endl;
 	if (image_size <= 0) {
 		return 0;
 	}
@@ -23,14 +23,10 @@ unsigned int ImageFile::getSize() {
 }
 
 std::string ImageFile::getName() {
-	//cout << name << endl;
 	return name;
 }
 
-int ImageFile::write(std::vector<char> info) { // ERROR HERE
-	//image_size = info.pop_back();
-	//swap(info, this->contents);
-
+int ImageFile::write(std::vector<char> info) {
 	int temp_image_size = (int)(info[info.size() - 1]) - 48;
 
 	for (int i = 0; i < info.size()-1; ++i) {
@@ -44,7 +40,6 @@ int ImageFile::write(std::vector<char> info) { // ERROR HERE
 		std::cout << "error: size mismatch" << std::endl;
 		return size_mismatch;
 	}
-	//cout << "successful image write" << endl;
 
 	//added to end to make sure the overwriting/changes to info member vector only happens for valid inputs
 	image_size = temp_image_size;
@@ -65,8 +60,6 @@ int ImageFile::append(std::vector<char> info) {
 }
 
 std::vector<char> ImageFile::read() {
-	//cout << "image read" << endl;
-
 	return contents;
 }
 

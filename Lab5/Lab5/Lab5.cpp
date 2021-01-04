@@ -1,5 +1,5 @@
 // Lab5.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+
 #include "../../SharedCode/SimpleFileSystem.h"
 #include "../../SharedCode/SimpleFileFactory.h"
 #include "../../SharedCode/BasicDisplayVisitor.h"
@@ -30,21 +30,21 @@ int main(int argc, char* argv[])
 	daPrompt->setFileSystem(daSystem);
 	daPrompt->setFileFactory(daFactory);
 
+	////LS DISPLAY////
+	//add ls as a new command prompt
+	AbstractCommand* daLS = new LSCommand(daSystem);
+	daPrompt->addCommand("ls", daLS);
+
 	////REMOVE////
+	//add remove as new command prompt
 	AbstractCommand* daRemove = new RemoveCommand(daSystem);
 	daPrompt->addCommand("rm", daRemove);
 
-	////COPY////
-	AbstractCommand* daCopy = new CopyCommand(daSystem);
-	daPrompt->addCommand("cp", daCopy);
-
 	////TOUCH////
-	//add touch as a new command prompt
 	AbstractCommand* daTouch = new TouchCommand(daSystem, daFactory);
-	daPrompt->addCommand("touch", daTouch);
+	daPrompt->addCommand("touch", daTouch);	
 
 	////CAT////
-	//add cat as new command prompt
 	AbstractCommand* daCat = new CatCommand(daSystem);
 	daPrompt->addCommand("cat", daCat);
 
@@ -53,34 +53,29 @@ int main(int argc, char* argv[])
 	AbstractCommand* daDisplay = new DisplayCommand(daSystem);
 	daPrompt->addCommand("ds", daDisplay);
 
-	////RENAME////
-	//add rn as new command prompt (MacroCommand)
+	////COPY////
+	AbstractCommand* daCopy = new CopyCommand(daSystem);
+	daPrompt->addCommand("cp", daCopy);
+
+	////RENAME (MACRO)////
 	AbstractParsingStrategy* rps = new RenameParsingStrategy();
 	MacroCommand* daRename = new MacroCommand(daSystem);
 	daPrompt->addCommand("rn", daRename);
 
-	//add copy and remove objects within rn
-	daRename->setParseStrategy(rps);
+	daRename->setParseStrategy(rps); //add copy and remove objects within rn
 	daRename->addCommand(daCopy);
 	daRename->addCommand(daRemove);
 
-	////CAT DISPLAY////
-	//add cds as new command prompt (MacroCommand)
+	////CAT DISPLAY (MACRO)////
 	AbstractParsingStrategy* cdsStrat = new CatDisplayParsingStrategy();
 	MacroCommand* daCatDisplay = new MacroCommand(daSystem);
 	daPrompt->addCommand("cds", daCatDisplay);
-
-	////LS DISPLAY////
-	//add ls as a new command prompt
-	AbstractCommand* daLS = new LSCommand(daSystem);
-	daPrompt->addCommand("ls", daLS);
-
-	//add cat and display objects within cds
-	daCatDisplay->setParseStrategy(cdsStrat);
+	
+	daCatDisplay->setParseStrategy(cdsStrat); //add cat and display objects within cds
 	daCatDisplay->addCommand(daCat);
 	daCatDisplay->addCommand(daDisplay);
 
-	////MANUAL TEST CASES////
+	////MANUAL TEST CASE FILES////
 	//cat and ds test case: put text file with contents in there (check formatted)
 	AbstractFile* t1 = new TextFile("text.txt");
 	t1->write({ 'h', 'e', 'l', 'l', 'o', '\n', 'm', 'e' });
@@ -100,22 +95,23 @@ int main(int argc, char* argv[])
 	i2->write({ 'X', ' ',  'X', ' ', '2' });
 	daSystem->addFile(i2->getName(), i2);
 
+	////PROGRAM EXECUTION////
 	int runResult = daPrompt->run();
 
-	//list all deletes before returning
+	////MEMORY CLEAN UP////
 	delete daSystem;
 	delete daFactory;
 	delete daDisplayVisitor;
 	delete daPrompt;
+	delete daLS;
 	delete daRemove;
-	delete daCopy;
 	delete daTouch;
 	delete daCat;
 	delete daDisplay;
+	delete daCopy;
 	delete daRename;
 	delete daCatDisplay;
-	delete daLS;
-
+	
 	return runResult;
 }
 

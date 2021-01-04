@@ -9,7 +9,6 @@ Purpose: Concrete class declaration of the SimpleFileSystem class, inherits from
 #include "AbstractFileFactory.h"
 #include <map>
 #include <set>
-// declaration of SimpleFileSystem class goes here
 
 
 class SimpleFileSystem : public AbstractFileSystem {
@@ -20,5 +19,5 @@ public:
 	virtual int deleteFile(std::string name) override;
 	virtual AbstractFile* openFile(std::string name) override;
 	virtual int closeFile(AbstractFile* file) override;
-	virtual std::set<std::string> getFileNames() override; // this needs to be done
+	virtual std::set<std::string> getFileNames() override;
 };

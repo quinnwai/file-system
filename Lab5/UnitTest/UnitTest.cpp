@@ -1256,8 +1256,6 @@ namespace UnitTest
 			Assert::IsFalse(isNull);
 		}
 	};
-	
-	//FWL: commented out all command-related tests until in use
 
 	TEST_CLASS(removeCommand) {
 		TEST_METHOD(execute) { // confirms that execute, when passed a valid filename, will remove the given file from the filesystem -- removing the file again should fail, adding the file again should pass

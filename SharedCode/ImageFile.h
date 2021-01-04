@@ -10,8 +10,6 @@ Purpose: Concrete class declaration of the image file type, inherits from Abstra
 #include <string>
 #include <vector>
 
-// Image file class declaration here
-
 class ImageFile : public AbstractFile {
 	std::string name;
 	std::vector<char> contents;

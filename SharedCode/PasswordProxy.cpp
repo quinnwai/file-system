@@ -26,13 +26,10 @@ bool PasswordProxy::passwordPromptHelper(std::string s) {
 	return s == password;
 }
 
-//TODO: some sort of test issue w/ assert error
 std::vector<char> PasswordProxy::read() {
 	if (passwordPromptHelper(passwordPrompt())) {
-		//cout << "success" << endl;
 		return protectedFile->read();
 	}
-	//cout << "failure" << endl;
 	return std:: vector<char>();
 }
 

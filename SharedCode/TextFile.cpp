@@ -12,41 +12,27 @@ Purpose: Concrete class implementation of a the TextFile type
 #include <vector>
 
 //constructor using given string as file name
-TextFile::TextFile(std::string str) : fileName(str) {
-//	cout << "textFile constructor" << endl;
-}
+TextFile::TextFile(std::string str) : fileName(str) {}
 
 //get size of 'contents' vector
 unsigned int TextFile::getSize() {
-//	cout << "size: " << contents.size() << endl;
 	return (unsigned int) contents.size();
 }
 
 //get file name from private member variable 'fileName'
 std::string TextFile::getName() {
-//	cout << "FileName: " << fileName << endl;
 	return fileName;
 }
 
 int TextFile::write(std::vector<char> vec) {
 	swap(vec, this->contents);
-
-	//test methods
-	//for (char c : this->contents) {
-	//	cout << c;
-	//}
-	//cout << endl;
-//	cout << "vector swapped" << endl;
 	return success;
 }
 
 int TextFile::append(std::vector<char> vec) {
-	//cout << "appending vector..." << endl;
 	for (char c : vec) {
 		this->contents.push_back(c);
-		//cout << c;
 	}
-	//cout << endl;
 	return success;
 }
 

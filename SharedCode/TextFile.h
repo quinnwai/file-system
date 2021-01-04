@@ -8,7 +8,6 @@ Purpose: Concrete class declaration of the TextFile type class, inherits from Ab
 #include<vector>
 #include<string>
 #include "AbstractFile.h"
-// TextFile declaration goes here
 
 class TextFile : public AbstractFile {
 public:

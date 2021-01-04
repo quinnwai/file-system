@@ -9,8 +9,6 @@ Purpose: Declaration of interface for file types in the program.
 #include<vector>
 #include<string>
 
-
-// declare AbstractFileVisitor here. As all methods are virtual and will not be defined, no .cpp file is necessary
 class AbstractFileVisitor;
 
 class AbstractFile {
@@ -23,7 +21,6 @@ public:
 	virtual void accept(AbstractFileVisitor*) = 0; //calls on correct visitor pattern method for concrete file type
 	virtual AbstractFile* clone(std::string) = 0;
 	virtual ~AbstractFile() = default; //virtual ensures dynamic binding (to ImageFile or TextFile); client should go to right file typ
-	//friend AbstractFileVisitor;
 };
 
 

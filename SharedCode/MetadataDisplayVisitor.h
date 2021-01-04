@@ -5,7 +5,6 @@ Purpose: Concrete class declaration of the MetadataDisplayVisitor class, inherit
 */
 
 #pragma once
-// declaration of MetadataDisplayVisitor here
 #include "AbstractFileVisitor.h"
 
 class MetadataDisplayVisitor : public AbstractFileVisitor {

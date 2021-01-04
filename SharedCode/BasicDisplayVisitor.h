@@ -5,8 +5,6 @@ Purpose: Concrete class declaration of basic file display, inherits from Abstrac
 */
 
 #pragma once
-// declaration of BasicDisplayVisitor here
-
 #include "AbstractFileVisitor.h"
 
 class BasicDisplayVisitor : public AbstractFileVisitor {
