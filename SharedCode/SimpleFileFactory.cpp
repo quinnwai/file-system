@@ -13,15 +13,15 @@ Purpose: Concrete class implementation of a simple file factory which is used to
 
 AbstractFile* SimpleFileFactory::createFile(std::string name) {
 	std::string ftype = "";
-	if (name.length() <= 3) {
+	if (name.length() <= 4) {
 		return nullptr;
 	}
-	ftype = ftype + name[name.length() - 3] + name[name.length() - 2] + name[name.length() - 1];
-	if (ftype == "txt") {
+	ftype = ftype + name[name.length() - 4] + name[name.length() - 3] + name[name.length() - 2] + name[name.length() - 1];
+	if (ftype == ".txt") {
 		AbstractFile* words = new TextFile(name);
 		return words;
 	}
-	else if (ftype == "img") {
+	else if (ftype == ".img") {
 		AbstractFile* pics = new ImageFile(name);
 		return pics;
 	}
