@@ -20,10 +20,12 @@ int CopyCommand::execute(std::string str) {
 	AbstractFile* original = afs->openFile(name); // access file being copied, following ifs ensure copying can be properly completed
 	if (original == nullptr) {
 		std::cout << "cannot open file" << std::endl;
+		delete original;
 		return no_file_exists;
 	}
 	if (copy_name == "") {
 		std::cout << "invalid file name" << std::endl;
+		delete original;
 		return cannot_create_file;
 	}
 	AbstractFile* copy = original->clone(copy_name); // carry out prototype pattern (clone is defined by individual file types)
